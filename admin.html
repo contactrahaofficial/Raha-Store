@@ -273,27 +273,198 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* Prevent any child element from overflowing horizontally on mobile or desktop */
+    .admin-order-card,
+    .admin-order-card__grid > *,
+    .admin-prod-card,
+    .admin-modal__box,
+    .raha-spec-cell {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .raha-spec-cell__v {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .admin-img-upload-row {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+    }
+
     @media (max-width: 1024px) {
       .admin-kpis {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .admin-products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .admin-order-card__grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      .admin-shell {
+        padding: 18px 0 68px;
+      }
+
+      .admin-shell .raha-container {
+        padding: 0 12px !important;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .admin-topbar {
+        padding: 16px;
+        border-radius: 18px;
+        gap: 12px;
+      }
+
+      .admin-topbar h1 {
+        font-size: 20px !important;
+      }
+
       .admin-kpis {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .admin-kpis .admin-kpi-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .admin-kpi-card {
+        padding: 14px 16px;
+        border-radius: 16px;
+      }
+
+      .admin-kpi-card__v {
+        font-size: 24px;
+      }
+
+      .admin-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        padding: 8px;
+      }
+
+      .admin-tabs .admin-tab-btn:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .admin-tab-btn {
+        padding: 10px 8px;
+        font-size: 10px;
+        text-align: center;
+        width: 100%;
+      }
+
+      #admin-order-search,
+      #admin-product-search,
+      #admin-restock-search,
+      #admin-top-sample-order-btn,
+      #admin-add-product-btn,
+      #admin-restock-all-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+      }
+
+      .admin-order-card {
+        padding: 14px;
+        border-radius: 18px;
+      }
+
+      .admin-order-card__head {
+        gap: 10px;
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+
+      .admin-order-card__grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 12px;
+      }
+
+      .admin-order-meta-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 8px !important;
       }
 
       .admin-products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+      }
+
+      .raha-policy-card {
+        padding: 18px 14px !important;
+        border-radius: 20px !important;
+      }
+
+      .admin-img-upload-row {
+        grid-template-columns: 68px minmax(0, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .admin-img-upload-row > label,
+      .admin-img-upload-row > button {
+        grid-column: span 1;
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .admin-modal {
+        padding: 8px;
+      }
+
+      .admin-modal__box {
+        width: 100%;
+        max-height: 94vh;
+        padding: 18px 14px;
+        border-radius: 20px;
+      }
+
+      .raha-cod-field-row {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 10px !important;
+      }
+
+      .ep-sku-header-row {
+        display: none !important;
+      }
+
+      .ep-sku-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border-subtle);
+        background: rgba(255, 255, 255, 0.02);
+        margin-bottom: 12px !important;
+      }
+
+      .ep-sku-row .ep-sku-desc,
+      .ep-sku-row .ep-sku-remove {
+        grid-column: 1 / -1;
+      }
+
+      #ep-dynamic-gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
       }
     }
   </style>
@@ -612,7 +783,7 @@
 
           <div class="raha-cod-field">
             <label class="raha-cod-label" for="set-hero-img">Home Page Hero Editorial Portrait Image</label>
-            <div style="display:grid;grid-template-columns:90px 1fr auto auto;gap:12px;align-items:center;">
+            <div class="admin-img-upload-row">
               <img id="set-hero-img-prev" src="Assets/jewelry/hero-editorial.jpg" alt="Hero Preview"
                 style="width:90px;height:90px;object-fit:cover;border-radius:14px;border:1px solid var(--border-subtle);"
                 decoding="async">
@@ -643,7 +814,7 @@
 
             <div class="raha-cod-field">
               <label class="raha-cod-label" for="set-cat-earrings">01 • Earrings Card Cover Image</label>
-              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+              <div class="admin-img-upload-row">
                 <img id="set-cat-earrings-prev" src="Assets/jewelry/cat-earrings.jpg" alt="Earrings Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
                 <input type="text" id="set-cat-earrings" class="raha-cod-input" placeholder="Assets/jewelry/cat-earrings.jpg or Upload Photo">
                 <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
@@ -656,7 +827,7 @@
 
             <div class="raha-cod-field">
               <label class="raha-cod-label" for="set-cat-necklace">02 • Necklace Card Cover Image</label>
-              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+              <div class="admin-img-upload-row">
                 <img id="set-cat-necklace-prev" src="Assets/jewelry/cat-necklace.jpg" alt="Necklace Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
                 <input type="text" id="set-cat-necklace" class="raha-cod-input" placeholder="Assets/jewelry/cat-necklace.jpg or Upload Photo">
                 <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
@@ -669,7 +840,7 @@
 
             <div class="raha-cod-field">
               <label class="raha-cod-label" for="set-cat-rings">03 • Rings Card Cover Image</label>
-              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+              <div class="admin-img-upload-row">
                 <img id="set-cat-rings-prev" src="Assets/jewelry/cat-rings.jpg" alt="Rings Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
                 <input type="text" id="set-cat-rings" class="raha-cod-input" placeholder="Assets/jewelry/cat-rings.jpg or Upload Photo">
                 <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
@@ -682,7 +853,7 @@
 
             <div class="raha-cod-field">
               <label class="raha-cod-label" for="set-cat-bracelets">04 • Bracelets Card Cover Image</label>
-              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+              <div class="admin-img-upload-row">
                 <img id="set-cat-bracelets-prev" src="Assets/jewelry/cat-bracelets.jpg" alt="Bracelets Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
                 <input type="text" id="set-cat-bracelets" class="raha-cod-input" placeholder="Assets/jewelry/cat-bracelets.jpg or Upload Photo">
                 <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
@@ -695,7 +866,7 @@
 
             <div class="raha-cod-field" style="margin-bottom:0;">
               <label class="raha-cod-label" for="set-cat-anklets">05 • Anklets Card Cover Image</label>
-              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+              <div class="admin-img-upload-row">
                 <img id="set-cat-anklets-prev" src="Assets/jewelry/cat-anklets.jpg" alt="Anklets Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
                 <input type="text" id="set-cat-anklets" class="raha-cod-input" placeholder="Assets/jewelry/cat-anklets.jpg or Upload Photo">
                 <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
@@ -873,7 +1044,7 @@
               + Add SKU Option
             </button>
           </div>
-          <div
+          <div class="ep-sku-header-row"
             style="display:grid;grid-template-columns:80px 1.1fr 1fr 90px 90px 80px auto;gap:8px;padding:0 4px 6px;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);">
             <div>Code</div>
             <div>Finish Name</div>
@@ -983,7 +1154,7 @@
   <script src="Assets/js/supabase.min.js"></script>
   <script src="Assets/js/raha-supabase.js?v=20261115_v36"></script>
   <script src="Assets/js/replica-enhancements.js?v=20261115_v51"></script>
-  <script src="Assets/js/raha-admin.js?v=20261115_v21"></script>
+  <script src="Assets/js/raha-admin.js?v=20261115_v22"></script>
 </body>
 
 </html>

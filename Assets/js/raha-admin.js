@@ -206,13 +206,13 @@
       var itemsHtml = '';
       (o.items || []).forEach(function (it) {
         itemsHtml +=
-          '<div style="display:grid;grid-template-columns:46px 1fr auto;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-subtle);">' +
+          '<div style="display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-subtle);">' +
             '<img src="' + escapeHtml(it.img || 'Assets/jewelry/ear-1a.jpg') + '" alt="" style="width:46px;height:46px;border-radius:8px;object-fit:cover;">' +
-            '<div>' +
+            '<div style="min-width:0;overflow-wrap:anywhere;">' +
               '<div style="font-size:13.5px;font-weight:600;color:var(--text-primary);">' + escapeHtml(it.title) + '</div>' +
               '<div style="font-family:var(--font-mono);font-size:10.5px;color:var(--raha-gold);">SKU: ' + escapeHtml(it.sku || it.id) + ' • ' + escapeHtml(it.variant || 'Gold Plated') + ' × ' + (Number(it.qty) || 1) + '</div>' +
             '</div>' +
-            '<div style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-primary);">' + formatPKR((Number(it.price) || 0) * (Number(it.qty) || 1)) + '</div>' +
+            '<div style="font-family:var(--font-mono);font-size:12.5px;color:var(--text-primary);white-space:nowrap;text-align:right;">' + formatPKR((Number(it.price) || 0) * (Number(it.qty) || 1)) + '</div>' +
           '</div>';
       });
 
@@ -243,18 +243,18 @@
             '</div>' +
           '</div>' +
           '<div class="admin-order-card__grid">' +
-            '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">' +
+            '<div class="admin-order-meta-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0;">' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Customer Name</span><span class="raha-spec-cell__v">' + escapeHtml(cust.name || '—') + '</span></div>' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Phone / WhatsApp No.</span><span class="raha-spec-cell__v"><a href="' + waCustomerUrl + '" target="_blank" rel="noopener" style="color:var(--raha-gold);">' + escapeHtml(cust.phone || '—') + ' ↗</a></span></div>' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Email Address</span><span class="raha-spec-cell__v">' + escapeHtml(cust.email || '—') + '</span></div>' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Delivery City</span><span class="raha-spec-cell__v" style="color:var(--raha-gold);">' + escapeHtml(cust.city || '—') + '</span></div>' +
               '<div class="raha-spec-cell" style="grid-column:1 / -1;"><span class="raha-spec-cell__k">Full Delivery Street Address</span><span class="raha-spec-cell__v">' + escapeHtml(cust.address || '—') + (cust.notes ? ' (Note: ' + escapeHtml(cust.notes) + ')' : '') + '</span></div>' +
             '</div>' +
-            '<div style="background:rgba(13,10,12,0.45);padding:14px 16px;border-radius:16px;border:1px solid var(--border-subtle);display:flex;flex-direction:column;justify-content:space-between;">' +
+            '<div style="min-width:0;background:rgba(13,10,12,0.45);padding:14px 16px;border-radius:16px;border:1px solid var(--border-subtle);display:flex;flex-direction:column;justify-content:space-between;">' +
               '<div>' + itemsHtml + '</div>' +
-              '<div style="padding-top:10px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:13.5px;font-weight:600;">' +
+              '<div style="padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:13.5px;font-weight:600;">' +
                 '<span>Total COD Payable:</span>' +
-                '<span style="color:var(--raha-gold);font-size:16px;">' + formatPKR(o.total) + '</span>' +
+                '<span style="color:var(--raha-gold);font-size:16px;white-space:nowrap;">' + formatPKR(o.total) + '</span>' +
               '</div>' +
             '</div>' +
           '</div>' +

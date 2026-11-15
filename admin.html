@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>Raha Admin Command Center — Storefront Manager (Orders, Products, Images &amp; SKUs)</title>
+  <meta name="description"
+    content="Raha — Jewellery For The Modern Minimalists (ESTD 2026) Admin Portal. Manage Cash on Delivery orders, add/remove products, upload images, configure SKUs, and edit website content.">
+  <link rel="icon" type="image/png" href="Assets/raha-favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="Assets/css/raha-atelier.css?v=20261115_v21">
+  <style>
+    /* High-contrast solid dropdown & native control styling — zero white-on-white */
+    :root {
+      color-scheme: dark;
+    }
+
+    select,
+    option,
+    optgroup {
+      color-scheme: dark !important;
+    }
+
+    select,
+    .raha-cod-select {
+      background-color: #1a1518 !important;
+      color: #f7f4f2 !important;
+      border: 1.5px solid var(--border-subtle);
+    }
+
+    select option,
+    select optgroup,
+    option,
+    optgroup,
+    .raha-cod-select option {
+      background-color: #181316 !important;
+      color: #f7f4f2 !important;
+      font-size: 13.5px !important;
+      padding: 10px 14px !important;
+    }
+
+    select option:checked,
+    select option:hover,
+    option:checked,
+    option:hover,
+    .raha-cod-select option:checked {
+      background-color: #725e67 !important;
+      color: #ffffff !important;
+    }
+
+    input:-webkit-autofill,
+    textarea:-webkit-autofill,
+    select:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px #1a1518 inset !important;
+      -webkit-text-fill-color: #f7f4f2 !important;
+    }
+
+    .admin-shell {
+      padding: 36px 0 96px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .admin-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 22px 28px;
+      border-radius: 24px;
+      background: var(--bg-glass-strong);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+    }
+
+    .admin-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .admin-kpi-card {
+      padding: 20px 22px;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
+    }
+
+    .admin-kpi-card__k {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .admin-kpi-card__v {
+      font-family: var(--font-serif);
+      font-size: 34px;
+      font-weight: 500;
+      color: var(--raha-gold);
+      line-height: 1.1;
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+      padding: 8px;
+      border-radius: 18px;
+      background: rgba(13, 10, 12, 0.55);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .admin-tab-btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .admin-tab-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .admin-tab-btn.is-active {
+      background: linear-gradient(135deg, rgba(214, 183, 138, 0.2), rgba(114, 94, 103, 0.28));
+      border-color: var(--raha-gold);
+      color: var(--raha-gold-light);
+      font-weight: 600;
+    }
+
+    .admin-tab-panel {
+      display: none;
+    }
+
+    .admin-tab-panel.is-active {
+      display: block;
+    }
+
+    .admin-order-card {
+      padding: 22px 24px;
+      border-radius: 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .admin-order-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .admin-order-card__grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 18px;
+    }
+
+    .admin-products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .admin-prod-card {
+      padding: 16px;
+      border-radius: 22px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .admin-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: rgba(9, 7, 9, 0.84);
+      backdrop-filter: blur(18px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .admin-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .admin-modal__box {
+      width: min(1040px, 96vw);
+      max-height: 92vh;
+      overflow-y: auto;
+      border-radius: 28px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-glow);
+      box-shadow: var(--shadow-luxury);
+      padding: 28px 32px;
+    }
+
+    .admin-img-slot {
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(13, 10, 12, 0.5);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .admin-img-slot img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .admin-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      z-index: 1200;
+      padding: 12px 24px;
+      border-radius: 100px;
+      background: rgba(18, 14, 17, 0.96);
+      border: 1px solid var(--raha-gold);
+      color: var(--raha-gold-light);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.65);
+    }
+
+    .admin-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .admin-kpis {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .admin-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .admin-order-card__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .admin-kpis {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- OWNER ADMIN ACCESS GATE OVERLAY (Strict Owner Gmail Verification) -->
+  <div id="admin-auth-gate"
+    style="position:fixed;inset:0;z-index:9999;background:var(--bg-midnight);display:flex;align-items:center;justify-content:center;padding:24px;">
+    <div
+      style="width:min(480px,94vw);padding:36px 32px;border-radius:28px;background:var(--bg-elevated);border:1px solid var(--border-glow);box-shadow:var(--shadow-luxury);text-align:center;">
+      <a href="index.html" style="display:inline-block;margin-bottom:18px;">
+        <img src="Assets/Raha logo white with transparent background.webp" alt="Raha" style="height:44px;width:auto;"
+          decoding="async">
+      </a>
+      <div
+        style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:8px;">
+        Owner Admin Access Only
+      </div>
+      <h2
+        style="font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--text-primary);margin-bottom:12px;">
+        Raha Command Center
+      </h2>
+      <p style="font-size:13px;line-height:1.65;color:var(--text-secondary);margin-bottom:24px;">
+        This portal is restricted to the store owner. Please sign in with your official Raha admin account
+        (<strong>contact.rahaofficial@gmail.com</strong>) to manage orders, products, and homepage curation.
+      </p>
+
+      <div id="admin-gate-error"
+        style="display:none;padding:10px 14px;border-radius:12px;background:rgba(229,115,115,0.14);border:1px solid rgba(229,115,115,0.4);color:#ffcdd2;font-size:12px;margin-bottom:18px;text-align:left;">
+      </div>
+
+      <form id="admin-gate-form">
+        <div class="raha-cod-field" style="text-align:left;">
+          <label class="raha-cod-label" for="gate-email">Owner Gmail Address</label>
+          <input type="email" id="gate-email" class="raha-cod-input" value="contact.rahaofficial@gmail.com" required>
+        </div>
+        <div class="raha-cod-field" style="text-align:left;">
+          <label class="raha-cod-label" for="gate-password">Admin Password</label>
+          <input type="password" id="gate-password" class="raha-cod-input" placeholder="Enter owner password..."
+            required>
+        </div>
+        <button type="submit" class="raha-btn raha-btn--primary" id="gate-submit-btn"
+          style="width:100%;padding:14px 20px;margin-top:8px;">
+          <span>Unlock Admin Controls</span>
+        </button>
+      </form>
+      <div
+        style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;">
+        <a href="index.html"
+          style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);text-decoration:none;">← Return to
+          Storefront</a>
+        <button type="button" id="gate-first-time-setup-btn"
+          style="background:none;border:none;color:var(--raha-gold);font-family:var(--font-mono);font-size:11px;cursor:pointer;text-decoration:underline;">Set
+          / Change Owner Password</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="raha-ambient-canvas" aria-hidden="true">
+    <div class="raha-ambient-orb raha-ambient-orb--1"></div>
+    <div class="raha-ambient-orb raha-ambient-orb--2"></div>
+  </div>
+  <div class="raha-arch-grid" aria-hidden="true"></div>
+
+  <main class="admin-shell">
+    <div class="raha-container">
+      <!-- Admin Header Bar -->
+      <header class="admin-topbar">
+        <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+          <a href="index.html" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;">
+            <img src="Assets/Raha logo white with transparent background.webp" alt="Raha"
+              style="height:36px;width:auto;" decoding="async">
+          </a>
+          <div>
+            <div
+              style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--raha-gold);">
+              Raha • Admin Command Center
+            </div>
+            <h1
+              style="font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--text-primary);line-height:1.15;">
+              Live Storefront, Orders, Products &amp; SKU Manager
+            </h1>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span id="admin-sb-status"
+            style="font-family:var(--font-mono);font-size:11px;padding:8px 14px;border-radius:100px;border:1px solid rgba(129,199,132,0.4);background:rgba(13,10,12,0.6);color:#81c784;">
+            ● Cloud Storefront Synchronized
+          </span>
+          <span id="admin-user-pill"
+            style="font-family:var(--font-mono);font-size:11px;padding:8px 14px;border-radius:100px;border:1px solid rgba(214,183,138,0.3);background:rgba(214,183,138,0.12);color:var(--raha-gold-light);">
+            Owner: contact.rahaofficial@gmail.com
+          </span>
+          <button type="button" class="raha-btn raha-btn--glass" id="admin-logout-btn"
+            style="padding:8px 14px;font-size:10.5px;">
+            Sign Out
+          </button>
+          <a href="index.html" class="raha-btn raha-btn--primary"
+            style="text-decoration:none;padding:10px 18px;font-size:11px;">
+            <span>View Live Storefront ↗</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- Live Telemetry KPIs -->
+      <section class="admin-kpis" aria-label="Store Telemetry">
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-card__k">Total COD Orders</span>
+          <div class="admin-kpi-card__v" id="kpi-total-orders">0</div>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-card__k">Pending Dispatch</span>
+          <div class="admin-kpi-card__v" id="kpi-pending-orders">0</div>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-card__k">Confirmed Revenue (PKR)</span>
+          <div class="admin-kpi-card__v" id="kpi-total-revenue">Rs 0</div>
+        </div>
+        <div class="admin-kpi-card">
+          <span class="admin-kpi-card__k">Live Active Pieces</span>
+          <div class="admin-kpi-card__v" id="kpi-total-products">36</div>
+        </div>
+        <div class="admin-kpi-card" id="kpi-card-restock" style="cursor:pointer;"
+          onclick="var b=document.querySelector('[data-admin-tab=restock]');if(b)b.click();">
+          <span class="admin-kpi-card__k">Restock Needed</span>
+          <div class="admin-kpi-card__v" id="kpi-restock-count" style="color:#e57373;">0</div>
+        </div>
+      </section>
+
+      <!-- Navigation Tabs -->
+      <nav class="admin-tabs" aria-label="Admin Sections">
+        <button type="button" class="admin-tab-btn is-active" data-admin-tab="orders">01 • Orders &amp; COD</button>
+        <button type="button" class="admin-tab-btn" data-admin-tab="products">02 • Products &amp; SKUs</button>
+        <button type="button" class="admin-tab-btn" data-admin-tab="restock">03 • Restock Products (<span
+            id="admin-restock-tab-badge">0</span>)</button>
+        <button type="button" class="admin-tab-btn" data-admin-tab="settings">04 • Website &amp; Hero CMS</button>
+        <button type="button" class="admin-tab-btn" data-admin-tab="pages">05 • Policy Pages</button>
+      </nav>
+
+      <!-- ================================================================
+           TAB 01: ORDERS & CASH ON DELIVERY MANAGER
+           ================================================================ -->
+      <section class="admin-tab-panel is-active" id="tab-orders">
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button type="button" class="raha-filter-pill is-active" data-order-filter="all">All Orders</button>
+            <button type="button" class="raha-filter-pill" data-order-filter="Pending">Pending</button>
+            <button type="button" class="raha-filter-pill" data-order-filter="Confirmed">Confirmed</button>
+            <button type="button" class="raha-filter-pill" data-order-filter="Dispatched">Dispatched</button>
+            <button type="button" class="raha-filter-pill" data-order-filter="Delivered">Delivered</button>
+            <button type="button" class="raha-filter-pill" data-order-filter="Cancelled">Cancelled</button>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <input type="search" id="admin-order-search" class="raha-cod-input"
+              placeholder="Search Order ID, Name, Phone, City..." style="width:280px;">
+            <button type="button" class="raha-btn raha-btn--glass" id="admin-top-sample-order-btn"
+              style="padding:10px 16px;font-size:10.5px;">
+              + Simulate Customer COD Order
+            </button>
+          </div>
+        </div>
+
+        <div id="admin-orders-list"></div>
+      </section>
+
+      <!-- ================================================================
+           TAB 02: PRODUCTS, IMAGES & SKU MANAGER
+           ================================================================ -->
+      <section class="admin-tab-panel" id="tab-products">
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px;">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button type="button" class="raha-filter-pill is-active" data-prod-filter="all">All Departments</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="earrings">Earrings</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="rings">Rings</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="anklets">Anklets</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="necklace">Necklace</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="bracelets">Bracelets</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="restock"
+              style="color:#e57373;border-color:rgba(229,115,115,0.4);">⚠️ Restock Needed (<span
+                id="admin-prod-filter-restock-count">0</span>)</button>
+            <button type="button" class="raha-filter-pill" data-prod-filter="low"
+              style="color:var(--raha-gold);border-color:rgba(214,183,138,0.4);">⚡ Low Stock (&le; 5)</button>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <input type="search" id="admin-product-search" class="raha-cod-input"
+              placeholder="Search by title or SKU..." style="width:240px;">
+            <button type="button" class="raha-btn raha-btn--primary" id="admin-add-product-btn"
+              style="padding:11px 18px;font-size:11px;">
+              + Add New Product &amp; SKUs
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-products-grid" id="admin-products-grid"></div>
+      </section>
+
+      <!-- ================================================================
+           TAB 03: RESTOCK PRODUCTS & INVENTORY REPLENISHMENT
+           ================================================================ -->
+      <section class="admin-tab-panel" id="tab-restock">
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px;">
+          <div>
+            <div
+              style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:#e57373;margin-bottom:4px;">
+              Admin Inventory Vault • Restock Required
+            </div>
+            <h2 style="font-family:var(--font-serif);font-size:30px;font-weight:400;margin:0;">
+              Out-of-Stock Pieces
+            </h2>
+            <p style="font-size:12.5px;color:var(--text-secondary);margin:4px 0 0 0;">
+              Pieces with 0 stock are automatically hidden from buyers across all storefront pages. Restock them here to
+              make them instantly reappear live.
+            </p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <input type="search" id="admin-restock-search" class="raha-cod-input"
+              placeholder="Filter out of stock pieces..." style="width:230px;">
+            <button type="button" class="raha-btn raha-btn--primary" id="admin-restock-all-btn"
+              style="padding:11px 18px;font-size:11px;">
+              ⚡ Restock All Depleted Pieces (+15 Units)
+            </button>
+          </div>
+        </div>
+
+        <div id="admin-restock-grid" class="admin-products-grid"></div>
+      </section>
+
+      <!-- ================================================================
+           TAB 03: GLOBAL WEBSITE & HERO CMS
+           ================================================================ -->
+      <section class="admin-tab-panel" id="tab-settings">
+        <form id="admin-settings-form" class="raha-policy-card" style="max-width:920px;margin:0 auto;">
+          <div style="margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border-subtle);">
+            <div
+              style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;">
+              Live Storefront Customization
+            </div>
+            <h2 style="font-family:var(--font-serif);font-size:32px;font-weight:400;">Website Hero, Announcement Bar
+              &amp; Shipping</h2>
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="set-marquee">Top Announcement Marquee Bar Text</label>
+            <input type="text" id="set-marquee" class="raha-cod-input">
+          </div>
+
+          <div class="raha-cod-field-row">
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-free-ship">Free Express Shipping Threshold (PKR)</label>
+              <input type="number" id="set-free-ship" class="raha-cod-input" value="3500">
+            </div>
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-std-ship">Standard Delivery Charge Below Threshold (PKR)</label>
+              <input type="number" id="set-std-ship" class="raha-cod-input" value="250">
+            </div>
+          </div>
+
+          <div class="raha-cod-field-row">
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-wa-num">Official WhatsApp Order Number</label>
+              <input type="text" id="set-wa-num" class="raha-cod-input" value="923260870876">
+            </div>
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-hero-heading">Home Hero Monolith Card Title</label>
+              <input type="text" id="set-hero-heading" class="raha-cod-input">
+            </div>
+          </div>
+
+          <div class="raha-cod-field-row">
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-flagship-link">Hero Flagship Button Link Destination (Where the
+                link takes the buyer)</label>
+              <input type="text" id="set-flagship-link" class="raha-cod-input"
+                placeholder="e.g. product.html?id=item-2892, bracelets.html, etc.">
+            </div>
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-flagship-picker">Quick Select Product / Destination</label>
+              <select id="set-flagship-picker" class="raha-cod-input" style="cursor:pointer;">
+                <option value="">-- Choose A Product or Page --</option>
+                <optgroup label="Collections &amp; Pages">
+                  <option value="bracelets.html">Bracelets Collection</option>
+                  <option value="earrings.html">Earrings Collection</option>
+                  <option value="rings.html">Rings Collection</option>
+                  <option value="necklace.html">Necklace Collection</option>
+                  <option value="anklets.html">Anklets Collection</option>
+                  <option value="#raha-collections">Featured Archetypes Grid</option>
+                </optgroup>
+                <optgroup label="Catalog Products" id="set-flagship-product-options">
+                  <!-- Dynamically populated from catalog -->
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="set-flagship-text">Hero Flagship Button Text / Label</label>
+            <input type="text" id="set-flagship-text" class="raha-cod-input" placeholder="Inspect Flagship Piece →">
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="set-hero-title">Home Page Hero Headline (HTML allowed for
+              <code>&lt;em&gt;</code> italics)</label>
+            <input type="text" id="set-hero-title" class="raha-cod-input">
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="set-hero-sub">Home Page Hero Subtitle</label>
+            <textarea id="set-hero-sub" class="raha-cod-textarea"></textarea>
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="set-hero-img">Home Page Hero Editorial Portrait Image</label>
+            <div style="display:grid;grid-template-columns:90px 1fr auto auto;gap:12px;align-items:center;">
+              <img id="set-hero-img-prev" src="Assets/jewelry/hero-editorial.jpg" alt="Hero Preview"
+                style="width:90px;height:90px;object-fit:cover;border-radius:14px;border:1px solid var(--border-subtle);"
+                decoding="async">
+              <input type="text" id="set-hero-img" class="raha-cod-input"
+                placeholder="Assets/jewelry/hero-editorial.jpg or Supabase Storage URL">
+              <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:12px 16px;font-size:10.5px;">
+                <span>Upload Photo</span>
+                <input type="file" accept="image/*" data-upload-target="set-hero-img" style="display:none;">
+              </label>
+              <button type="button" class="raha-btn raha-btn--glass" data-remove-img="set-hero-img"
+                style="padding:12px 14px;font-size:10.5px;color:#e57373;border-color:rgba(229,115,115,0.4);"
+                title="Remove / Reset Hero Photo">
+                ✕ Remove
+              </button>
+            </div>
+          </div>
+
+          <!-- HOME PAGE 5 CATEGORY CARDS ("FIVE CURATED ARCHETYPES" IMAGES) -->
+          <div style="margin:24px 0 18px;padding:20px;border-radius:18px;background:rgba(13,10,12,0.5);border:1px solid var(--border-glow);">
+            <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-subtle);">
+              <div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:4px;">
+                Home Page Category Bento Cards ("Five Curated Archetypes")
+              </div>
+              <p style="font-size:12.5px;color:var(--text-secondary);margin:0;">
+                Upload or change the cover photos shown on the 5 department cards (01 Earrings, 02 Necklace, 03 Rings, 04 Bracelets, 05 Anklets) on the Home Page.
+              </p>
+            </div>
+
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-cat-earrings">01 • Earrings Card Cover Image</label>
+              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+                <img id="set-cat-earrings-prev" src="Assets/jewelry/cat-earrings.jpg" alt="Earrings Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
+                <input type="text" id="set-cat-earrings" class="raha-cod-input" placeholder="Assets/jewelry/cat-earrings.jpg or Upload Photo">
+                <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
+                  <span>Upload Photo</span>
+                  <input type="file" accept="image/*" data-upload-target="set-cat-earrings" style="display:none;">
+                </label>
+                <button type="button" class="raha-btn raha-btn--glass" data-remove-img="set-cat-earrings" style="padding:10px 12px;font-size:10.5px;color:#e57373;border-color:rgba(229,115,115,0.4);">✕ Reset</button>
+              </div>
+            </div>
+
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-cat-necklace">02 • Necklace Card Cover Image</label>
+              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+                <img id="set-cat-necklace-prev" src="Assets/jewelry/cat-necklace.jpg" alt="Necklace Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
+                <input type="text" id="set-cat-necklace" class="raha-cod-input" placeholder="Assets/jewelry/cat-necklace.jpg or Upload Photo">
+                <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
+                  <span>Upload Photo</span>
+                  <input type="file" accept="image/*" data-upload-target="set-cat-necklace" style="display:none;">
+                </label>
+                <button type="button" class="raha-btn raha-btn--glass" data-remove-img="set-cat-necklace" style="padding:10px 12px;font-size:10.5px;color:#e57373;border-color:rgba(229,115,115,0.4);">✕ Reset</button>
+              </div>
+            </div>
+
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-cat-rings">03 • Rings Card Cover Image</label>
+              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+                <img id="set-cat-rings-prev" src="Assets/jewelry/cat-rings.jpg" alt="Rings Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
+                <input type="text" id="set-cat-rings" class="raha-cod-input" placeholder="Assets/jewelry/cat-rings.jpg or Upload Photo">
+                <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
+                  <span>Upload Photo</span>
+                  <input type="file" accept="image/*" data-upload-target="set-cat-rings" style="display:none;">
+                </label>
+                <button type="button" class="raha-btn raha-btn--glass" data-remove-img="set-cat-rings" style="padding:10px 12px;font-size:10.5px;color:#e57373;border-color:rgba(229,115,115,0.4);">✕ Reset</button>
+              </div>
+            </div>
+
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="set-cat-bracelets">04 • Bracelets Card Cover Image</label>
+              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+                <img id="set-cat-bracelets-prev" src="Assets/jewelry/cat-bracelets.jpg" alt="Bracelets Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
+                <input type="text" id="set-cat-bracelets" class="raha-cod-input" placeholder="Assets/jewelry/cat-bracelets.jpg or Upload Photo">
+                <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
+                  <span>Upload Photo</span>
+                  <input type="file" accept="image/*" data-upload-target="set-cat-bracelets" style="display:none;">
+                </label>
+                <button type="button" class="raha-btn raha-btn--glass" data-remove-img="set-cat-bracelets" style="padding:10px 12px;font-size:10.5px;color:#e57373;border-color:rgba(229,115,115,0.4);">✕ Reset</button>
+              </div>
+            </div>
+
+            <div class="raha-cod-field" style="margin-bottom:0;">
+              <label class="raha-cod-label" for="set-cat-anklets">05 • Anklets Card Cover Image</label>
+              <div style="display:grid;grid-template-columns:80px 1fr auto auto;gap:12px;align-items:center;">
+                <img id="set-cat-anklets-prev" src="Assets/jewelry/cat-anklets.jpg" alt="Anklets Card Preview" style="width:80px;height:60px;object-fit:cover;border-radius:10px;border:1px solid var(--border-subtle);" decoding="async">
+                <input type="text" id="set-cat-anklets" class="raha-cod-input" placeholder="Assets/jewelry/cat-anklets.jpg or Upload Photo">
+                <label class="raha-btn raha-btn--glass" style="cursor:pointer;padding:10px 15px;font-size:10.5px;">
+                  <span>Upload Photo</span>
+                  <input type="file" accept="image/*" data-upload-target="set-cat-anklets" style="display:none;">
+                </label>
+                <button type="button" class="raha-btn raha-btn--glass" data-remove-img="set-cat-anklets" style="padding:10px 12px;font-size:10.5px;color:#e57373;border-color:rgba(229,115,115,0.4);">✕ Reset</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="raha-btn raha-btn--primary"
+            style="width:100%;padding:15px 24px;margin-top:12px;">
+            <span>Save &amp; Publish Website Settings Live</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- ================================================================
+           TAB 04: FOOTER POLICY PAGES EDITOR
+           ================================================================ -->
+      <section class="admin-tab-panel" id="tab-pages">
+        <form id="admin-pages-form" class="raha-policy-card" style="max-width:920px;margin:0 auto;">
+          <div style="margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border-subtle);">
+            <div
+              style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;">
+              Footer Information Pages CMS
+            </div>
+            <h2 style="font-family:var(--font-serif);font-size:32px;font-weight:400;">Edit About Us, FAQs, Shipping,
+              Refund &amp; Terms</h2>
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="admin-page-select">Select Footer Page to Edit</label>
+            <select id="admin-page-select" class="raha-cod-select">
+              <option value="about-us">Page 1: About Us (about-us.html)</option>
+              <option value="faqs">Page 2: FAQs (faqs.html)</option>
+              <option value="shipping-policy">Page 3: Shipping Policy (shipping-policy.html)</option>
+              <option value="refund-policy">Page 4: Refund Policy (refund-policy.html)</option>
+              <option value="terms-and-conditions">Page 5: Terms &amp; Conditions (terms-and-conditions.html)</option>
+            </select>
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="admin-page-subtitle">Page Lead Subtitle</label>
+            <input type="text" id="admin-page-subtitle" class="raha-cod-input">
+          </div>
+
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="admin-page-body">Page Content Body (HTML / Text)</label>
+            <textarea id="admin-page-body" class="raha-cod-textarea"
+              style="min-height:260px;font-family:var(--font-mono);font-size:12.5px;"></textarea>
+          </div>
+
+          <button type="submit" class="raha-btn raha-btn--primary" style="width:100%;padding:15px 24px;margin-top:8px;">
+            <span>Save &amp; Publish Footer Page Content</span>
+          </button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- ======================================================================
+       PRODUCT, MULTI-ANGLE IMAGE UPLOAD & SKU STUDIO MODAL
+       ====================================================================== -->
+  <div class="admin-modal" id="admin-product-modal" role="dialog" aria-modal="true"
+    aria-labelledby="admin-prod-modal-title">
+    <div class="admin-modal__box">
+      <div
+        style="display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--border-subtle);">
+        <div>
+          <div
+            style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);">
+            Raha Product &amp; Multi-SKU Studio
+          </div>
+          <h3 style="font-family:var(--font-serif);font-size:28px;font-weight:400;" id="admin-prod-modal-title">Edit
+            Jewellery Piece</h3>
+        </div>
+        <button type="button" class="raha-icon-btn" data-close-prod-modal aria-label="Close Modal">&times;</button>
+      </div>
+
+      <form id="admin-product-form">
+        <input type="hidden" id="ep-id">
+
+        <!-- ========================================================
+             1. ALL PRODUCT INFO & SPECIFICATIONS TOGETHER
+             ======================================================== -->
+        <div class="raha-cod-field-row" style="grid-template-columns: 1fr 2fr 1fr;">
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-sku">Base SKU Code *</label>
+            <input type="text" id="ep-sku" class="raha-cod-input" placeholder="e.g. RAHA-EAR-09" required>
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-title">Product Title *</label>
+            <input type="text" id="ep-title" class="raha-cod-input" placeholder="e.g. Solaris Sculpted Gold Hoops"
+              required>
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-category">Category Department *</label>
+            <select id="ep-category" class="raha-cod-select">
+              <option value="earrings">Earrings</option>
+              <option value="rings">Rings</option>
+              <option value="anklets">Anklets</option>
+              <option value="necklace">Necklace</option>
+              <option value="bracelets">Bracelets</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="raha-cod-field-row" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-price">Base Price (PKR) *</label>
+            <input type="number" id="ep-price" class="raha-cod-input" placeholder="e.g. 2450" required>
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-compare">Compare-At Price (PKR)</label>
+            <input type="number" id="ep-compare" class="raha-cod-input" placeholder="e.g. 3200">
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-stock" style="color:var(--raha-gold);font-weight:600;">Stock Units
+              *</label>
+            <input type="number" id="ep-stock" class="raha-cod-input" min="0" placeholder="e.g. 15" required
+              style="border-color:rgba(214,183,138,0.5);">
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-badge">Badge Pill</label>
+            <input type="text" id="ep-badge" class="raha-cod-input" placeholder="Bestseller / Waterproof">
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-subdept">Sub-Department Tag</label>
+            <input type="text" id="ep-subdept" class="raha-cod-input" placeholder="Architectural Hoops">
+          </div>
+        </div>
+
+        <div class="raha-cod-field">
+          <label class="raha-cod-label" for="ep-subtitle">Product Description &amp; Craftsmanship Narrative</label>
+          <textarea id="ep-subtitle" class="raha-cod-textarea"
+            placeholder="Describe the silhouette, gold-plated finish, and styling notes..."></textarea>
+        </div>
+
+        <div class="raha-cod-field-row" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-sizes">Available Sizes / Fit Options (Comma-separated)</label>
+            <input type="text" id="ep-sizes" class="raha-cod-input"
+              placeholder="e.g. US 6 (16.5mm), US 7 (17.3mm), US 8 (18.1mm)">
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-material">Filter Material Tag</label>
+            <input type="text" id="ep-material" class="raha-cod-input" placeholder="gold / silver / pearl">
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-dimensions">Dimensions</label>
+            <input type="text" id="ep-dimensions" class="raha-cod-input" placeholder="22mm × 14mm">
+          </div>
+          <div class="raha-cod-field">
+            <label class="raha-cod-label" for="ep-weight">Piece Weight</label>
+            <input type="text" id="ep-weight" class="raha-cod-input" placeholder="4.2g">
+          </div>
+        </div>
+
+        <!-- Dynamic SKUs & Finish Variants Builder -->
+        <div
+          style="margin:20px 0;padding:18px;border-radius:18px;background:rgba(13,10,12,0.5);border:1px solid var(--border-subtle);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <div>
+              <div
+                style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--raha-gold);">
+                Selectable SKUs &amp; Finishes on Product Page
+              </div>
+              <p style="font-size:12px;color:var(--text-secondary);">Add, edit, or remove SKU finishes and individual
+                SKU prices for this piece.</p>
+            </div>
+            <button type="button" class="raha-btn raha-btn--glass" id="ep-add-sku-btn"
+              style="padding:8px 14px;font-size:10.5px;">
+              + Add SKU Option
+            </button>
+          </div>
+          <div
+            style="display:grid;grid-template-columns:80px 1.1fr 1fr 90px 90px 80px auto;gap:8px;padding:0 4px 6px;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);">
+            <div>Code</div>
+            <div>Finish Name</div>
+            <div>Description</div>
+            <div>Price</div>
+            <div>Compare</div>
+            <div style="color:var(--raha-gold);">Stock</div>
+            <div></div>
+          </div>
+          <div id="ep-sku-rows"></div>
+        </div>
+
+        <div
+          style="margin:16px 0;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,0.02);border:1px solid var(--border-subtle);">
+          <label
+            style="display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:13.5px;color:var(--text-primary);">
+            <input type="checkbox" id="ep-featured" style="width:18px;height:18px;accent-color:var(--raha-gold);">
+            <span>Feature this piece on the Home Page "Featured Raha Editions" grid</span>
+          </label>
+        </div>
+
+        <!-- ========================================================
+             2. PRODUCT IMAGES (PRODUCT GALLERY STUDIO)
+             ======================================================== -->
+        <div
+          style="margin:20px 0;padding:20px;border-radius:20px;background:rgba(13,10,12,0.55);border:1px solid var(--border-glow);">
+          <div
+            style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+            <div>
+              <div
+                style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);">
+                Product Image Studio (<span id="ep-gallery-count">0</span> Photos)
+              </div>
+              <p style="font-size:12.5px;color:var(--text-secondary);margin-top:3px;">
+                Upload as many photos as you want, or delete any photo you don't want. The first photo is your primary
+                storefront cover.
+              </p>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <label class="raha-btn raha-btn--primary"
+                style="cursor:pointer;padding:10px 18px;font-size:11px;display:inline-flex;align-items:center;gap:6px;">
+                <span>+ Upload Photo(s)</span>
+                <input type="file" id="ep-multi-upload-input" accept="image/*" multiple style="display:none;">
+              </label>
+              <button type="button" class="raha-btn raha-btn--glass" id="ep-add-url-img-btn"
+                style="padding:10px 16px;font-size:11px;">
+                + Add Photo by URL
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Gallery Cards Grid -->
+          <div id="ep-dynamic-gallery-grid"
+            style="display:grid;grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));gap:14px;">
+            <!-- Populated dynamically by raha-admin.js with thumbnail, tag, 'Set Cover', and 'Delete' button -->
+          </div>
+        </div>
+
+        <!-- ========================================================
+             3. OPTION TO INPUT REVIEWS (VERIFIED CUSTOMER REVIEWS)
+             ======================================================== -->
+        <div id="ep-reviews-section"
+          style="margin:20px 0;padding:20px;border-radius:20px;background:rgba(13,10,12,0.6);border:1px solid var(--border-glow);">
+          <div
+            style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+            <div>
+              <div
+                style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);">
+                Verified Customer Reviews (<span id="ep-reviews-count">0</span> Reviews Attached)
+              </div>
+              <p style="font-size:12px;color:var(--text-secondary);margin-top:3px;">
+                Upload authentic customer reviews, star ratings, and unboxing/wear photos for this piece. These appear
+                directly in the Verified Collector Reviews section on the product page.
+              </p>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button type="button" class="raha-btn raha-btn--primary" id="ep-add-review-btn"
+                style="padding:9px 16px;font-size:11px;">
+                + Add Customer Review
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Reviews List in Modal -->
+          <div id="ep-reviews-list" style="display:flex;flex-direction:column;gap:14px;">
+            <!-- Populated dynamically by raha-admin.js -->
+          </div>
+        </div>
+
+        <!-- ========================================================
+             4. MODAL FOOTER ACTIONS
+             ======================================================== -->
+        <div
+          style="display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:14px;margin-top:20px;padding-top:18px;border-top:1px solid var(--border-subtle);">
+          <button type="button" class="raha-btn raha-btn--glass" data-close-prod-modal>Cancel</button>
+          <button type="submit" class="raha-btn raha-btn--primary" style="padding:13px 26px;">
+            <span>Save Piece, Images &amp; SKUs to Store</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="admin-toast" id="admin-toast" role="status" aria-live="polite"></div>
+
+  <!-- Supabase JS SDK + Raha Storefront & Admin Controllers -->
+  <script src="Assets/js/supabase.min.js"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261115_v36"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261115_v51"></script>
+  <script src="Assets/js/raha-admin.js?v=20261115_v21"></script>
+</body>
+
+</html>

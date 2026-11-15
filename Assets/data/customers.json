@@ -1,0 +1,31 @@
+{
+  "ayesha.test@gmail.com": {
+    "email": "ayesha.test@gmail.com",
+    "name": "Ayesha Khan",
+    "password": "ClientPass123",
+    "createdAt": 1794245113
+  },
+  "sara.ahmed@example.com": {
+    "email": "sara.ahmed@example.com",
+    "name": "Sara Ahmed",
+    "phone": "+92 321 9876543",
+    "city": "Lahore",
+    "address": "House 42, Sector Y, DHA Phase 3, Lahore",
+    "notes": "Deliver before 5pm"
+  },
+  "ayesha.khan@example.com": {
+    "email": "ayesha.khan@example.com",
+    "name": "Ayesha Khan",
+    "phone": "+92 300 8234567",
+    "city": "Karachi",
+    "address": "House 14-B, Street 6, Phase 6, DHA Karachi (Near Bukhari Commercial)"
+  },
+  "hassa.siddiqui1682@gmail.com": {
+    "email": "hassa.siddiqui1682@gmail.com",
+    "name": "Hassan",
+    "phone": "03120202020",
+    "city": "Pakistan",
+    "address": "123456780009",
+    "notes": ""
+  }
+}

@@ -1,0 +1,115 @@
+[
+  {
+    "orderId": "RAHA-COD-31096",
+    "createdAt": "11/14/2026, 8:28:12 PM",
+    "status": "Delivered",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "customer": {
+      "name": "Hassan",
+      "phone": "03120202020",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Pakistan",
+      "address": "123456780009",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-8258",
+        "sku": "RAHA-ERG-238-SVL",
+        "title": "kuch bhee",
+        "variant": "Silver Edition",
+        "price": 2500.0,
+        "qty": 1,
+        "img": "Assets/jewelry/uploads/1794644496998-WhatsApp-Image-2026-11-11-at-7.39.21-PM.jpeg"
+      }
+    ],
+    "subtotal": 2500.0,
+    "shipping": 250,
+    "total": 2750.0
+  },
+  {
+    "orderId": "RAHA-COD-12499",
+    "createdAt": "11/14/2026, 1:55:33 AM",
+    "status": "Confirmed",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "nazimabad 5 block D",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "ear-01",
+        "sku": "RAHA-EAR-01-GLD",
+        "title": "Aether Sculpted Gold Drop Hoops",
+        "variant": "Gold Plated",
+        "price": 2450,
+        "qty": 1,
+        "img": "Assets/jewelry/ear-1a.jpg"
+      }
+    ],
+    "subtotal": 2450,
+    "shipping": 300,
+    "total": 2750
+  },
+  {
+    "orderId": "RAHA-COD-85226",
+    "createdAt": "11/14/2026, 1:15:17 AM",
+    "status": "Dispatched",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "nazimabad 5 block D",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-2892",
+        "sku": "RAHA-NEW-37-BTFY",
+        "title": "Butterfly",
+        "variant": "Butterfly",
+        "price": 2900,
+        "qty": 2,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794225697460-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png"
+      }
+    ],
+    "subtotal": 5800,
+    "shipping": 0,
+    "total": 5800
+  },
+  {
+    "orderId": "RAHA-COD-99881",
+    "createdAt": "10/11/2026, 11:15:00 AM",
+    "status": "Delivered",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "customer": {
+      "name": "Sara Ahmed",
+      "phone": "+92 321 9876543",
+      "email": "sara.ahmed@example.com",
+      "city": "Lahore",
+      "address": "House 42, Sector Y, DHA Phase 3, Lahore",
+      "notes": "Deliver before 5pm"
+    },
+    "items": [
+      {
+        "id": "ear-01",
+        "sku": "RAHA-EAR-01-GLD",
+        "title": "Aether Sculpted Gold Drop Hoops",
+        "variant": "Gold Plated",
+        "price": 2450,
+        "qty": 2,
+        "img": "Assets/jewelry/ear-1a.jpg"
+      }
+    ],
+    "subtotal": 4900,
+    "shipping": 0,
+    "total": 4900,
+    "adminNote": "Packaging with velvet Mauve pouch"
+  }
+]

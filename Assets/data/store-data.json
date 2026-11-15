@@ -1,0 +1,2997 @@
+{
+  "catalog": [
+    {
+      "id": "item-8258",
+      "skuBase": "RAHA-ERG-238",
+      "title": "kuch bhee",
+      "subtitle": "Precision-engineered waterproof gold-plated silhouette with hypoallergenic core.",
+      "price": 2500,
+      "compare": 3000,
+      "stock": 19,
+      "rating": "5.0",
+      "reviews": 1,
+      "badge": "New Arrival",
+      "material": "gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Raha Edition",
+      "img": "Assets/jewelry/uploads/1794644497360-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
+      "hoverImg": "Assets/jewelry/uploads/1794644496998-WhatsApp-Image-2026-11-11-at-7.39.21-PM.jpeg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/uploads/1794644497360-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
+          "tag": "Silver Edition",
+          "label": "WhatsApp Image 2026-11-11 at 7.39.20 PM.jpeg"
+        },
+        {
+          "src": "Assets/jewelry/uploads/1794644496998-WhatsApp-Image-2026-11-11-at-7.39.21-PM.jpeg",
+          "tag": "Gold plated",
+          "label": "WhatsApp Image 2026-11-11 at 7.39.21 PM.jpeg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Raha Finish",
+          "name": "Gold Plated",
+          "price": 2500,
+          "stock": 10,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3000,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 19,
+          "_customReviews": [
+            {
+              "id": "rev-1-6361",
+              "img": "Assets/jewelry/uploads/1794644591955-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
+              "sku": "RAHA-ERG-238-GLD",
+              "body": "Worn daily with zero tarnish and arrived in the signature mauve Raha keepsake box.",
+              "city": "Islamabad • Verified Buyer",
+              "date": "11/14/2026",
+              "title": "Flawless quality & craftsmanship",
+              "author": "Warisha",
+              "rating": 5
+            }
+          ]
+        },
+        {
+          "desc": "Signature Raha Finish",
+          "name": "Silver Edition",
+          "price": 2500,
+          "stock": 9,
+          "imgIdx": 1,
+          "suffix": "SVL",
+          "compare": 3000,
+          "orbClass": "raha-metal-orb--slv"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [
+        {
+          "id": "rev-1-6361",
+          "img": "Assets/jewelry/uploads/1794644591955-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
+          "sku": "RAHA-ERG-238-GLD",
+          "body": "Worn daily with zero tarnish and arrived in the signature mauve Raha keepsake box.",
+          "city": "Islamabad • Verified Buyer",
+          "date": "11/14/2026",
+          "title": "Flawless quality & craftsmanship",
+          "author": "Warisha",
+          "rating": 5
+        }
+      ],
+      "weight": "4.2g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "ear-01",
+      "skuBase": "RAHA-EAR-01",
+      "title": "Aether Sculpted Gold Drop Hoops",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2450,
+      "compare": 3200,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 48,
+      "badge": "Bestseller",
+      "material": "gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Bestseller",
+      "img": "Assets/jewelry/ear-1a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-01-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-1a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-01-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-01-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-01-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2450,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3200,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2450,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3200,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2550,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3350,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2900,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3850,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 1
+    },
+    {
+      "id": "ear-03",
+      "skuBase": "RAHA-EAR-03",
+      "title": "Nova Baroque Pearl Linear Studs",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2650,
+      "compare": 3450,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 36,
+      "badge": "Atelier Edition",
+      "material": "pearl gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Atelier Edition",
+      "img": "Assets/jewelry/ear-3a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-03-silver.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-3a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-03-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-03-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-03-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2650,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3450,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2650,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3450,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2750,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3600,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3100,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4100,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "9g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 2
+    },
+    {
+      "id": "ear-02",
+      "skuBase": "RAHA-EAR-02",
+      "title": "Celeste Micro-Pavé Huggie Cuffs",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2150,
+      "compare": 2850,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 36,
+      "badge": "Waterproof",
+      "material": "gold pearl",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Waterproof",
+      "img": "Assets/jewelry/ear-2a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-02-silver.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-2a.jpg",
+          "tag": "",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-02-silver.jpg",
+          "tag": "",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-02-rose.jpg",
+          "tag": "",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-02-macro.jpg",
+          "tag": "",
+          "label": "1.6× Macro Craftsmanship Detail"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2150,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2850,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2150,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2850,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2250,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3000,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2600,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3500,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "item-2892",
+      "skuBase": "RAHA-NEW-37",
+      "title": "Butterfly",
+      "subtitle": "amazing quality",
+      "price": 2500,
+      "compare": 3800,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 36,
+      "badge": "New Arrival",
+      "material": "gold plated",
+      "category": "Bracelets",
+      "categorySlug": "bracelets",
+      "subdept": "Atelier Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794225697460-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794402884397-Gold-and-Silver-Cuff-Bracelet.PNG",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794225697460-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png",
+          "tag": "",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794402884397-Gold-and-Silver-Cuff-Bracelet.PNG",
+          "tag": "02 Silver",
+          "label": "Gold and Silver Cuff Bracelet.PNG"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Raha Travel Case",
+          "name": "Butterfly",
+          "price": 2500,
+          "imgIdx": 0,
+          "suffix": "BTFY",
+          "compare": 3800,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "Standard Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "2cm x 2cm",
+      "featuredOnHome": true,
+      "sortOrder": 4
+    },
+    {
+      "id": "ear-04",
+      "skuBase": "RAHA-EAR-04",
+      "title": "Vesper Molten Dome Ear Architecture",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2350,
+      "compare": 3100,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 27,
+      "badge": "Anti-Tarnish",
+      "material": "silver gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Anti-Tarnish",
+      "img": "Assets/jewelry/ear-4a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-04-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-4a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-04-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-04-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-04-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2350,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2350,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2450,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3250,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2800,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3750,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 5
+    },
+    {
+      "id": "ear-05",
+      "skuBase": "RAHA-EAR-05",
+      "title": "Solstice Twin-Orbit Hoop Drops",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2850,
+      "compare": 3600,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 52,
+      "badge": "Limited Drop",
+      "material": "gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Limited Drop",
+      "img": "Assets/jewelry/ear-5a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-05-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-5a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-05-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-05-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-05-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2850,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3600,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2850,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3600,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2950,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3750,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3300,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4250,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "ear-06",
+      "skuBase": "RAHA-EAR-06",
+      "title": "Lyra Whisper Threader Chains",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 1850,
+      "compare": 2450,
+      "stock": 15,
+      "rating": "4.8",
+      "reviews": 22,
+      "badge": "Minimalist",
+      "material": "silver",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Minimalist",
+      "img": "Assets/jewelry/ear-6a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-06-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-6a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-06-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-06-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-06-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 1850,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2450,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 1850,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2450,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 1950,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2600,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2300,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 7
+    },
+    {
+      "id": "ear-07",
+      "skuBase": "RAHA-EAR-07",
+      "title": "Kinetix Geometric Ear Climbers",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2250,
+      "compare": 2950,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 34,
+      "badge": "New Arrival",
+      "material": "rose gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "New Arrival",
+      "img": "Assets/jewelry/ear-7a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-07-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-7a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-07-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-07-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-07-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2250,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2250,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2350,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2700,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3600,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 8
+    },
+    {
+      "id": "ear-08",
+      "skuBase": "RAHA-EAR-08",
+      "title": "Halo Floating Zirconia Solitaire Studs",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 1950,
+      "compare": 2600,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 64,
+      "badge": "Essential",
+      "material": "pearl silver",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Essential",
+      "img": "Assets/jewelry/ear-8a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ear-08-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ear-8a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-08-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-08-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ear-08-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 1950,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2600,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 1950,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2600,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2050,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2750,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2400,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3250,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 9
+    },
+    {
+      "id": "ring-01",
+      "skuBase": "RAHA-RNG-01",
+      "title": "Vanguard Signet Dome Ring",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2250,
+      "compare": 2950,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 57,
+      "badge": "Bestseller",
+      "material": "gold",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Bestseller",
+      "img": "Assets/jewelry/ring-1a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-01-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-1a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-01-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-01-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-01-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2250,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2250,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2350,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2700,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3600,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 10
+    },
+    {
+      "id": "ring-02",
+      "skuBase": "RAHA-RNG-02",
+      "title": "Lumiere Baguette Eternity Band",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2650,
+      "compare": 3400,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 43,
+      "badge": "Atelier Edition",
+      "material": "pearl gold",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Atelier Edition",
+      "img": "Assets/jewelry/ring-2a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-02-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-2a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-02-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-02-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-02-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2650,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3400,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2650,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3400,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2750,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3550,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3100,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4050,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 11
+    },
+    {
+      "id": "ring-03",
+      "skuBase": "RAHA-RNG-03",
+      "title": "Orbit Open Architectural Wrap Ring",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 1950,
+      "compare": 2600,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 38,
+      "badge": "Adjustable Fit",
+      "material": "silver gold",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Adjustable Fit",
+      "img": "Assets/jewelry/ring-3a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-03-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-3a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-03-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-03-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-03-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 1950,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2600,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 1950,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2600,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2050,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2750,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2400,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3250,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 12
+    },
+    {
+      "id": "ring-04",
+      "skuBase": "RAHA-RNG-04",
+      "title": "Mirage Trio Stacking Ring Set",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 3150,
+      "compare": 4200,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 61,
+      "badge": "3-Ring Set",
+      "material": "gold rose",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "3-Ring Set",
+      "img": "Assets/jewelry/ring-4a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-04-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-4a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-04-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-04-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-04-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 3150,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 4200,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 3150,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 4200,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3250,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 4350,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3600,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4850,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 13
+    },
+    {
+      "id": "ring-05",
+      "skuBase": "RAHA-RNG-05",
+      "title": "Solis Molten Liquid Band",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2150,
+      "compare": 2800,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 29,
+      "badge": "Waterproof",
+      "material": "gold",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Waterproof",
+      "img": "Assets/jewelry/ring-5a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-05-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-5a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-05-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-05-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-05-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2150,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2800,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2150,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2800,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2250,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2600,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3450,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 14
+    },
+    {
+      "id": "ring-06",
+      "skuBase": "RAHA-RNG-06",
+      "title": "Astra Floating Pearl Bypass Ring",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2450,
+      "compare": 3150,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 33,
+      "badge": "New Arrival",
+      "material": "pearl",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "New Arrival",
+      "img": "Assets/jewelry/ring-6a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-06-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-6a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-06-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-06-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-06-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2450,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3150,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2450,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3150,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2550,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3300,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2900,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3800,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 15
+    },
+    {
+      "id": "ring-07",
+      "skuBase": "RAHA-RNG-07",
+      "title": "Zaha Knife-Edge Minimalist Band",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 1750,
+      "compare": 2300,
+      "stock": 15,
+      "rating": "4.8",
+      "reviews": 24,
+      "badge": "Essential",
+      "material": "silver",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Essential",
+      "img": "Assets/jewelry/ring-7a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-07-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-7a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-07-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-07-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-07-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 1750,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2300,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 1750,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2300,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 1850,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2450,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2200,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 16
+    },
+    {
+      "id": "ring-08",
+      "skuBase": "RAHA-RNG-08",
+      "title": "Eclipse Dual-Tone Interlock Ring",
+      "subtitle": "Precision-crafted rings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2750,
+      "compare": 3550,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 47,
+      "badge": "Mixed Metal",
+      "material": "gold silver",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Mixed Metal",
+      "img": "Assets/jewelry/ring-8a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ring-08-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ring-8a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-08-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-08-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ring-08-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2750,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3550,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2750,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3550,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2850,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3700,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3200,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4200,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "US 6 (16.5mm)",
+        "US 7 (17.3mm)",
+        "US 8 (18.1mm)",
+        "Adjustable Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 17
+    },
+    {
+      "id": "neck-01",
+      "skuBase": "RAHA-NCK-01",
+      "title": "Seraphina Liquid Herringbone Collar",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 3250,
+      "compare": 4250,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 72,
+      "badge": "Signature Piece",
+      "material": "gold",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Signature Piece",
+      "img": "Assets/jewelry/neck-1a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-01-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-1a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-01-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-01-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-01-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 3250,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 4250,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 3250,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 4250,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3350,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 4400,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3700,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4900,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 18
+    },
+    {
+      "id": "neck-02",
+      "skuBase": "RAHA-NCK-02",
+      "title": "Polaris North-Star Medallion Pendant",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2950,
+      "compare": 3850,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 54,
+      "badge": "Bestseller",
+      "material": "gold pearl",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Bestseller",
+      "img": "Assets/jewelry/neck-2a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-02-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-2a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-02-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-02-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-02-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2950,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3850,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2950,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3850,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3050,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 4000,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3400,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4500,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 19
+    },
+    {
+      "id": "neck-03",
+      "skuBase": "RAHA-NCK-03",
+      "title": "Veloce Layered Lariat Y-Drop Chain",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 3450,
+      "compare": 4500,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 41,
+      "badge": "Atelier Edition",
+      "material": "gold",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Atelier Edition",
+      "img": "Assets/jewelry/neck-3a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-03-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-3a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-03-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-03-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-03-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 3450,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 4500,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 3450,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 4500,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3550,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 4650,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3900,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 5150,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 20
+    },
+    {
+      "id": "neck-04",
+      "skuBase": "RAHA-NCK-04",
+      "title": "Nautilus Freshwater Pearl Choker",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 3150,
+      "compare": 4100,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 36,
+      "badge": "Hand-Strung",
+      "material": "pearl gold",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Hand-Strung",
+      "img": "Assets/jewelry/neck-4a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-04-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-4a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-04-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-04-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-04-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 3150,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 4100,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 3150,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 4100,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3250,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 4250,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3600,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4750,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 21
+    },
+    {
+      "id": "neck-05",
+      "skuBase": "RAHA-NCK-05",
+      "title": "Orion Floating Solitaire Diamond-Cut Chain",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2650,
+      "compare": 3400,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 49,
+      "badge": "Waterproof",
+      "material": "silver pearl",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Waterproof",
+      "img": "Assets/jewelry/neck-5a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-05-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-5a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-05-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-05-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-05-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2650,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3400,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2650,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3400,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2750,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3550,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3100,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4050,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 22
+    },
+    {
+      "id": "neck-06",
+      "skuBase": "RAHA-NCK-06",
+      "title": "Muse Paperclip Architectural Link Chain",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2850,
+      "compare": 3650,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 32,
+      "badge": "Layering Icon",
+      "material": "gold",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Layering Icon",
+      "img": "Assets/jewelry/neck-6a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-06-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-6a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-06-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-06-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-06-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2850,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3650,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2850,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3650,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2950,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3800,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3300,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 4300,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 23
+    },
+    {
+      "id": "neck-07",
+      "skuBase": "RAHA-NCK-07",
+      "title": "Sovereign Emerald-Cut Bezel Pendant",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 3350,
+      "compare": 4400,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 45,
+      "badge": "Limited Drop",
+      "material": "pearl gold",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Limited Drop",
+      "img": "Assets/jewelry/neck-7a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-07-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-7a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-07-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-07-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-07-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 3350,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 4400,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 3350,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 4400,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3450,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 4550,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 3800,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 5050,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 24
+    },
+    {
+      "id": "neck-08",
+      "skuBase": "RAHA-NCK-08",
+      "title": "Duet Pre-Layered Box & Snake Chain",
+      "subtitle": "Precision-crafted necklace silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 3650,
+      "compare": 4850,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 63,
+      "badge": "Free Shipping Eligible",
+      "material": "gold silver",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Free Shipping Eligible",
+      "img": "Assets/jewelry/neck-8a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/neck-08-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/neck-8a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-08-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-08-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/neck-08-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 3650,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 4850,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 3650,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 4850,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 3750,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 5000,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 4100,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 5500,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "16\" Collar + 2\" Ext",
+        "18\" Princess + 2\" Ext"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 25
+    },
+    {
+      "id": "ank-01",
+      "skuBase": "RAHA-ANK-01",
+      "title": "Mirage Dewdrop Satellite Chain Anklet",
+      "subtitle": "Precision-crafted anklets silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 1950,
+      "compare": 2650,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 46,
+      "badge": "Bestseller",
+      "material": "gold",
+      "category": "Anklets",
+      "categorySlug": "anklets",
+      "subdept": "Bestseller",
+      "img": "Assets/jewelry/ank-1a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ank-01-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ank-1a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-01-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-01-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-01-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 1950,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2650,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 1950,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2650,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2050,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2800,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2400,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3300,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "9.0 in + 1.5 in Ext",
+        "10.0 in Comfort Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 26
+    },
+    {
+      "id": "ank-02",
+      "skuBase": "RAHA-ANK-02",
+      "title": "Soleil Double-Layered Mariner Anklet",
+      "subtitle": "Precision-crafted anklets silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2250,
+      "compare": 2950,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 38,
+      "badge": "Ocean-Proof",
+      "material": "gold",
+      "category": "Anklets",
+      "categorySlug": "anklets",
+      "subdept": "Ocean-Proof",
+      "img": "Assets/jewelry/ank-2a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ank-02-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ank-2a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-02-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-02-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-02-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2250,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2250,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2350,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2700,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3600,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "9.0 in + 1.5 in Ext",
+        "10.0 in Comfort Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 27
+    },
+    {
+      "id": "ank-03",
+      "skuBase": "RAHA-ANK-03",
+      "title": "Lumina Freshwater Seed-Pearl Anklet",
+      "subtitle": "Precision-crafted anklets silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2450,
+      "compare": 3200,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 31,
+      "badge": "Atelier Edition",
+      "material": "pearl gold",
+      "category": "Anklets",
+      "categorySlug": "anklets",
+      "subdept": "Atelier Edition",
+      "img": "Assets/jewelry/ank-3a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ank-03-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ank-3a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-03-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-03-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-03-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2450,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3200,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2450,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3200,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2550,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3350,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2900,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3850,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "9.0 in + 1.5 in Ext",
+        "10.0 in Comfort Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 28
+    },
+    {
+      "id": "ank-04",
+      "skuBase": "RAHA-ANK-04",
+      "title": "Zephyr Liquid Herringbone Ankle Chain",
+      "subtitle": "Precision-crafted anklets silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2350,
+      "compare": 3100,
+      "stock": 15,
+      "rating": "5.0",
+      "reviews": 27,
+      "badge": "Anti-Tarnish",
+      "material": "silver gold",
+      "category": "Anklets",
+      "categorySlug": "anklets",
+      "subdept": "Anti-Tarnish",
+      "img": "Assets/jewelry/ank-4a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ank-04-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ank-4a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-04-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-04-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-04-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2350,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2350,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2450,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 3250,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2800,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3750,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "9.0 in + 1.5 in Ext",
+        "10.0 in Comfort Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 29
+    },
+    {
+      "id": "ank-05",
+      "skuBase": "RAHA-ANK-05",
+      "title": "Starlight Cubic Charm Station Anklet",
+      "subtitle": "Precision-crafted anklets silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 2150,
+      "compare": 2800,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 34,
+      "badge": "New Arrival",
+      "material": "pearl silver",
+      "category": "Anklets",
+      "categorySlug": "anklets",
+      "subdept": "New Arrival",
+      "img": "Assets/jewelry/ank-5a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ank-05-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ank-5a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-05-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-05-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-05-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 2150,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2800,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 2150,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2800,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 2250,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2950,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2600,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3450,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "9.0 in + 1.5 in Ext",
+        "10.0 in Comfort Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 30
+    },
+    {
+      "id": "ank-06",
+      "skuBase": "RAHA-ANK-06",
+      "title": "Aura Figaro Minimalist Ankle Link",
+      "subtitle": "Precision-crafted anklets silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 1850,
+      "compare": 2450,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 25,
+      "badge": "Essential",
+      "material": "rose gold",
+      "category": "Anklets",
+      "categorySlug": "anklets",
+      "subdept": "Essential",
+      "img": "Assets/jewelry/ank-6a.jpg",
+      "hoverImg": "Assets/jewelry/pdp/ank-06-alt.jpg",
+      "gallery": [
+        {
+          "src": "Assets/jewelry/ank-6a.jpg",
+          "tag": "01 Gold Plated",
+          "label": "Gold Plated Studio View"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-06-silver.jpg",
+          "tag": "02 925 Silver",
+          "label": "925 Sterling Silver Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-06-rose.jpg",
+          "tag": "03 Rose Gold",
+          "label": "Rose Gold Blush Finish"
+        },
+        {
+          "src": "Assets/jewelry/pdp/ank-06-macro.jpg",
+          "tag": "04 Macro",
+          "label": "1.6× Macro Craftsmanship Detail"
+        },
+        {
+          "src": "Assets/Main Raha logo with slogan (The actual logo).png",
+          "tag": "05 Raha Box",
+          "label": "Official Raha Mauve Keepsake Box"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 1850,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 2450,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 1850,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 2450,
+          "orbClass": "raha-metal-orb--slv"
+        },
+        {
+          "desc": "Warm Blush Gold Finish",
+          "name": "Rose Gold",
+          "price": 1950,
+          "imgIdx": 2,
+          "suffix": "RSG",
+          "compare": 2600,
+          "orbClass": "raha-metal-orb--rsg"
+        },
+        {
+          "desc": "+ Mauve Velvet Travel Case",
+          "name": "Atelier Gift Edition",
+          "price": 2300,
+          "imgIdx": 4,
+          "suffix": "GFT",
+          "compare": 3100,
+          "orbClass": "raha-metal-orb--gft"
+        }
+      ],
+      "customSizes": [
+        "9.0 in + 1.5 in Ext",
+        "10.0 in Comfort Fit"
+      ],
+      "customReviews": [],
+      "weight": "4.2g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 31
+    }
+  ],
+  "settings": {
+    "announcementText": "WhatsApp Support: 0326 0870876 | Instagram: @raha.jewelstudio | Official Email: contact.rahaofficial@gmail.com",
+    "freeShippingThreshold": 3500,
+    "standardShippingFee": 300,
+    "whatsappNumber": "923260870876",
+    "heroTitleHtml": "Sculpted Light for the <em>Modern Minimalist.</em>",
+    "heroSubtitle": "By a woman, for women who know their worth.",
+    "heroMonolithHeading": "The Raha Vault",
+    "heroEditorialImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794232686515-Gold-and-Silver-Cuff-Bracelet.PNG",
+    "heroFlagshipLink": "product.html?id=item-2892",
+    "heroFlagshipLinkText": "Inspect butterfly →",
+    "catImgEarrings": "Assets/jewelry/uploads/1794728009674-WhatsApp-Image-2026-11-11-at-7.39.21-PM.jpeg",
+    "catImgNecklace": "Assets/jewelry/cat-necklace.jpg",
+    "catImgRings": "Assets/jewelry/cat-rings.jpg",
+    "catImgBracelets": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png",
+    "catImgAnklets": "Assets/jewelry/cat-anklets.jpg"
+  },
+  "pages": {
+    "faqs": {
+      "title": "faqs",
+      "subtitle": "Everything  you  need to know about shopping, materials, nationwide delivery, and jewellery care at RAHA.",
+      "bodyHtml": "<div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">1. Do you have a physical store?</h3><p class=\"raha-policy-p\">Not just yet! We're currently an online-only brand. Shop your favourite pieces right here, from the comfort of your home.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">2. What materials are used in your jewellery?</h3><p class=\"raha-policy-p\">We carefully select our jewellery for its style, quality and affordability. Material details are mentioned in individual product descriptions. Most of our pieces are stainless steel and hypoallergenic because we care for you.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">10. How can I contact RAHA?</h3><p class=\"raha-policy-p\">We're just a message away! Reach us through Instagram (@raha.jewelstudio), WhatsApp (0326 0870876) or our gmail (contact.rahaofficial@gmail.com). ♡</p></div>"
+    }
+  }
+}

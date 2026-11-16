@@ -768,59 +768,61 @@
     if (!email) return null;
     var clean = String(email).trim().toLowerCase();
     var localMap = getLocalProfiles();
-    var cached = localMap[clean] || null;
+    var cached = localMap[clean] || { email: clean };
 
-    // Check COD customer storage fallback
-    if (!cached) {
-      try {
-        var rawCod = JSON.parse(localStorage.getItem('raha_cod_customer_v1') || 'null');
-        if (rawCod && rawCod.email && String(rawCod.email).trim().toLowerCase() === clean) {
-          cached = rawCod;
-          localMap[clean] = cached;
-          saveLocalProfiles(localMap);
-        }
-      } catch (e) {}
-    }
-
-    // Fetch from backend server
+    // Source of truth: public.raha_customers (RLS: users can only read their own row)
     try {
-      var r = await fetch('/api/customer-profile?email=' + encodeURIComponent(clean), { headers: getAuthHeaders() });
-      if (r.ok) {
-        var d = await r.json();
-        if (d && d.ok && d.profile && (d.profile.name || d.profile.phone || d.profile.address)) {
-          localMap[clean] = Object.assign({}, cached || {}, d.profile);
-          saveLocalProfiles(localMap);
-          return localMap[clean];
-        }
+      var sb = await getSecureClient();
+      var res = await sb.from('raha_customers').select('*').eq('email', clean).maybeSingle();
+      if (res && res.data) {
+        var prof = {
+          email: clean,
+          name: res.data.name || '',
+          phone: res.data.phone || '',
+          city: res.data.city || '',
+          address: res.data.address || '',
+          notes: res.data.notes || ''
+        };
+        localMap[clean] = prof; // cache only, for instant checkout pre-fill
+        saveLocalProfiles(localMap);
+        return prof;
       }
     } catch (e) {}
 
-    return cached || { email: clean };
+    return cached;
   }
 
   async function saveCustomerProfile(profile) {
     if (!profile || !profile.email) return { ok: false, error: 'Email required' };
     var clean = String(profile.email).trim().toLowerCase();
+    var row = { email: clean, updated_at: new Date().toISOString() };
+    ['name', 'phone', 'city', 'address', 'notes'].forEach(function (k) {
+      if (profile[k] !== undefined && profile[k] !== null) row[k] = String(profile[k]).trim().slice(0, 500);
+    });
+
+    var sb = await getSecureClient();
+    var userRes = await sb.auth.getUser();
+    var u = userRes && userRes.data && userRes.data.user;
+    if (!u) return { ok: false, error: 'Please sign in to save your profile.' };
+    if (String(u.email).toLowerCase() !== clean && !isOwnerEmail(u.email)) {
+      return { ok: false, error: 'You can only edit your own profile.' };
+    }
+    row.auth_uid = String(u.email).toLowerCase() === clean ? u.id : undefined;
+    if (row.auth_uid === undefined) delete row.auth_uid;
+
+    var up = await sb.from('raha_customers').upsert(row, { onConflict: 'email' }).select().maybeSingle();
+    if (up && up.error) return { ok: false, error: up.error.message || 'Could not save profile.' };
+
     var localMap = getLocalProfiles();
-    localMap[clean] = Object.assign({}, localMap[clean] || {}, profile, { email: clean });
+    localMap[clean] = Object.assign({}, localMap[clean] || {}, row);
+    delete localMap[clean].updated_at;
+    delete localMap[clean].auth_uid;
     saveLocalProfiles(localMap);
+    try { localStorage.setItem('raha_cod_customer_v1', JSON.stringify(localMap[clean])); } catch (e) {}
 
-    // Also update legacy COD storage for instant pre-fill
-    try {
-      localStorage.setItem('raha_cod_customer_v1', JSON.stringify(localMap[clean]));
-    } catch (e) {}
-
-    try {
-      var tok = getAuthToken();
-      if (tok) {
-        await fetch('/api/customer-profile', {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify(localMap[clean])
-        });
-      }
-    } catch (e) {}
-
+    if (row.name && String(u.email).toLowerCase() === clean) {
+      try { await sb.auth.updateUser({ data: { full_name: row.name, name: row.name } }); } catch (e) {}
+    }
     return { ok: true, profile: localMap[clean] };
   }
 
@@ -924,217 +926,258 @@
     return headers;
   }
 
-  async function getAuthUser() {
-    // 1. Check Supabase Auth session first if available
+  /* ------------------------------------------------------------------------
+     SECURE AUTH: Supabase Auth (auth.users, bcrypt-hashed passwords) is the
+     ONLY source of truth. No localStorage / file-based fallbacks are trusted.
+     ------------------------------------------------------------------------ */
+  function friendlyAuthError(err) {
+    var msg = String((err && (err.message || err.msg || err.error_description)) || err || '').toLowerCase();
+    if (msg.indexOf('email not confirmed') !== -1) {
+      return 'Your email is not confirmed yet. Please open the confirmation link we emailed you (check Spam/Promotions too), then sign in.';
+    }
+    if (msg.indexOf('invalid login credentials') !== -1 || msg.indexOf('invalid credentials') !== -1) {
+      return 'Incorrect email or password. Please try again.';
+    }
+    if (msg.indexOf('already registered') !== -1 || msg.indexOf('already exists') !== -1) {
+      return 'An account with this email already exists. Please Sign In instead (or use "Forgot password?").';
+    }
+    if (msg.indexOf('rate limit') !== -1 || msg.indexOf('too many') !== -1 || msg.indexOf('security purposes') !== -1) {
+      return 'Too many attempts. Please wait a minute and try again.';
+    }
+    if (msg.indexOf('password') !== -1 && msg.indexOf('least') !== -1) {
+      return 'Password must be at least 6 characters long.';
+    }
+    if (msg.indexOf('failed to fetch') !== -1 || msg.indexOf('network') !== -1) {
+      return 'Network error. Please check your internet connection and try again.';
+    }
+    return (err && err.message) ? err.message : 'Authentication failed. Please try again.';
+  }
+
+  async function getSecureClient() {
     await loadConfigFromServer();
     var sb = initClient();
-    if (sb && sb.auth) {
-      try {
-        var res = await sb.auth.getUser();
-        if (res && res.data && res.data.user) {
-          var u = res.data.user;
-          var prof = {
-            id: u.id,
-            email: u.email,
-            name: (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || u.email.split('@')[0],
-            isOwner: isOwnerEmail(u.email)
-          };
-          try {
-            localStorage.setItem(CUSTOMER_AUTH_KEY, JSON.stringify(prof));
-            if (prof.isOwner) localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(prof));
-          } catch (e) {}
-          return prof;
-        }
-      } catch (err) {}
+    if (!sb || !sb.auth) {
+      throw new Error('Secure account service is unavailable. Please refresh the page and try again.');
     }
+    return sb;
+  }
 
-    // 2. Fallback to session cache
+  function cacheSessionProfile(prof) {
     try {
-      var cachedAdmin = JSON.parse(localStorage.getItem(ADMIN_SESSION_KEY) || 'null');
-      if (cachedAdmin && cachedAdmin.email && isOwnerEmail(cachedAdmin.email)) {
-        cachedAdmin.isOwner = true;
-        return cachedAdmin;
-      }
-      var cachedCust = JSON.parse(localStorage.getItem(CUSTOMER_AUTH_KEY) || 'null');
-      if (cachedCust && cachedCust.email) {
-        cachedCust.isOwner = isOwnerEmail(cachedCust.email);
-        return cachedCust;
-      }
+      localStorage.setItem(CUSTOMER_AUTH_KEY, JSON.stringify(prof));
+      if (prof.isOwner) localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(prof));
+      else localStorage.removeItem(ADMIN_SESSION_KEY);
     } catch (e) {}
+  }
 
+  function clearSessionCache() {
+    setAuthToken('');
+    try {
+      localStorage.removeItem(CUSTOMER_AUTH_KEY);
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      localStorage.removeItem('raha_cod_customer_v1');
+      localStorage.removeItem(CUSTOMER_PROFILES_KEY);
+    } catch (e) {}
+  }
+
+  function profileFromAuthUser(u, dbRow) {
+    var metaName = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || '';
+    return {
+      id: u.id,
+      email: String(u.email || '').toLowerCase(),
+      name: (dbRow && dbRow.name) || metaName || String(u.email || '').split('@')[0],
+      isOwner: isOwnerEmail(u.email)
+    };
+  }
+
+  /* Ensure a profile row exists in public.raha_customers for the signed-in user */
+  async function ensureCustomerRow(sb, u) {
+    var email = String(u.email || '').toLowerCase();
+    try {
+      var sel = await sb.from('raha_customers').select('*').eq('email', email).maybeSingle();
+      if (sel && sel.data) {
+        if (!sel.data.auth_uid) {
+          await sb.from('raha_customers').update({ auth_uid: u.id, updated_at: new Date().toISOString() }).eq('email', email);
+        }
+        return sel.data;
+      }
+      var metaName = (u.user_metadata && (u.user_metadata.full_name || u.user_metadata.name)) || email.split('@')[0];
+      var ins = await sb.from('raha_customers').upsert({
+        email: email,
+        auth_uid: u.id,
+        name: metaName,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'email' }).select().maybeSingle();
+      return (ins && ins.data) || { email: email, name: metaName };
+    } catch (e) {
+      console.warn('Profile sync notice:', e);
+      return null;
+    }
+  }
+
+  /* Best-effort: obtain a local dev-server token AFTER Supabase verified the user (never used as an auth fallback) */
+  async function syncLocalServerToken(email, password, isOwner) {
+    try {
+      var r = await fetch(isOwner ? '/api/admin-auth' : '/api/customer-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: password, action: isOwner ? 'login' : 'signin' })
+      });
+      var d = await r.json();
+      if (d && d.ok && d.token) setAuthToken(d.token);
+    } catch (e) {}
+  }
+
+  async function getAuthUser() {
+    var sb;
+    try { sb = await getSecureClient(); } catch (e) { return null; }
+    try {
+      var res = await sb.auth.getUser();
+      if (res && res.data && res.data.user) {
+        var u = res.data.user;
+        var cached = null;
+        try { cached = JSON.parse(localStorage.getItem(CUSTOMER_AUTH_KEY) || 'null'); } catch (e) {}
+        var prof = profileFromAuthUser(u, cached && cached.email === String(u.email).toLowerCase() ? cached : null);
+        cacheSessionProfile(prof);
+        return prof;
+      }
+    } catch (err) {}
+    // No verified Supabase session => not signed in. Never trust cached localStorage identity.
+    try {
+      localStorage.removeItem(CUSTOMER_AUTH_KEY);
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+    } catch (e) {}
     return null;
   }
 
   async function signUpCustomer(email, password, fullName) {
     var cleanEmail = String(email || '').trim().toLowerCase();
     var name = String(fullName || '').trim() || cleanEmail.split('@')[0];
-    var isOwner = isOwnerEmail(cleanEmail);
 
-    if (!cleanEmail || cleanEmail.indexOf('@') === -1) {
-      throw new Error('Please enter a valid email address.');
-    }
-    if (!password || password.length < 6) {
-      throw new Error('Password must be at least 6 characters long.');
-    }
+    if (!cleanEmail || cleanEmail.indexOf('@') === -1) throw new Error('Please enter a valid email address.');
+    if (!password || password.length < 6) throw new Error('Password must be at least 6 characters long.');
 
-    // 1. Primary Cloud Registration in Supabase Auth (hashed password stored in auth.users)
-    await loadConfigFromServer();
-    var sb = initClient();
-    var sbUserId = null;
-    if (sb && sb.auth) {
-      try {
-        var sbRes = await sb.auth.signUp({
-          email: cleanEmail,
-          password: password,
-          options: {
-            data: { full_name: name, name: name }
-          }
-        });
-        if (sbRes && sbRes.error && sbRes.error.message && sbRes.error.message.toLowerCase().indexOf('already registered') !== -1) {
-          throw new Error('An account with this email already exists in Supabase. Please Sign In.');
-        }
-        if (sbRes && sbRes.data && sbRes.data.user) {
-          sbUserId = sbRes.data.user.id;
-          // Upsert customer profile into public.raha_customers
-          try {
-            await sb.from('raha_customers').upsert({
-              email: cleanEmail,
-              auth_uid: sbUserId,
-              name: name,
-              updated_at: new Date().toISOString()
-            }, { onConflict: 'email' });
-          } catch (pErr) {}
-        }
-      } catch (err) {
-        if (err && err.message && err.message.indexOf('already exists') !== -1) throw err;
-        console.info('Supabase cloud signup notice:', err);
-      }
-    }
-
-    // 2. Register hashed credentials & obtain signed session token from backend server (if running)
-    try {
-      var srvResp = await fetch('/api/customer-auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: cleanEmail, password: password, name: name, action: 'signup' })
-      });
-      var srvData = await srvResp.json();
-      if (!srvResp.ok && srvData && srvData.error && !sbUserId) {
-        throw new Error(srvData.error);
-      }
-      if (srvData && srvData.token) {
-        setAuthToken(srvData.token);
-      }
-    } catch (srvErr) {
-      if (!sbUserId && srvErr && srvErr.message && srvErr.message.indexOf('Unexpected token') === -1 && srvErr.message.indexOf('Failed to fetch') === -1) {
-        throw srvErr;
-      }
-    }
-
-    var prof = {
-      id: sbUserId || (isOwner ? 'owner_official' : ('usr_' + Date.now())),
+    var sb = await getSecureClient();
+    var redirectTo = window.location.origin + window.location.pathname;
+    var res = await sb.auth.signUp({
       email: cleanEmail,
-      name: name,
-      isOwner: isOwner
-    };
-    try {
-      localStorage.setItem(CUSTOMER_AUTH_KEY, JSON.stringify(prof));
-      if (isOwner) localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(prof));
-    } catch (e) {}
+      password: password,
+      options: { data: { full_name: name, name: name }, emailRedirectTo: redirectTo }
+    });
+
+    if (res.error) throw new Error(friendlyAuthError(res.error));
+
+    var u = res.data && res.data.user;
+    // Supabase returns an obfuscated user with NO identities when the email is already registered.
+    if (!u || (Array.isArray(u.identities) && u.identities.length === 0)) {
+      throw new Error('An account with this email already exists. Please Sign In instead (or use "Forgot password?").');
+    }
+
+    // Email confirmation required => no session yet. Do NOT sign the user in locally.
+    if (!res.data.session) {
+      clearSessionCache();
+      return {
+        ok: true,
+        needsConfirmation: true,
+        user: null,
+        message: 'Account created! We sent a confirmation link to ' + cleanEmail + '. Please confirm your email (check Spam/Promotions), then sign in.'
+      };
+    }
+
+    var row = await ensureCustomerRow(sb, u);
+    if (row && name && row.name !== name) {
+      try { await sb.from('raha_customers').update({ name: name, updated_at: new Date().toISOString() }).eq('email', cleanEmail); } catch (e) {}
+      row.name = name;
+    }
+    var prof = profileFromAuthUser(u, row);
+    cacheSessionProfile(prof);
+    syncLocalServerToken(cleanEmail, password, prof.isOwner);
     return { ok: true, user: prof };
   }
 
   async function signInCustomer(email, password) {
     var cleanEmail = String(email || '').trim().toLowerCase();
-    var isOwner = isOwnerEmail(cleanEmail);
+    if (!cleanEmail || cleanEmail.indexOf('@') === -1) throw new Error('Please enter a valid email address.');
+    if (!password) throw new Error('Please enter your password.');
 
-    if (!cleanEmail || cleanEmail.indexOf('@') === -1) {
-      throw new Error('Please enter a valid email address.');
-    }
-    if (!password) {
-      throw new Error('Please enter your password.');
-    }
+    var sb = await getSecureClient();
+    var res = await sb.auth.signInWithPassword({ email: cleanEmail, password: password });
 
-    await loadConfigFromServer();
-    var sb = initClient();
-    var sbAuthedUser = null;
-
-    // 1. Authenticate against Supabase Auth (auth.users)
-    if (sb && sb.auth) {
-      try {
-        var res = await sb.auth.signInWithPassword({
-          email: cleanEmail,
-          password: password
-        });
-        if (res && res.data && res.data.user) {
-          sbAuthedUser = res.data.user;
-        }
-      } catch (sbErr) {
-        console.info('Supabase cloud login notice:', sbErr.message || sbErr);
+    if (res.error) {
+      var low = String(res.error.message || '').toLowerCase();
+      if (low.indexOf('email not confirmed') !== -1) {
+        // Re-send the confirmation link so the user can finish verification
+        try {
+          await sb.auth.resend({ type: 'signup', email: cleanEmail, options: { emailRedirectTo: window.location.origin + window.location.pathname } });
+        } catch (e) {}
+        throw new Error('Your email is not confirmed yet. We just re-sent the confirmation link to ' + cleanEmail + ' — open it (check Spam/Promotions), then sign in.');
       }
+      throw new Error(friendlyAuthError(res.error));
     }
 
-    // 2. Authenticate against Backend API (/api/admin-auth or /api/customer-auth) if running
-    var srvData = null;
-    try {
-      var endpoint = isOwner ? '/api/admin-auth' : '/api/customer-auth';
-      var srvResp = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: cleanEmail, password: password, action: isOwner ? 'login' : 'signin' })
-      });
-      srvData = await srvResp.json();
-    } catch (srvErr) {
-      srvData = null;
-    }
+    var u = res.data && res.data.user;
+    if (!u) throw new Error('Incorrect email or password. Please try again.');
 
-    if (srvData && srvData.ok) {
-      if (srvData.token) setAuthToken(srvData.token);
-      var uName = (sbAuthedUser && sbAuthedUser.user_metadata && (sbAuthedUser.user_metadata.full_name || sbAuthedUser.user_metadata.name))
-        || (srvData.user && srvData.user.name)
-        || (isOwner ? 'Raha Store Owner' : cleanEmail.split('@')[0]);
-      var prof = {
-        id: (sbAuthedUser && sbAuthedUser.id) || (isOwner ? 'owner_official' : ('usr_' + cleanEmail.replace(/[^a-zA-Z0-9]/g, '_'))),
-        email: cleanEmail,
-        name: uName,
-        isOwner: isOwner
-      };
-      try {
-        localStorage.setItem(CUSTOMER_AUTH_KEY, JSON.stringify(prof));
-        if (isOwner) localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(prof));
-      } catch (e) {}
-      return { ok: true, user: prof };
-    }
+    var row = await ensureCustomerRow(sb, u);
+    var prof = profileFromAuthUser(u, row);
+    cacheSessionProfile(prof);
+    syncLocalServerToken(cleanEmail, password, prof.isOwner);
+    return { ok: true, user: prof };
+  }
 
-    // If Supabase Auth succeeded (e.g. account was created directly in Supabase) but local file didn't have it yet
-    if (sbAuthedUser) {
-      var uName2 = (sbAuthedUser.user_metadata && (sbAuthedUser.user_metadata.full_name || sbAuthedUser.user_metadata.name)) || cleanEmail.split('@')[0];
-      var prof2 = { id: sbAuthedUser.id, email: cleanEmail, name: uName2, isOwner: isOwner };
-      try {
-        localStorage.setItem(CUSTOMER_AUTH_KEY, JSON.stringify(prof2));
-        if (isOwner) localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify(prof2));
-      } catch (e) {}
-      return { ok: true, user: prof2 };
-    }
+  async function requestPasswordReset(email) {
+    var cleanEmail = String(email || '').trim().toLowerCase();
+    if (!cleanEmail || cleanEmail.indexOf('@') === -1) throw new Error('Please enter your email address first.');
+    var sb = await getSecureClient();
+    var res = await sb.auth.resetPasswordForEmail(cleanEmail, { redirectTo: window.location.origin + window.location.pathname });
+    if (res.error) throw new Error(friendlyAuthError(res.error));
+    return { ok: true, message: 'If an account exists for ' + cleanEmail + ', a password reset link has been sent. Check your inbox (and Spam).' };
+  }
 
-    throw new Error((srvData && srvData.error) || 'Invalid email or password. Please try again.');
+  async function updatePassword(newPassword) {
+    if (!newPassword || newPassword.length < 6) throw new Error('Password must be at least 6 characters long.');
+    var sb = await getSecureClient();
+    var res = await sb.auth.updateUser({ password: newPassword });
+    if (res.error) throw new Error(friendlyAuthError(res.error));
+    return { ok: true };
   }
 
   async function signOutUser() {
-    var sb = initClient();
-    if (sb && sb.auth) {
-      try { await sb.auth.signOut(); } catch (e) {}
-    }
     try {
-      await fetch('/api/logout', { method: 'POST' });
+      var sb = await getSecureClient();
+      await sb.auth.signOut();
     } catch (e) {}
-    setAuthToken('');
-    try {
-      localStorage.removeItem(CUSTOMER_AUTH_KEY);
-      localStorage.removeItem(ADMIN_SESSION_KEY);
-    } catch (e) {}
+    try { await fetch('/api/logout', { method: 'POST' }); } catch (e) {}
+    clearSessionCache();
     return { ok: true };
   }
+
+  /* Handle password-recovery links (from "Forgot password?" emails) on any page */
+  (function bindPasswordRecoveryListener() {
+    function attach() {
+      loadConfigFromServer().then(function () {
+        var sb = initClient();
+        if (!sb || !sb.auth || typeof sb.auth.onAuthStateChange !== 'function') return;
+        sb.auth.onAuthStateChange(function (event) {
+          if (event !== 'PASSWORD_RECOVERY') return;
+          setTimeout(async function () {
+            var np = window.prompt('Set a new password for your Raha account (min 6 characters):');
+            if (!np) return;
+            try {
+              await updatePassword(np);
+              window.alert('Your password has been updated. You are now signed in.');
+              try { history.replaceState(null, '', window.location.pathname); } catch (e) {}
+              window.location.reload();
+            } catch (err) {
+              window.alert(err.message || 'Could not update password.');
+            }
+          }, 300);
+        });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attach);
+    else attach();
+  })();
 
   window.RahaSupabase = {
     OWNER_ADMIN_EMAIL: OWNER_ADMIN_EMAIL,
@@ -1164,6 +1207,8 @@
     signUpCustomer: signUpCustomer,
     signInCustomer: signInCustomer,
     signOutUser: signOutUser,
+    requestPasswordReset: requestPasswordReset,
+    updatePassword: updatePassword,
     cache: RahaCache,
     optimizeImageUrl: optimizeImageUrl
   };

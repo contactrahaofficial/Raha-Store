@@ -402,6 +402,9 @@
           <div class="raha-cod-field" style="text-align:left;">
             <label class="raha-cod-label" for="gin-pass">Password</label>
             <input type="password" id="gin-pass" class="raha-cod-input" placeholder="••••••••" required>
+            <div style="display:flex;justify-content:flex-end;margin-top:6px;">
+              <a href="#" id="gin-forgot" style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);text-decoration:none;">Forgot password?</a>
+            </div>
           </div>
           <button type="submit" class="raha-btn raha-btn--primary" id="gin-btn" style="width:100%;padding:14px;margin-top:6px;">
             <span>Sign In to Vault</span>
@@ -605,8 +608,8 @@
 
   <!-- Scripts -->
   <script src="Assets/js/supabase.min.js"></script>
-  <script src="Assets/js/raha-supabase.js?v=20261116_v37"></script>
-  <script src="Assets/js/replica-enhancements.js?v=20261116_v52"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261116_v38"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261116_v53"></script>
   <script>
     (function () {
       'use strict';
@@ -715,11 +718,52 @@
               }
             } catch (err) {
               if (errBox) {
+                errBox.style.background = '';
+                errBox.style.borderColor = '';
+                errBox.style.color = '';
                 errBox.textContent = err.message || 'Login failed.';
                 errBox.style.display = 'block';
               }
             } finally {
               btn.innerHTML = '<span>Sign In to Vault</span>';
+            }
+          });
+        }
+
+        var ginForgot = document.getElementById('gin-forgot');
+        if (ginForgot) {
+          ginForgot.addEventListener('click', async function (e) {
+            e.preventDefault();
+            var emailInput = document.getElementById('gin-email');
+            var email = (emailInput ? emailInput.value : '').trim();
+            if (!email) {
+              email = window.prompt('Enter your account email to receive a password reset link:');
+            }
+            if (!email) return;
+            try {
+              if (errBox) {
+                errBox.textContent = 'Sending reset instructions...';
+                errBox.style.display = 'block';
+                errBox.style.background = 'rgba(255,255,255,0.06)';
+                errBox.style.borderColor = 'var(--raha-gold)';
+                errBox.style.color = '#fff';
+              }
+              var res = await window.RahaSupabase.requestPasswordReset(email);
+              if (errBox) {
+                errBox.textContent = res.message;
+                errBox.style.display = 'block';
+                errBox.style.background = 'rgba(129,199,132,0.14)';
+                errBox.style.borderColor = 'rgba(129,199,132,0.45)';
+                errBox.style.color = '#c8e6c9';
+              }
+            } catch (err) {
+              if (errBox) {
+                errBox.style.background = '';
+                errBox.style.borderColor = '';
+                errBox.style.color = '';
+                errBox.textContent = err.message || 'Could not send reset email.';
+                errBox.style.display = 'block';
+              }
             }
           });
         }
@@ -734,11 +778,25 @@
             btn.innerHTML = '<span>Creating Account...</span>';
             try {
               var res = await window.RahaSupabase.signUpCustomer(email, pass, name);
-              if (res && res.user) {
+              if (res && res.needsConfirmation) {
+                if (tabIn) tabIn.click();
+                var ginEmail = document.getElementById('gin-email');
+                if (ginEmail) ginEmail.value = email;
+                if (errBox) {
+                  errBox.textContent = res.message;
+                  errBox.style.display = 'block';
+                  errBox.style.background = 'rgba(129,199,132,0.14)';
+                  errBox.style.borderColor = 'rgba(129,199,132,0.45)';
+                  errBox.style.color = '#c8e6c9';
+                }
+              } else if (res && res.user) {
                 initAccountPage();
               }
             } catch (err) {
               if (errBox) {
+                errBox.style.background = '';
+                errBox.style.borderColor = '';
+                errBox.style.color = '';
                 errBox.textContent = err.message || 'Signup failed.';
                 errBox.style.display = 'block';
               }

@@ -3614,6 +3614,55 @@
       });
     }
 
+    var passInput = document.getElementById('signin-password');
+    if (passInput && !document.getElementById('auth-forgot-password-link')) {
+      var forgotWrap = document.createElement('div');
+      forgotWrap.style.cssText = 'display:flex;justify-content:flex-end;margin-top:-6px;margin-bottom:12px;';
+      var forgotLink = document.createElement('a');
+      forgotLink.id = 'auth-forgot-password-link';
+      forgotLink.href = '#';
+      forgotLink.textContent = 'Forgot password?';
+      forgotLink.style.cssText = 'font-family:var(--font-mono, monospace);font-size:11px;color:var(--text-muted, #a39e99);text-decoration:none;cursor:pointer;';
+      forgotLink.addEventListener('click', async function (e) {
+        e.preventDefault();
+        var emailInput = document.getElementById('signin-email');
+        var email = (emailInput ? emailInput.value : '').trim();
+        if (!email) {
+          email = window.prompt('Enter your account email to receive a password reset link:');
+        }
+        if (!email) return;
+        try {
+          if (errBox) {
+            errBox.textContent = 'Sending reset instructions...';
+            errBox.style.display = 'block';
+            errBox.style.background = 'rgba(255,255,255,0.06)';
+            errBox.style.borderColor = 'var(--raha-gold)';
+            errBox.style.color = '#fff';
+          }
+          var res = await window.RahaSupabase.requestPasswordReset(email);
+          if (errBox) {
+            errBox.textContent = res.message;
+            errBox.style.display = 'block';
+            errBox.style.background = 'rgba(129,199,132,0.14)';
+            errBox.style.borderColor = 'rgba(129,199,132,0.45)';
+            errBox.style.color = '#c8e6c9';
+          }
+        } catch (err) {
+          if (errBox) {
+            errBox.style.background = '';
+            errBox.style.borderColor = '';
+            errBox.style.color = '';
+            errBox.textContent = err.message || 'Could not send reset email.';
+            errBox.style.display = 'block';
+          }
+        }
+      });
+      forgotWrap.appendChild(forgotLink);
+      if (passInput.parentNode) {
+        passInput.parentNode.appendChild(forgotWrap);
+      }
+    }
+
     if (formIn) {
       formIn.addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -3634,6 +3683,9 @@
           }
         } catch (err) {
           if (errBox) {
+            errBox.style.background = '';
+            errBox.style.borderColor = '';
+            errBox.style.color = '';
             errBox.textContent = 'Sign In Error: ' + (err.message || 'Invalid email or password.');
             errBox.style.display = 'block';
           }
@@ -3654,7 +3706,19 @@
         if (btn) btn.innerHTML = '<span>Creating Account...</span>';
         try {
           var res = await window.RahaSupabase.signUpCustomer(email, pass, name);
-          if (res && res.user) {
+          if (res && res.needsConfirmation) {
+            /* Switch to Sign In tab, prefill email, show green confirmation notice */
+            if (tabIn) tabIn.click();
+            var siEmail = document.getElementById('signin-email');
+            if (siEmail) siEmail.value = email;
+            if (errBox) {
+              errBox.textContent = res.message;
+              errBox.style.display = 'block';
+              errBox.style.background = 'rgba(129,199,132,0.14)';
+              errBox.style.borderColor = 'rgba(129,199,132,0.45)';
+              errBox.style.color = '#c8e6c9';
+            }
+          } else if (res && res.user) {
             closeAllDrawersAndModals();
             updateCustomerAuthViews();
             if (window._checkoutPendingAfterAuth) {
@@ -3664,6 +3728,9 @@
           }
         } catch (err) {
           if (errBox) {
+            errBox.style.background = '';
+            errBox.style.borderColor = '';
+            errBox.style.color = '';
             errBox.textContent = 'Account Error: ' + (err.message || 'Could not create account.');
             errBox.style.display = 'block';
           }

@@ -429,9 +429,48 @@
             </div>
           </div>
 
-          <div class="raha-cod-field">
-            <label class="raha-cod-label" for="cod-input-email">Email Address <span>*</span></label>
-            <input type="email" id="cod-input-email" class="raha-cod-input" placeholder="e.g. ayesha@example.com" required autocomplete="email">
+          <div class="raha-cod-field-row">
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="cod-input-email">Email Address <span>*</span></label>
+              <input type="email" id="cod-input-email" class="raha-cod-input" placeholder="e.g. ayesha@example.com" required autocomplete="email">
+            </div>
+            <div class="raha-cod-field">
+              <label class="raha-cod-label" for="cod-input-city">Delivery City <span>*</span></label>
+              <select id="cod-input-city" class="raha-cod-input" required autocomplete="address-level2" style="background:#171215;color:var(--text-primary);cursor:pointer;">
+                <option value="" disabled selected>Select Your City...</option>
+                <option value="Karachi">Karachi</option>
+                <option value="Lahore">Lahore</option>
+                <option value="Islamabad">Islamabad</option>
+                <option value="Rawalpindi">Rawalpindi</option>
+                <option value="Faisalabad">Faisalabad</option>
+                <option value="Multan">Multan</option>
+                <option value="Peshawar">Peshawar</option>
+                <option value="Quetta">Quetta</option>
+                <option value="Sialkot">Sialkot</option>
+                <option value="Gujranwala">Gujranwala</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Abbottabad">Abbottabad</option>
+                <option value="Bahawalpur">Bahawalpur</option>
+                <option value="Sargodha">Sargodha</option>
+                <option value="Sukkur">Sukkur</option>
+                <option value="Larkana">Larkana</option>
+                <option value="Wah Cantt">Wah Cantt</option>
+                <option value="Taxila">Taxila</option>
+                <option value="Jhelum">Jhelum</option>
+                <option value="Gujrat">Gujrat</option>
+                <option value="Sahiwal">Sahiwal</option>
+                <option value="Mardan">Mardan</option>
+                <option value="Kasur">Kasur</option>
+                <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                <option value="Dera Ghazi Khan">Dera Ghazi Khan</option>
+                <option value="Sheikhupura">Sheikhupura</option>
+                <option value="Muzaffarabad">Muzaffarabad (AJK)</option>
+                <option value="Mirpur">Mirpur (AJK)</option>
+                <option value="Gilgit">Gilgit</option>
+                <option value="Other City">Other City (Nationwide)</option>
+              </select>
+              <input type="text" id="cod-input-city-other" class="raha-cod-input" placeholder="Type your city name..." style="display:none;margin-top:8px;">
+            </div>
           </div>
 
           <div class="raha-cod-field">
@@ -442,6 +481,26 @@
           <div class="raha-cod-field">
             <label class="raha-cod-label" for="cod-input-notes">Delivery Note / Keepsake Gift Message (Optional)</label>
             <input type="text" id="cod-input-notes" class="raha-cod-input" placeholder="Optional instructions for rider or complimentary gift card note">
+          </div>
+
+          <div class="raha-cod-field" style="margin-top:4px;margin-bottom:6px;">
+            <label class="raha-cod-label" style="margin-bottom:8px;">Select Payment Method <span>*</span></label>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" id="raha-payment-methods-grid">
+              <label class="raha-payment-option is-selected" id="pay-opt-cod" style="cursor:pointer;display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(214,183,138,0.08);border:1.5px solid var(--raha-gold);transition:all 0.2s ease;">
+                <input type="radio" name="raha-payment-mode" value="cod" checked style="accent-color:var(--raha-gold);margin-top:2px;cursor:pointer;">
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text-primary);letter-spacing:0.04em;">📦 Cash on Delivery</div>
+                  <div style="font-size:10.5px;color:var(--text-secondary);margin-top:2px;line-height:1.4;">Pay in cash upon doorstep delivery</div>
+                </div>
+              </label>
+              <label class="raha-payment-option" id="pay-opt-online" style="cursor:pointer;display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:12px;background:rgba(100,181,246,0.04);border:1px solid rgba(100,181,246,0.25);transition:all 0.2s ease;">
+                <input type="radio" name="raha-payment-mode" value="online" style="accent-color:#64b5f6;margin-top:2px;cursor:pointer;">
+                <div>
+                  <div style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:#64b5f6;letter-spacing:0.04em;">💳 Online Payment</div>
+                  <div style="font-size:10.5px;color:var(--text-secondary);margin-top:2px;line-height:1.4;">Bank Transfer / Raast via WhatsApp</div>
+                </div>
+              </label>
+            </div>
           </div>
 
           <button type="submit" class="raha-btn raha-btn--primary" id="raha-cod-submit-btn" style="width:100%;padding:15px 22px;margin-top:6px;">
@@ -470,9 +529,7 @@
               <span>Total COD Payable</span>
               <span id="raha-cod-total" style="color:var(--raha-gold);">Rs 0</span>
             </div>
-            <div style="font-size:10.5px;color:var(--text-muted);line-height:1.5;margin-top:4px;">
-              ✓ Sealed in Official Raha Mauve Keepsake Box • 7-Day Exchange • 1-Year Anti-Tarnish Warranty
-            </div>
+
           </div>
         </div>
       </div>
@@ -498,7 +555,7 @@
         
         <div style="display:flex;flex-direction:column;gap:10px;">
           <button type="button" class="raha-btn raha-btn--primary" id="auth-go-to-checkout-btn" style="width:100%;padding:13px 20px;">
-            <span>Proceed to Cash on Delivery Checkout</span>
+            <span>Proceed to Checkout</span>
           </button>
           <a href="admin.html" class="raha-btn raha-btn--glass" id="auth-go-to-admin-link" style="display:none;width:100%;padding:11px 20px;text-decoration:none;color:var(--raha-gold);">
             <span>Enter Owner Admin Portal</span>
@@ -605,7 +662,7 @@
   </a>
 
   <script src="Assets/js/supabase.min.js"></script>
-  <script src="Assets/js/raha-supabase.js?v=20261116_v38"></script>
-  <script src="Assets/js/replica-enhancements.js?v=20261116_v53"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261117_v42"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261117_v60"></script>
 </body>
 </html>

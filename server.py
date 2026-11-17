@@ -504,13 +504,17 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
 
                 elif action == "update_status":
                     oid = payload.get("orderId")
-                    new_status = payload.get("status", "Pending")
+                    new_status = payload.get("status")
                     note = payload.get("adminNote")
+                    payment_status = payload.get("paymentStatus")
                     for o in orders:
                         if isinstance(o, dict) and o.get("orderId") == oid:
-                            o["status"] = new_status
+                            if new_status:
+                                o["status"] = new_status
                             if note is not None:
                                 o["adminNote"] = str(note)[:500]
+                            if payment_status is not None:
+                                o["paymentStatus"] = str(payment_status)[:100]
                     write_json_file(ORDERS_JSON_PATH, orders)
                     return self._send_json({"ok": True, "orders": orders})
 
@@ -582,19 +586,48 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
                     if verified_subtotal <= 0:
                         return self._send_json({"ok": False, "error": "Cannot place order with Rs 0 total."}, status=400)
 
-                    verified_shipping = 0 if verified_subtotal >= 3500 else 250
+                    st_settings = store_state.get("settings", {}) if isinstance(store_state, dict) else {}
+                    free_threshold = int(st_settings.get("freeShippingThreshold", 3500))
+                    if verified_subtotal >= free_threshold:
+                        verified_shipping = 0
+                    else:
+                        cust_city = str(cust.get("city", "")).strip().lower()
+                        city_rates = st_settings.get("cityShippingRates", {})
+                        matched_rate = None
+                        if isinstance(city_rates, dict):
+                            for c_k, c_v in city_rates.items():
+                                if str(c_k).strip().lower() == cust_city:
+                                    try:
+                                        matched_rate = int(c_v)
+                                    except (ValueError, TypeError):
+                                        matched_rate = None
+                                    break
+                        if matched_rate is not None:
+                            verified_shipping = matched_rate
+                        else:
+                            try:
+                                verified_shipping = int(st_settings.get("standardShippingFee", 300))
+                            except (ValueError, TypeError):
+                                verified_shipping = 300
+
                     ord_data["subtotal"] = verified_subtotal
                     ord_data["shipping"] = verified_shipping
                     ord_data["total"] = verified_subtotal + verified_shipping
 
                     if not ord_data.get("orderId"):
-                        ord_data["orderId"] = f"RAHA-COD-{int(time.time() * 1000) % 90000 + 10000}"
+                        ord_prefix = "RAHA-ONL" if "online" in str(ord_data.get("paymentMethod", "")).lower() else "RAHA-COD"
+                        ord_data["orderId"] = f"{ord_prefix}-{int(time.time() * 1000) % 90000 + 10000}"
                     if not ord_data.get("createdAt"):
                         ord_data["createdAt"] = time.strftime("%d/%m/%Y, %I:%M:%S %p")
                     if not ord_data.get("status"):
                         ord_data["status"] = "Pending"
                     if not ord_data.get("paymentMethod"):
                         ord_data["paymentMethod"] = "Cash on Delivery (COD)"
+                    if not ord_data.get("paymentStatus"):
+                        if "online" in str(ord_data.get("paymentMethod", "")).lower() or "RAHA-ONL" in str(ord_data.get("orderId", "")):
+                            ord_data["paymentStatus"] = "Pending Verification"
+                        else:
+                            ord_data["paymentStatus"] = "Cash on Delivery"
 
                     orders = [o for o in orders if isinstance(o, dict) and o.get("orderId") != ord_data.get("orderId")]
                     orders.insert(0, ord_data)
@@ -668,10 +701,28 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
             if not is_valid_image_bytes(raw_bytes, ext):
                 return self._send_json({"ok": False, "error": "File content does not match a valid JPG/PNG/WebP image or exceeds 8MB limit."}, status=400)
 
-            out_name = f"{int(time.time() * 1000)}-{filename}"
-            out_path = os.path.join(UPLOADS_DIR, out_name)
-            with open(out_path, "wb") as f:
-                f.write(raw_bytes)
+            # Automatically optimize and convert uploaded images to high-quality, lightweight WebP
+            try:
+                import io
+                from PIL import Image, ImageOps
+                with Image.open(io.BytesIO(raw_bytes)) as pil_img:
+                    pil_img = ImageOps.exif_transpose(pil_img)
+                    if pil_img.width > 1400 or pil_img.height > 1400:
+                        pil_img.thumbnail((1400, 1400), Image.Resampling.LANCZOS)
+                    if pil_img.mode in ("RGBA", "LA") or (pil_img.mode == "P" and "transparency" in pil_img.info):
+                        conv_img = pil_img.convert("RGBA")
+                    else:
+                        conv_img = pil_img.convert("RGB")
+                    base_name, _ = os.path.splitext(filename)
+                    out_name = f"{int(time.time() * 1000)}-{base_name}.webp"
+                    out_path = os.path.join(UPLOADS_DIR, out_name)
+                    conv_img.save(out_path, format="WEBP", quality=84, method=6)
+            except Exception:
+                out_name = f"{int(time.time() * 1000)}-{filename}"
+                out_path = os.path.join(UPLOADS_DIR, out_name)
+                with open(out_path, "wb") as f:
+                    f.write(raw_bytes)
+
             rel_path = f"Assets/jewelry/uploads/{out_name}"
             return self._send_json({"ok": True, "path": rel_path})
 

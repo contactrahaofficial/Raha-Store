@@ -2195,8 +2195,18 @@
     if (pdpBuyNowBtn) {
       pdpBuyNowBtn.onclick = function (e) {
         if (e) e.preventDefault();
-        triggerAddCurrentPdpToCart();
-        openCodCheckoutModal();
+        var fullSku = getFullSkuCode();
+        var g = (product.gallery && product.gallery[selectedSkuOpt.imgIdx]) || (product.gallery && product.gallery[0]) || { src: product.img };
+        var directSingleItem = [{
+          id: product.id,
+          sku: fullSku,
+          title: product.title,
+          price: selectedSkuOpt.price,
+          variant: selectedSkuOpt.name,
+          img: g.src,
+          qty: parseInt(selectedQty, 10) || 1
+        }];
+        openCodCheckoutModal(null, null, directSingleItem);
       };
     }
 
@@ -2204,20 +2214,18 @@
     if (pdpWaDirectBtn) {
       pdpWaDirectBtn.onclick = function (e) {
         if (e) e.preventDefault();
-        triggerAddCurrentPdpToCart();
         var fullSku = getFullSkuCode();
-        var total = selectedSkuOpt.price * selectedQty;
-        var lines = [
-          'Assalam-o-Alaikum Raha! I would like to place an order:',
-          '• Piece: ' + product.title,
-          '• SKU Code: ' + fullSku,
-          '• Finish: ' + selectedSkuOpt.name,
-          '• Quantity: ' + selectedQty,
-          '• Total: ' + formatPKR(total) + (total >= FREE_SHIPPING_THRESHOLD ? ' (Complimentary Express Shipping)' : ''),
-          '• Delivery City: ' + getSavedCity()
-        ];
-        var waUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
-        window.open(waUrl, '_blank', 'noopener');
+        var g = (product.gallery && product.gallery[selectedSkuOpt.imgIdx]) || (product.gallery && product.gallery[0]) || { src: product.img };
+        var directSingleItem = [{
+          id: product.id,
+          sku: fullSku,
+          title: product.title,
+          price: selectedSkuOpt.price,
+          variant: selectedSkuOpt.name,
+          img: g.src,
+          qty: parseInt(selectedQty, 10) || 1
+        }];
+        openCodCheckoutModal(null, 'online', directSingleItem);
       };
     }
 
@@ -2291,7 +2299,7 @@
                 '<span>📷</span> Verified Customer Photo' +
               '</div>' +
               '<div class="raha-review-photo-wrap" style="display:inline-block;border-radius:12px;overflow:hidden;border:1px solid var(--border-subtle);background:#0d0a0c;cursor:pointer;max-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.3);position:relative;" onclick="window.rahaOpenImageModal ? window.rahaOpenImageModal(\'' + cleanImg.replace(/'/g, "\\'") + '\', \'' + (rv.author || '').replace(/'/g, "\\'") + '\') : window.open(\'' + cleanImg.replace(/'/g, "\\'") + '\', \'_blank\');">' +
-                '<img src="' + cleanImg + '" alt="' + (rv.author || 'Customer') + ' wear" style="width:100%;height:140px;object-fit:cover;display:block;transition:transform 0.35s ease;" onmouseover="this.style.transform=\'scale(1.06)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+                '<img src="' + cleanImg + '" alt="' + (rv.author || 'Customer') + ' wear" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover;display:block;transition:transform 0.35s ease;" onmouseover="this.style.transform=\'scale(1.06)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
                 '<span style="position:absolute;bottom:6px;right:6px;background:rgba(13,10,12,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-family:var(--font-mono);font-size:9px;color:#fff;padding:2px 6px;">Inspect ↗</span>' +
               '</div>' +
             '</div>';
@@ -2361,8 +2369,8 @@
                 '<span class="raha-badge">' + rp.badge + '</span>' +
                 '<span class="raha-badge raha-badge--sale">Save Rs ' + (rp.compare - rp.price) + '</span>' +
               '</div>' +
-              '<img src="' + rp.img + '" alt="' + rp.title + '" class="raha-card__img raha-card__img--primary" loading="lazy">' +
-              '<img src="' + rp.hoverImg + '" alt="' + rp.title + ' alternate" class="raha-card__img raha-card__img--hover" loading="lazy">' +
+              '<img src="' + rp.img + '" alt="' + rp.title + '" class="raha-card__img raha-card__img--primary" loading="lazy" decoding="async">' +
+              '<img src="' + rp.hoverImg + '" alt="' + rp.title + ' alternate" class="raha-card__img raha-card__img--hover" loading="lazy" decoding="async">' +
             '</a>' +
             '<div class="raha-card__body">' +
               '<div>' +
@@ -2832,16 +2840,58 @@
   }
 
   /* ========================================================================
-     11. CASH ON DELIVERY (COD) CUSTOMER DETAILS & ADDRESS MODAL (GUEST + ACCOUNT)
+     11. CASH ON DELIVERY (COD) & ONLINE PAYMENT CUSTOMER DETAILS MODAL (GUEST + ACCOUNT)
      ======================================================================== */
   var COD_CUSTOMER_STORAGE_KEY = 'raha_cod_customer_v1';
+  var currentCheckoutMode = 'cod'; // 'cod' or 'online'
+  var activeCheckoutItems = [];
+  var isDirectBuy = false;
 
-  async function openCodCheckoutModal(authUser) {
-    var cart = loadCart();
-    if (cart.length === 0) {
-      openCartDrawer();
-      return;
+  function getCityShippingFee(cityName, subtotal) {
+    var freeThreshold = (ACTIVE_CMS_STATE && ACTIVE_CMS_STATE.settings && Number(ACTIVE_CMS_STATE.settings.freeShippingThreshold)) || FREE_SHIPPING_THRESHOLD || 3500;
+    if (subtotal >= freeThreshold) {
+      return 0;
     }
+    var cityRates = (ACTIVE_CMS_STATE && ACTIVE_CMS_STATE.settings && ACTIVE_CMS_STATE.settings.cityShippingRates) || {
+      'Karachi': 200,
+      'Lahore': 250,
+      'Islamabad': 280,
+      'Rawalpindi': 280,
+      'Faisalabad': 280,
+      'Multan': 280,
+      'Peshawar': 300,
+      'Quetta': 320,
+      'Hyderabad': 250,
+      'Sialkot': 280,
+      'Gujranwala': 280,
+      'Sukkur': 280
+    };
+    var stdFee = (ACTIVE_CMS_STATE && ACTIVE_CMS_STATE.settings && Number(ACTIVE_CMS_STATE.settings.standardShippingFee)) || 300;
+    if (!cityName) return stdFee;
+    var cleanCity = String(cityName).trim().toLowerCase();
+    for (var c in cityRates) {
+      if (c.toLowerCase() === cleanCity) {
+        return Number(cityRates[c]) || stdFee;
+      }
+    }
+    return stdFee;
+  }
+
+  async function openCodCheckoutModal(authUser, checkoutMode, directItems) {
+    if (Array.isArray(directItems) && directItems.length > 0) {
+      activeCheckoutItems = directItems;
+      isDirectBuy = true;
+    } else {
+      var cart = loadCart();
+      if (cart.length === 0) {
+        openCartDrawer();
+        return;
+      }
+      activeCheckoutItems = cart;
+      isDirectBuy = false;
+    }
+
+    currentCheckoutMode = (checkoutMode === 'online') ? 'online' : 'cod';
 
     if (!authUser && window.RahaSupabase && typeof window.RahaSupabase.getAuthUser === 'function') {
       try {
@@ -2863,6 +2913,9 @@
     var shippingEl = document.getElementById('raha-cod-shipping');
     var totalEl = document.getElementById('raha-cod-total');
     var submitLabelEl = document.getElementById('raha-cod-submit-label');
+    var modalTitleEl = document.getElementById('raha-cod-modal-title');
+    var modalPretitleEl = document.getElementById('raha-cod-modal-pretitle');
+    var totalLabelEl = document.getElementById('raha-cod-total-label');
 
     if (!modal) return;
 
@@ -2874,7 +2927,30 @@
     var nameIn = document.getElementById('cod-input-name');
     var phoneIn = document.getElementById('cod-input-phone');
     var emailIn = document.getElementById('cod-input-email');
+    var cityIn = document.getElementById('cod-input-city');
+    var cityOtherIn = document.getElementById('cod-input-city-other');
     var addrIn = document.getElementById('cod-input-address');
+
+    function applyCityValue(cVal) {
+      if (!cityIn || !cVal) return;
+      var found = false;
+      for (var i = 0; i < cityIn.options.length; i++) {
+        if (cityIn.options[i].value.toLowerCase() === cVal.toLowerCase()) {
+          cityIn.selectedIndex = i;
+          found = true;
+          break;
+        }
+      }
+      if (!found && cVal) {
+        cityIn.value = 'Other City';
+        if (cityOtherIn) {
+          cityOtherIn.style.display = 'block';
+          cityOtherIn.value = cVal;
+        }
+      } else if (cityOtherIn) {
+        cityOtherIn.style.display = (cityIn.value === 'Other City') ? 'block' : 'none';
+      }
+    }
 
     // Always keep email editable so both guests and members can type or adjust their email
     if (emailIn) {
@@ -2910,6 +2986,10 @@
             if (nameIn && prof.name) nameIn.value = prof.name;
             if (phoneIn && prof.phone) phoneIn.value = prof.phone;
             if (addrIn && prof.address) addrIn.value = prof.address;
+            if (prof.city) {
+              applyCityValue(prof.city);
+              recalculateShipping();
+            }
           }
         });
       }
@@ -2940,18 +3020,19 @@
         if (phoneIn && !phoneIn.value && savedCust.phone) phoneIn.value = savedCust.phone;
         if (emailIn && !emailIn.value && savedCust.email) emailIn.value = savedCust.email;
         if (addrIn && !addrIn.value && savedCust.address) addrIn.value = savedCust.address;
+        if (savedCust.city) applyCityValue(savedCust.city);
       }
     } catch (e) {}
 
     /* Render Order Items & Totals */
     var subtotal = 0;
     var itemsHtml = '';
-    cart.forEach(function (item) {
+    activeCheckoutItems.forEach(function (item) {
       var lineTotal = item.price * item.qty;
       subtotal += lineTotal;
       itemsHtml +=
         '<div class="raha-cod-item-row">' +
-          '<img src="' + item.img + '" alt="' + item.title + '">' +
+          '<img src="' + item.img + '" alt="' + item.title + '" loading="lazy" decoding="async">' +
           '<div>' +
             '<div style="font-family:var(--font-serif);font-size:15.5px;color:var(--text-primary);line-height:1.25;">' + item.title + '</div>' +
             '<div style="font-family:var(--font-mono);font-size:9.5px;color:var(--raha-gold);text-transform:uppercase;margin-top:2px;">' + (item.sku ? item.sku + ' • ' : '') + item.variant + ' × ' + item.qty + '</div>' +
@@ -2960,14 +3041,94 @@
         '</div>';
     });
 
-    var shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 250;
-    var grandTotal = subtotal + shippingCost;
-
     if (itemsListEl) itemsListEl.innerHTML = itemsHtml;
     if (subtotalEl) subtotalEl.textContent = formatPKR(subtotal);
-    if (shippingEl) shippingEl.textContent = shippingCost === 0 ? 'FREE Express' : formatPKR(shippingCost);
-    if (totalEl) totalEl.textContent = formatPKR(grandTotal);
-    if (submitLabelEl) submitLabelEl.textContent = 'Confirm Cash on Delivery Order — ' + formatPKR(grandTotal);
+
+    /* Sync Payment Method Selection in Modal Form */
+    var payCodRadio = document.querySelector('input[name="raha-payment-mode"][value="cod"]');
+    var payOnlineRadio = document.querySelector('input[name="raha-payment-mode"][value="online"]');
+    var payOptCod = document.getElementById('pay-opt-cod');
+    var payOptOnline = document.getElementById('pay-opt-online');
+
+    function syncPaymentMethodCards() {
+      if (currentCheckoutMode === 'online') {
+        if (payOnlineRadio) payOnlineRadio.checked = true;
+        if (payOptOnline) {
+          payOptOnline.style.borderColor = '#64b5f6';
+          payOptOnline.style.background = 'rgba(100,181,246,0.12)';
+        }
+        if (payOptCod) {
+          payOptCod.style.borderColor = 'rgba(214,183,138,0.25)';
+          payOptCod.style.background = 'rgba(214,183,138,0.03)';
+        }
+      } else {
+        if (payCodRadio) payCodRadio.checked = true;
+        if (payOptCod) {
+          payOptCod.style.borderColor = 'var(--raha-gold)';
+          payOptCod.style.background = 'rgba(214,183,138,0.08)';
+        }
+        if (payOptOnline) {
+          payOptOnline.style.borderColor = 'rgba(100,181,246,0.25)';
+          payOptOnline.style.background = 'rgba(100,181,246,0.03)';
+        }
+      }
+    }
+
+    syncPaymentMethodCards();
+
+    document.querySelectorAll('input[name="raha-payment-mode"]').forEach(function (radio) {
+      radio.onchange = function () {
+        currentCheckoutMode = radio.value;
+        syncPaymentMethodCards();
+        recalculateShipping();
+      };
+    });
+
+    function recalculateShipping() {
+      var selectedCity = cityIn ? cityIn.value : '';
+      if (selectedCity === 'Other City') {
+        if (cityOtherIn) {
+          cityOtherIn.style.display = 'block';
+          selectedCity = cityOtherIn.value.trim() || 'Other City';
+        }
+      } else {
+        if (cityOtherIn) cityOtherIn.style.display = 'none';
+      }
+
+      var currentShippingFee = getCityShippingFee(selectedCity, subtotal);
+      var currentGrandTotal = subtotal + currentShippingFee;
+
+      if (shippingEl) {
+        if (currentShippingFee === 0) {
+          shippingEl.innerHTML = '<span style="color:#81c784;">FREE Express</span>';
+        } else {
+          var cityLabel = selectedCity && selectedCity !== 'Other City' ? ' <span style="font-size:10px;color:var(--raha-gold-light);">(' + escapeHtml(selectedCity) + ')</span>' : '';
+          shippingEl.innerHTML = formatPKR(currentShippingFee) + cityLabel;
+        }
+      }
+      if (totalEl) totalEl.textContent = formatPKR(currentGrandTotal);
+
+      if (currentCheckoutMode === 'online') {
+        if (modalPretitleEl) modalPretitleEl.textContent = 'Direct Bank Transfer / Raast • Fast Verification';
+        if (modalTitleEl) modalTitleEl.textContent = 'Online Payment via WhatsApp';
+        if (totalLabelEl) totalLabelEl.textContent = 'Total Online Payable';
+        if (submitLabelEl) submitLabelEl.textContent = 'Continue to WhatsApp & Request Banking Details — ' + formatPKR(currentGrandTotal);
+      } else {
+        if (modalPretitleEl) modalPretitleEl.textContent = 'Pakistan Express Dispatch • Pay at Doorstep';
+        if (modalTitleEl) modalTitleEl.textContent = 'Cash on Delivery Checkout';
+        if (totalLabelEl) totalLabelEl.textContent = 'Total COD Payable';
+        if (submitLabelEl) submitLabelEl.textContent = 'Confirm Cash on Delivery Order — ' + formatPKR(currentGrandTotal);
+      }
+    }
+
+    if (cityIn) {
+      cityIn.onchange = recalculateShipping;
+    }
+    if (cityOtherIn) {
+      cityOtherIn.oninput = recalculateShipping;
+    }
+
+    recalculateShipping();
 
     modal.classList.add('is-open');
     if (backdrop) backdrop.classList.add('is-open');
@@ -3002,29 +3163,38 @@
         if (focusEl) focusEl.focus();
       }
 
-      /* 1. Strict Cart Validation: Bag must not be empty */
-      var cart = loadCart();
-      if (!Array.isArray(cart) || cart.length === 0) {
-        showError('Your bag is currently empty! Please select and add at least one jewellery piece to your bag before checking out.');
+      /* 1. Strict Items Validation */
+      var checkoutItems = (Array.isArray(activeCheckoutItems) && activeCheckoutItems.length > 0)
+        ? activeCheckoutItems
+        : loadCart();
+
+      if (!Array.isArray(checkoutItems) || checkoutItems.length === 0) {
+        showError('Your order items are empty. Please select a product to checkout.');
         return;
       }
 
       var nameIn = document.getElementById('cod-input-name');
       var phoneIn = document.getElementById('cod-input-phone');
       var emailIn = document.getElementById('cod-input-email');
+      var cityIn = document.getElementById('cod-input-city');
+      var cityOtherIn = document.getElementById('cod-input-city-other');
       var addrIn = document.getElementById('cod-input-address');
       var notesIn = document.getElementById('cod-input-notes');
 
       var name = nameIn ? nameIn.value.trim() : '';
       var phone = phoneIn ? phoneIn.value.trim() : '';
       var email = emailIn ? emailIn.value.trim() : '';
-      var city = 'Pakistan';
+      var selectedCity = cityIn ? cityIn.value.trim() : '';
+      if (selectedCity === 'Other City') {
+        selectedCity = (cityOtherIn && cityOtherIn.value.trim()) ? cityOtherIn.value.trim() : 'Other City';
+      }
+      var city = selectedCity;
       var address = addrIn ? addrIn.value.trim() : '';
       var notes = notesIn ? notesIn.value.trim() : '';
 
       /* 2. Strict Customer Validation */
       if (!name || name.length < 2) {
-        showError('Please enter your Full Name (minimum 2 characters) to place your Cash on Delivery order.', nameIn);
+        showError('Please enter your Full Name (minimum 2 characters) to place your order.', nameIn);
         return;
       }
 
@@ -3037,6 +3207,11 @@
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!email || !emailRegex.test(email)) {
         showError('Please enter a valid Email Address (e.g. name@example.com) to receive your official order confirmation.', emailIn);
+        return;
+      }
+
+      if (!city || city === '') {
+        showError('Please select your Delivery City to calculate city-specific delivery charges.', cityIn);
         return;
       }
 
@@ -3076,20 +3251,27 @@
         });
       }
 
-      var cart = loadCart();
+      var payRadio = document.querySelector('input[name="raha-payment-mode"]:checked');
+      var isOnline = (payRadio ? payRadio.value === 'online' : currentCheckoutMode === 'online');
+
       var subtotal = 0;
-      cart.forEach(function (it) { subtotal += it.price * it.qty; });
-      var stdShipFee = (ACTIVE_CMS_STATE && ACTIVE_CMS_STATE.settings && Number(ACTIVE_CMS_STATE.settings.standardShippingFee)) || 250;
-      var shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : stdShipFee;
+      checkoutItems.forEach(function (it) { subtotal += it.price * it.qty; });
+      var shippingCost = getCityShippingFee(city, subtotal);
       var grandTotal = subtotal + shippingCost;
-      var orderRef = 'RAHA-COD-' + Math.floor(10000 + Math.random() * 90000);
+      var orderRef = (isOnline ? 'RAHA-ONL-' : 'RAHA-COD-') + Math.floor(10000 + Math.random() * 90000);
+      var payMethod = isOnline ? 'Online Payment (WhatsApp)' : 'Cash on Delivery (COD)';
+      var payStatus = isOnline ? 'Pending Verification' : 'Cash on Delivery';
+      var orderType = isOnline ? 'online' : 'cod';
+      var adminNote = isOnline ? '[PAYMENT: PENDING_VERIFICATION]' : '';
 
       /* Save Order to Supabase PostgreSQL (public.raha_orders) & Local Fallback */
       var newOrderObj = {
         orderId: orderRef,
         createdAt: new Date().toLocaleString(),
         status: 'Pending',
-        paymentMethod: 'Cash on Delivery (COD)',
+        paymentMethod: payMethod,
+        paymentStatus: payStatus,
+        orderType: orderType,
         customer: {
           name: name,
           phone: phone,
@@ -3098,7 +3280,7 @@
           address: address,
           notes: notes
         },
-        items: cart.map(function (it) {
+        items: checkoutItems.map(function (it) {
           return {
             id: it.id,
             sku: it.sku || it.id,
@@ -3111,12 +3293,13 @@
         }),
         subtotal: subtotal,
         shipping: shippingCost,
-        total: grandTotal
+        total: grandTotal,
+        adminNote: adminNote
       };
 
       /* Inventory Automation: Deduct ordered stock from catalog in real-time */
       var updatedProductsForCloud = [];
-      cart.forEach(function (ci) {
+      checkoutItems.forEach(function (ci) {
         var pIdx = findProductIndexById(ci.id);
         if (pIdx !== -1 && RAHA_CATALOG[pIdx]) {
           var p = RAHA_CATALOG[pIdx];
@@ -3170,30 +3353,72 @@
       }
 
       /* Build WhatsApp & Email Dispatch Links containing Name, Phone, Email, Address, and SKUs */
-      var waLines = [
-        'Assalam-o-Alaikum Raha! New Cash on Delivery (COD) Order Confirmed:',
-        '• Order ID: ' + orderRef,
-        '• Customer Name: ' + name,
-        '• Phone No: ' + phone,
-        '• Email: ' + email,
-        '• Delivery Address: ' + address,
-        notes ? ('• Note: ' + notes) : '',
-        '--- Ordered Pieces ---'
-      ].filter(Boolean);
+      var waDispatchUrl = '';
+      var mailDispatchUrl = '';
 
-      cart.forEach(function (it, idx) {
-        waLines.push((idx + 1) + '. ' + it.title + ' [SKU: ' + (it.sku || it.id) + ' | ' + it.variant + '] × ' + it.qty + ' = ' + formatPKR(it.price * it.qty));
-      });
-      waLines.push('Shipping: ' + (shippingCost === 0 ? 'FREE Express' : formatPKR(shippingCost)));
-      waLines.push('Total COD Payable at Doorstep: ' + formatPKR(grandTotal));
+      if (isOnline) {
+        var waOnlineLines = [
+          'Assalam-o-Alaikum! I want to continue paying my invoice online. Kindly send me your banking details so I can proceed with the payment for my order (Order ID: ' + orderRef + ').',
+          '',
+          '• Customer Name: ' + name,
+          '• Phone / WhatsApp No: ' + phone,
+          '• Email Address: ' + email,
+          '• Delivery City: ' + city,
+          '• Delivery Address: ' + address,
+          notes ? ('• Delivery Note: ' + notes) : '',
+          '',
+          '--- Ordered Pieces ---'
+        ].filter(Boolean);
 
-      var waBody = waLines.join('\n');
-      if (waBody.length > 1600) {
-        waBody = waBody.slice(0, 1550) + '\n... (Full items logged in Order ' + orderRef + ')';
+        checkoutItems.forEach(function (it, idx) {
+          waOnlineLines.push((idx + 1) + '. ' + it.title + ' [SKU: ' + (it.sku || it.id) + ' | ' + it.variant + '] × ' + it.qty + ' = ' + formatPKR(it.price * it.qty));
+        });
+        waOnlineLines.push('Items Subtotal: ' + formatPKR(subtotal));
+        waOnlineLines.push('Express Shipping: ' + (shippingCost === 0 ? 'FREE Express' : formatPKR(shippingCost) + ' (' + city + ')'));
+        waOnlineLines.push('Total Payable Bill: ' + formatPKR(grandTotal));
+        waOnlineLines.push('');
+        waOnlineLines.push('Looking forward to receiving your banking details so I can proceed with the transfer. Thank you!');
+
+        var waOnlineBody = waOnlineLines.join('\n');
+        if (waOnlineBody.length > 1600) {
+          waOnlineBody = waOnlineBody.slice(0, 1550) + '\n... (Full items logged in Order ' + orderRef + ')';
+        }
+        waDispatchUrl = 'https://api.whatsapp.com/send?phone=' + WHATSAPP_NUMBER + '&text=' + encodeURIComponent(waOnlineBody);
+
+        // Action A: Immediate redirection to WhatsApp with pre-filled banking request template
+        try {
+          window.open(waDispatchUrl, '_blank', 'noopener');
+        } catch (e) {}
+
+        var mailSubject = 'Raha Online Payment Order ' + orderRef + ' — ' + name;
+        mailDispatchUrl = 'mailto:contact.rahaofficial@gmail.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(waOnlineLines.join('\n'));
+      } else {
+        var waLines = [
+          'Assalam-o-Alaikum Raha! New Cash on Delivery (COD) Order Confirmed:',
+          '• Order ID: ' + orderRef,
+          '• Customer Name: ' + name,
+          '• Phone No: ' + phone,
+          '• Email: ' + email,
+          '• Delivery City: ' + city,
+          '• Delivery Address: ' + address,
+          notes ? ('• Note: ' + notes) : '',
+          '--- Ordered Pieces ---'
+        ].filter(Boolean);
+
+        checkoutItems.forEach(function (it, idx) {
+          waLines.push((idx + 1) + '. ' + it.title + ' [SKU: ' + (it.sku || it.id) + ' | ' + it.variant + '] × ' + it.qty + ' = ' + formatPKR(it.price * it.qty));
+        });
+        waLines.push('Shipping: ' + (shippingCost === 0 ? 'FREE Express' : formatPKR(shippingCost) + ' (' + city + ')'));
+        waLines.push('Total COD Payable at Doorstep: ' + formatPKR(grandTotal));
+
+        var waBody = waLines.join('\n');
+        if (waBody.length > 1600) {
+          waBody = waBody.slice(0, 1550) + '\n... (Full items logged in Order ' + orderRef + ')';
+        }
+        waDispatchUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(waBody);
+        var mailSubject = 'Raha COD Order ' + orderRef + ' — ' + name;
+        mailDispatchUrl = 'mailto:contact.rahaofficial@gmail.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(waLines.join('\n'));
       }
-      var waDispatchUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(waBody);
-      var mailSubject = 'Raha COD Order ' + orderRef + ' — ' + name;
-      var mailDispatchUrl = 'mailto:contact.rahaofficial@gmail.com?subject=' + encodeURIComponent(mailSubject) + '&body=' + encodeURIComponent(waLines.join('\n'));
 
       var formView = document.getElementById('raha-cod-form-view');
       var receiptView = document.getElementById('raha-cod-receipt-view');
@@ -3201,23 +3426,43 @@
 
       if (receiptView) {
         receiptView.style.display = 'block';
-        receiptView.innerHTML =
-          '<div style="width:56px;height:56px;border-radius:50%;margin:0 auto 14px;background:rgba(213,184,149,0.18);border:1.5px solid var(--raha-gold);display:flex;align-items:center;justify-content:center;color:var(--raha-gold);font-size:24px;">&#10003;</div>' +
-          '<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;">Order Reference: ' + escapeHtml(orderRef) + '</div>' +
-          '<h4 style="font-family:var(--font-serif);font-size:34px;font-weight:400;color:var(--text-primary);margin-bottom:8px;">Thank You, ' + escapeHtml(name) + '!</h4>' +
-          '<p style="font-size:14px;color:var(--text-secondary);max-width:560px;margin:0 auto;">Your Cash on Delivery order has been registered. You will pay <strong style="color:var(--raha-gold);">' + formatPKR(grandTotal) + '</strong> in cash at your doorstep upon receiving your sealed Raha Mauve Keepsake Box.</p>' +
-          '<div class="raha-cod-receipt__grid">' +
-            '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Customer Name</span><span class="raha-spec-cell__v">' + escapeHtml(name) + '</span></div>' +
-            '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Phone / WhatsApp No.</span><span class="raha-spec-cell__v">' + escapeHtml(phone) + '</span></div>' +
-            '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Email Address</span><span class="raha-spec-cell__v">' + escapeHtml(email) + '</span></div>' +
-            '<div class="raha-spec-cell"><span class="raha-spec-cell__k">COD Total Payable</span><span class="raha-spec-cell__v" style="color:var(--raha-gold);">' + formatPKR(grandTotal) + '</span></div>' +
-            '<div class="raha-spec-cell" style="grid-column:1 / -1;"><span class="raha-spec-cell__k">Delivery Street Address</span><span class="raha-spec-cell__v">' + escapeHtml(address) + (notes ? ' (' + escapeHtml(notes) + ')' : '') + '</span></div>' +
-          '</div>' +
-          '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">' +
-            '<a href="' + waDispatchUrl + '" target="_blank" rel="noopener" class="raha-btn raha-btn--primary" style="text-decoration:none;">Send Instant Dispatch Copy on WhatsApp →</a>' +
-            '<a href="' + mailDispatchUrl + '" class="raha-btn raha-btn--glass" style="text-decoration:none;">Send Copy via Email</a>' +
-            '<button type="button" class="raha-btn raha-btn--glass" id="raha-cod-done-btn">Continue Shopping</button>' +
-          '</div>';
+        if (isOnline) {
+          receiptView.innerHTML =
+            '<div style="width:56px;height:56px;border-radius:50%;margin:0 auto 14px;background:rgba(100,181,246,0.18);border:1.5px solid #64b5f6;display:flex;align-items:center;justify-content:center;color:#64b5f6;font-size:24px;">✓</div>' +
+            '<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#64b5f6;margin-bottom:6px;">Order Reference: ' + escapeHtml(orderRef) + '</div>' +
+            '<h4 style="font-family:var(--font-serif);font-size:34px;font-weight:400;color:var(--text-primary);margin-bottom:8px;">Thank You, ' + escapeHtml(name) + '!</h4>' +
+            '<p style="font-size:14px;color:var(--text-secondary);max-width:560px;margin:0 auto 16px;">Your online order has been registered and WhatsApp has been opened for banking details. Kindly transfer <strong style="color:var(--raha-gold);">' + formatPKR(grandTotal) + '</strong> and send us the screenshot on WhatsApp to verify payment.</p>' +
+            '<div class="raha-cod-receipt__grid">' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Customer Name</span><span class="raha-spec-cell__v">' + escapeHtml(name) + '</span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Phone / WhatsApp No.</span><span class="raha-spec-cell__v">' + escapeHtml(phone) + '</span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Payment Lifecycle</span><span class="raha-spec-cell__v" style="color:#ffb74d;">⏳ Pending Verification</span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Total Bill</span><span class="raha-spec-cell__v" style="color:var(--raha-gold);">' + formatPKR(grandTotal) + '</span></div>' +
+              '<div class="raha-spec-cell" style="grid-column:1 / -1;"><span class="raha-spec-cell__k">Delivery Street Address</span><span class="raha-spec-cell__v">' + escapeHtml(address) + (notes ? ' (' + escapeHtml(notes) + ')' : '') + '</span></div>' +
+            '</div>' +
+            '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">' +
+              '<a href="' + waDispatchUrl + '" target="_blank" rel="noopener" class="raha-btn raha-btn--primary" style="text-decoration:none;">Open WhatsApp for Bank Details →</a>' +
+              '<a href="account.html" class="raha-btn raha-btn--glass" style="text-decoration:none;">View in My Vault / Live Tracking ↗</a>' +
+              '<button type="button" class="raha-btn raha-btn--glass" id="raha-cod-done-btn">Continue Shopping</button>' +
+            '</div>';
+        } else {
+          receiptView.innerHTML =
+            '<div style="width:56px;height:56px;border-radius:50%;margin:0 auto 14px;background:rgba(213,184,149,0.18);border:1.5px solid var(--raha-gold);display:flex;align-items:center;justify-content:center;color:var(--raha-gold);font-size:24px;">&#10003;</div>' +
+            '<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;">Order Reference: ' + escapeHtml(orderRef) + '</div>' +
+            '<h4 style="font-family:var(--font-serif);font-size:34px;font-weight:400;color:var(--text-primary);margin-bottom:8px;">Thank You, ' + escapeHtml(name) + '!</h4>' +
+            '<p style="font-size:14px;color:var(--text-secondary);max-width:560px;margin:0 auto;">Your Cash on Delivery order has been registered. You will pay <strong style="color:var(--raha-gold);">' + formatPKR(grandTotal) + '</strong> in cash upon delivery at your doorstep.</p>' +
+            '<div class="raha-cod-receipt__grid">' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Customer Name</span><span class="raha-spec-cell__v">' + escapeHtml(name) + '</span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Phone / WhatsApp No.</span><span class="raha-spec-cell__v">' + escapeHtml(phone) + '</span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Email Address</span><span class="raha-spec-cell__v">' + escapeHtml(email) + '</span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">COD Total Payable</span><span class="raha-spec-cell__v" style="color:var(--raha-gold);">' + formatPKR(grandTotal) + '</span></div>' +
+              '<div class="raha-spec-cell" style="grid-column:1 / -1;"><span class="raha-spec-cell__k">Delivery Street Address</span><span class="raha-spec-cell__v">' + escapeHtml(address) + (notes ? ' (' + escapeHtml(notes) + ')' : '') + '</span></div>' +
+            '</div>' +
+            '<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">' +
+              '<a href="' + waDispatchUrl + '" target="_blank" rel="noopener" class="raha-btn raha-btn--primary" style="text-decoration:none;">Send Instant Dispatch Copy on WhatsApp →</a>' +
+              '<a href="' + mailDispatchUrl + '" class="raha-btn raha-btn--glass" style="text-decoration:none;">Send Copy via Email</a>' +
+              '<button type="button" class="raha-btn raha-btn--glass" id="raha-cod-done-btn">Continue Shopping</button>' +
+            '</div>';
+        }
 
         var doneBtn = document.getElementById('raha-cod-done-btn');
         if (doneBtn) {
@@ -3227,12 +3472,13 @@
         }
       }
 
-      /* Clear the bag after order is placed */
-      saveCart([]);
+      /* Clear the bag only if standard cart checkout; keep bag intact if Buy Now direct purchase */
+      if (!isDirectBuy) {
+        saveCart([]);
+        renderCartDrawer();
+      }
       /* 7. Re-render Client Dispatches Carousel with reviews uploaded for products */
-    renderClientDispatchesReviews();
-
-    renderCartDrawer();
+      renderClientDispatchesReviews();
     });
   }
 

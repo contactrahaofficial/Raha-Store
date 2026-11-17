@@ -15,6 +15,7 @@
   var orders = [];
   var activeCategoryFilter = 'all';
   var activeOrderFilter = 'all';
+  var activeOrderType = 'all'; // 'all', 'cod', 'online'
   var editingProductId = null;
   var editingProductGallery = [];
   var editingProductReviews = [];
@@ -119,18 +120,31 @@
 
   function renderKpis() {
     var totalOrdersEl = document.getElementById('kpi-total-orders');
+    var onlineOrdersEl = document.getElementById('kpi-online-orders');
     var pendingOrdersEl = document.getElementById('kpi-pending-orders');
     var revenueEl = document.getElementById('kpi-total-revenue');
     var productsCountEl = document.getElementById('kpi-total-products');
     var restockKpiEl = document.getElementById('kpi-restock-count');
     var restockBadgeEl = document.getElementById('admin-restock-tab-badge');
     var restockFilterBadge = document.getElementById('admin-prod-filter-restock-count');
+    var countAllEl = document.getElementById('count-all-orders');
+    var countCodEl = document.getElementById('count-cod-orders');
+    var countOnlineEl = document.getElementById('count-online-orders');
 
+    var codCount = 0;
+    var onlineCount = 0;
     var pendingCount = 0;
     var revenue = 0;
+
     orders.forEach(function (o) {
+      var isOnline = (o.orderId && o.orderId.indexOf('RAHA-ONL') !== -1) ||
+                     (o.paymentMethod && o.paymentMethod.indexOf('Online') !== -1) ||
+                     (o.orderType === 'online');
+      if (isOnline) onlineCount++;
+      else codCount++;
+
       if ((o.status || 'Pending') === 'Pending') pendingCount++;
-      if (o.status !== 'Cancelled') revenue += (Number(o.total) || 0);
+      if (o.status !== 'Cancelled' && o.status !== 'Refunded' && o.paymentStatus !== 'Refunded') revenue += (Number(o.total) || 0);
     });
 
     var restockCount = 0;
@@ -144,7 +158,11 @@
       }
     });
 
-    if (totalOrdersEl) totalOrdersEl.textContent = orders.length;
+    if (totalOrdersEl) totalOrdersEl.textContent = codCount;
+    if (onlineOrdersEl) onlineOrdersEl.textContent = onlineCount;
+    if (countAllEl) countAllEl.textContent = orders.length;
+    if (countCodEl) countCodEl.textContent = codCount;
+    if (countOnlineEl) countOnlineEl.textContent = onlineCount;
     if (pendingOrdersEl) pendingOrdersEl.textContent = pendingCount;
     if (revenueEl) revenueEl.textContent = formatPKR(revenue);
     if (productsCountEl) productsCountEl.textContent = activeProductsCount;
@@ -154,7 +172,7 @@
   }
 
   /* ========================================================================
-     2. TAB 01: ORDERS & CASH ON DELIVERY MANAGER
+     2. TAB 01: ORDERS & CASH ON DELIVERY / ONLINE ORDERS MANAGER
      ======================================================================== */
   function renderOrdersTab() {
     var container = document.getElementById('admin-orders-list');
@@ -172,6 +190,13 @@
       var hasItems = Array.isArray(o.items) && o.items.length > 0;
       if (!hasName || !hasPhone || !hasItems) return false;
 
+      var isOnline = (o.orderId && o.orderId.indexOf('RAHA-ONL') !== -1) ||
+                     (o.paymentMethod && o.paymentMethod.indexOf('Online') !== -1) ||
+                     (o.orderType === 'online');
+
+      if (activeOrderType === 'cod' && isOnline) return false;
+      if (activeOrderType === 'online' && !isOnline) return false;
+
       var stMatch = (activeOrderFilter === 'all') || ((o.status || 'Pending').toLowerCase() === activeOrderFilter.toLowerCase());
       if (!stMatch) return false;
       if (!q) return true;
@@ -180,16 +205,24 @@
     });
 
     if (filtered.length === 0) {
+      var emptyMsg = activeOrderType === 'online'
+        ? 'No Online WhatsApp orders match this view. When buyers submit an online payment checkout on the store, they will appear here with verification controls.'
+        : (activeOrderType === 'cod'
+          ? 'No Cash on Delivery orders match this view.'
+          : 'No orders match this view.');
       container.innerHTML =
         '<div style="text-align:center;padding:56px 20px;border-radius:22px;background:var(--bg-card);border:1px solid var(--border-subtle);">' +
           '<h3 style="font-family:var(--font-serif);font-size:26px;font-weight:400;margin-bottom:8px;">No Orders Match This View</h3>' +
-          '<p style="color:var(--text-secondary);font-size:13.5px;margin-bottom:18px;">When customers place a Cash on Delivery order on the store, their Name, Phone No., Email, Full Address, and SKUs appear here immediately.</p>' +
-          '<button type="button" class="raha-btn raha-btn--glass" id="admin-create-sample-order-btn">+ Generate Sample COD Order</button>' +
+          '<p style="color:var(--text-secondary);font-size:13.5px;margin-bottom:18px;">' + emptyMsg + '</p>' +
+          '<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">' +
+            '<button type="button" class="raha-btn raha-btn--glass" id="admin-create-sample-order-btn">+ Simulate COD Order</button>' +
+            '<button type="button" class="raha-btn raha-btn--glass" id="admin-create-sample-online-btn" style="border-color:rgba(100,181,246,0.4);color:#64b5f6;">+ Simulate Online Order</button>' +
+          '</div>' +
         '</div>';
       var sampleBtn = document.getElementById('admin-create-sample-order-btn');
-      if (sampleBtn) {
-        sampleBtn.addEventListener('click', createSampleTestOrder);
-      }
+      if (sampleBtn) sampleBtn.addEventListener('click', createSampleTestOrder);
+      var sampleOnlineBtn = document.getElementById('admin-create-sample-online-btn');
+      if (sampleOnlineBtn) sampleOnlineBtn.addEventListener('click', createSampleOnlineOrder);
       return;
     }
 
@@ -202,6 +235,14 @@
         status === 'Dispatched' ? '#64b5f6' :
         status === 'Confirmed' ? 'var(--raha-gold)' :
         status === 'Cancelled' ? '#e57373' : '#ffb74d';
+
+      var isOnline = (o.orderId && o.orderId.indexOf('RAHA-ONL') !== -1) ||
+                     (o.paymentMethod && o.paymentMethod.indexOf('Online') !== -1) ||
+                     (o.orderType === 'online');
+      var payStatus = o.paymentStatus || (o.adminNote && o.adminNote.indexOf('[PAYMENT: REFUNDED]') !== -1 ? 'Refunded' : (o.adminNote && o.adminNote.indexOf('[PAYMENT: CLEARED]') !== -1 ? 'Cleared / Paid' : (isOnline ? 'Pending Verification' : 'Cash on Delivery')));
+      var isPayCleared = (payStatus === 'Cleared / Paid');
+      var isPayRefunded = (payStatus === 'Refunded');
+      var payColor = isPayCleared ? '#81c784' : (isPayRefunded ? '#e57373' : '#ffb74d');
 
       var itemsHtml = '';
       (o.items || []).forEach(function (it) {
@@ -218,24 +259,39 @@
 
       var cleanPhone = String(cust.phone || '').replace(/[^0-9]/g, '');
       if (cleanPhone.indexOf('03') === 0) cleanPhone = '92' + cleanPhone.slice(1);
-      var waCustomerUrl = 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(
-        'Assalam-o-Alaikum ' + (cust.name || '') + '! This is Raha Jewel Studio regarding your Cash on Delivery Order ' + o.orderId + ' (' + formatPKR(o.total) + '). Your order status is now: ' + status + '.'
-      );
+      var waMsg = isOnline
+        ? 'Assalam-o-Alaikum ' + (cust.name || '') + '! This is Raha Jewel Studio regarding your Online Payment Order ' + o.orderId + ' (' + formatPKR(o.total) + '). Order status: ' + status + ' • Payment status: ' + payStatus + '.'
+        : 'Assalam-o-Alaikum ' + (cust.name || '') + '! This is Raha Jewel Studio regarding your Cash on Delivery Order ' + o.orderId + ' (' + formatPKR(o.total) + '). Your order status is now: ' + status + '.';
+      var waCustomerUrl = 'https://wa.me/' + cleanPhone + '?text=' + encodeURIComponent(waMsg);
 
       var safeOrderId = escapeHtml(o.orderId);
       var safeStatus = escapeHtml(status);
 
+      var typeBadge = isOnline
+        ? '<span style="font-family:var(--font-mono);font-size:10.5px;padding:3px 9px;border-radius:100px;border:1px solid rgba(100,181,246,0.5);color:#64b5f6;background:rgba(100,181,246,0.12);">💳 Online (WhatsApp)</span>'
+        : '<span style="font-family:var(--font-mono);font-size:10.5px;padding:3px 9px;border-radius:100px;border:1px solid rgba(214,183,138,0.4);color:var(--raha-gold);background:rgba(214,183,138,0.08);">📦 COD Order</span>';
+
+      var paymentLifecycleCtrl = isOnline
+        ? '<select class="raha-cod-select" data-order-payment="' + safeOrderId + '" style="width:auto;padding:5px 10px;font-size:11px;border-color:' + payColor + ';color:' + payColor + ';background:#1a1518;">' +
+            '<option value="Pending Verification"' + (payStatus === 'Pending Verification' ? ' selected' : '') + '>Payment: ⏳ Pending Verification</option>' +
+            '<option value="Cleared / Paid"' + (payStatus === 'Cleared / Paid' ? ' selected' : '') + '>Payment: ✓ Cleared / Paid</option>' +
+            '<option value="Refunded"' + (payStatus === 'Refunded' ? ' selected' : '') + '>Payment: ↺ Refunded</option>' +
+          '</select>'
+        : '';
+
       html +=
-        '<article class="admin-order-card">' +
+        '<article class="admin-order-card" style="' + (isOnline ? 'border-color:rgba(100,181,246,0.3);' : '') + '">' +
           '<div class="admin-order-card__head">' +
             '<div>' +
-              '<span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--raha-gold);">' + safeOrderId + '</span>' +
+              '<span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:' + (isOnline ? '#64b5f6' : 'var(--raha-gold)') + ';">' + safeOrderId + '</span>' +
               '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-left:12px;">' + escapeHtml(o.createdAt || '') + '</span>' +
             '</div>' +
-            '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
+            '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">' +
+              typeBadge +
               '<span style="font-family:var(--font-mono);font-size:11px;padding:4px 10px;border-radius:100px;border:1px solid ' + statusColor + ';color:' + statusColor + ';">● ' + safeStatus + '</span>' +
+              paymentLifecycleCtrl +
               '<select class="raha-cod-select" data-order-status="' + safeOrderId + '" style="width:auto;padding:6px 12px;font-size:11.5px;">' +
-                ['Pending', 'Confirmed', 'Dispatched', 'Delivered', 'Cancelled'].map(function (st) {
+                ['Pending', 'Confirmed', 'Dispatched', 'Delivered', 'Cancelled', 'Refunded'].map(function (st) {
                   return '<option value="' + st + '"' + (st === status ? ' selected' : '') + '>Set: ' + st + '</option>';
                 }).join('') +
               '</select>' +
@@ -245,7 +301,7 @@
           '<div class="admin-order-card__grid">' +
             '<div class="admin-order-meta-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0;">' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Customer Name</span><span class="raha-spec-cell__v">' + escapeHtml(cust.name || '—') + '</span></div>' +
-              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Phone / WhatsApp No.</span><span class="raha-spec-cell__v"><a href="' + waCustomerUrl + '" target="_blank" rel="noopener" style="color:var(--raha-gold);">' + escapeHtml(cust.phone || '—') + ' ↗</a></span></div>' +
+              '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Phone / WhatsApp No.</span><span class="raha-spec-cell__v"><a href="' + waCustomerUrl + '" target="_blank" rel="noopener" style="color:' + (isOnline ? '#64b5f6' : 'var(--raha-gold)') + ';">' + escapeHtml(cust.phone || '—') + ' ↗</a></span></div>' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Email Address</span><span class="raha-spec-cell__v">' + escapeHtml(cust.email || '—') + '</span></div>' +
               '<div class="raha-spec-cell"><span class="raha-spec-cell__k">Delivery City</span><span class="raha-spec-cell__v" style="color:var(--raha-gold);">' + escapeHtml(cust.city || '—') + '</span></div>' +
               '<div class="raha-spec-cell" style="grid-column:1 / -1;"><span class="raha-spec-cell__k">Full Delivery Street Address</span><span class="raha-spec-cell__v">' + escapeHtml(cust.address || '—') + (cust.notes ? ' (Note: ' + escapeHtml(cust.notes) + ')' : '') + '</span></div>' +
@@ -253,8 +309,8 @@
             '<div style="min-width:0;background:rgba(13,10,12,0.45);padding:14px 16px;border-radius:16px;border:1px solid var(--border-subtle);display:flex;flex-direction:column;justify-content:space-between;">' +
               '<div>' + itemsHtml + '</div>' +
               '<div style="padding-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:13.5px;font-weight:600;">' +
-                '<span>Total COD Payable:</span>' +
-                '<span style="color:var(--raha-gold);font-size:16px;white-space:nowrap;">' + formatPKR(o.total) + '</span>' +
+                '<span>' + (isOnline ? 'Total Online Bill:' : 'Total COD Payable:') + '</span>' +
+                '<span style="color:' + (isOnline ? '#64b5f6' : 'var(--raha-gold)') + ';font-size:16px;white-space:nowrap;">' + formatPKR(o.total) + '</span>' +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -273,7 +329,26 @@
         });
         renderKpis();
         renderOrdersTab();
-        showToast('Order ' + oid + ' updated to ' + newSt);
+        showToast('Order ' + oid + ' status updated to ' + newSt);
+      });
+    });
+
+    container.querySelectorAll('[data-order-payment]').forEach(function (sel) {
+      sel.addEventListener('change', async function () {
+        var oid = sel.getAttribute('data-order-payment');
+        var newPaySt = sel.value;
+        await window.RahaSupabase.updateOrderStatus(oid, null, null, newPaySt);
+        orders.forEach(function (o) {
+          if (o.orderId === oid) {
+            o.paymentStatus = newPaySt;
+            var base = (o.adminNote || '').replace(/\[PAYMENT:[^\]]+\]/g, '').trim();
+            var tag = (newPaySt === 'Cleared / Paid') ? '[PAYMENT: CLEARED]' : (newPaySt === 'Refunded' ? '[PAYMENT: REFUNDED]' : '[PAYMENT: PENDING_VERIFICATION]');
+            o.adminNote = (base ? base + ' ' : '') + tag;
+          }
+        });
+        renderKpis();
+        renderOrdersTab();
+        showToast('Order ' + oid + ' payment marked as ' + newPaySt);
       });
     });
 
@@ -332,6 +407,45 @@
     renderKpis();
     renderOrdersTab();
     showToast('Sample COD order created!');
+  }
+
+  async function createSampleOnlineOrder() {
+    var sample = {
+      orderId: 'RAHA-ONL-' + Math.floor(10000 + Math.random() * 90000),
+      createdAt: new Date().toLocaleString(),
+      status: 'Pending',
+      paymentMethod: 'Online Payment (WhatsApp)',
+      paymentStatus: 'Pending Verification',
+      orderType: 'online',
+      adminNote: '[PAYMENT: PENDING_VERIFICATION]',
+      customer: {
+        name: 'Zainab Fatima',
+        phone: '+92 321 4567890',
+        email: 'zainab.fatima@example.com',
+        city: 'Lahore',
+        address: 'Apartment 402, Block G, Gulberg III, Lahore (Near Main Market)',
+        notes: 'Kindly send Raast / Bank details on WhatsApp for immediate transfer'
+      },
+      items: [
+        {
+          id: 'neck-01',
+          sku: 'RAHA-NCK-01-GLD',
+          title: 'Celeste Luminary Herringbone Choker',
+          variant: 'Gold Plated • 16-inch',
+          price: 3200,
+          qty: 1,
+          img: 'Assets/jewelry/neck-1a.jpg'
+        }
+      ],
+      subtotal: 3200,
+      shipping: 250,
+      total: 3450
+    };
+    await window.RahaSupabase.createOrder(sample);
+    orders.unshift(sample);
+    renderKpis();
+    renderOrdersTab();
+    showToast('Sample Online Order created!');
   }
 
   /* ========================================================================
@@ -1165,10 +1279,97 @@
   /* ========================================================================
      4. TAB 03 & TAB 04: WEBSITE SETTINGS & POLICY PAGES CMS
      ======================================================================== */
+  function renderCityRatesList() {
+    var container = document.getElementById('admin-city-rates-list');
+    if (!container) return;
+    if (!settings.cityShippingRates || typeof settings.cityShippingRates !== 'object') {
+      settings.cityShippingRates = {
+        'Karachi': 200,
+        'Lahore': 250,
+        'Islamabad': 280,
+        'Rawalpindi': 280,
+        'Faisalabad': 280,
+        'Multan': 280,
+        'Peshawar': 300,
+        'Quetta': 320,
+        'Hyderabad': 250,
+        'Sialkot': 280,
+        'Gujranwala': 280,
+        'Sukkur': 280
+      };
+    }
+    var rates = settings.cityShippingRates;
+    var cities = Object.keys(rates).sort();
+    if (cities.length === 0) {
+      container.innerHTML = '<div style="grid-column:1/-1;color:var(--text-muted);font-size:12px;padding:12px;">No custom city rates added yet. All cities will use the Default Nationwide Delivery Charge.</div>';
+      return;
+    }
+    var html = '';
+    cities.forEach(function (cityName) {
+      var fee = rates[cityName];
+      html +=
+        '<div class="admin-city-rate-card" data-city="' + escapeHtml(cityName) + '" style="background:rgba(18,14,16,0.7);padding:10px 14px;border-radius:12px;border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
+          '<div>' +
+            '<div style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--raha-gold);">' + escapeHtml(cityName) + '</div>' +
+            '<div style="font-size:10px;color:var(--text-muted);">PKR Delivery Fee</div>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:6px;">' +
+            '<span style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);">Rs</span>' +
+            '<input type="number" class="raha-cod-input raha-city-rate-input" data-city-input="' + escapeHtml(cityName) + '" value="' + Number(fee) + '" style="width:75px;padding:4px 8px;font-size:11.5px;text-align:right;">' +
+            '<button type="button" class="raha-city-rate-del" data-city-del="' + escapeHtml(cityName) + '" title="Remove custom rate" style="background:none;border:none;color:#e57373;cursor:pointer;padding:2px 6px;font-size:16px;line-height:1;">&times;</button>' +
+          '</div>' +
+        '</div>';
+    });
+    container.innerHTML = html;
+
+    container.querySelectorAll('.raha-city-rate-input').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var c = inp.getAttribute('data-city-input');
+        var val = Number(inp.value) || 0;
+        if (settings.cityShippingRates) {
+          settings.cityShippingRates[c] = val;
+        }
+      });
+    });
+
+    container.querySelectorAll('.raha-city-rate-del').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var c = btn.getAttribute('data-city-del');
+        if (settings.cityShippingRates && settings.cityShippingRates[c] !== undefined) {
+          delete settings.cityShippingRates[c];
+          renderCityRatesList();
+          showToast('Removed custom rate for ' + c + ' (now uses default nationwide fee)');
+        }
+      });
+    });
+  }
+
   function populateSettingsForm() {
     document.getElementById('set-marquee').value = settings.announcementText || 'WhatsApp Support: 0326 0870876 | Instagram: @rahajewels.co | Official Email: contact.rahaofficial@gmail.com | Complimentary Express Delivery on Orders Above Rs 3,500';
     document.getElementById('set-free-ship').value = settings.freeShippingThreshold || 3500;
-    document.getElementById('set-std-ship').value = settings.standardShippingFee || 250;
+    document.getElementById('set-std-ship').value = settings.standardShippingFee || 300;
+    renderCityRatesList();
+
+    var addCityBtn = document.getElementById('admin-add-city-rate-btn');
+    if (addCityBtn && !addCityBtn._bound) {
+      addCityBtn._bound = true;
+      addCityBtn.addEventListener('click', function () {
+        var nameIn = document.getElementById('admin-new-city-name');
+        var feeIn = document.getElementById('admin-new-city-fee');
+        var cName = nameIn ? nameIn.value.trim() : '';
+        var fee = feeIn ? Number(feeIn.value) : 0;
+        if (!cName) {
+          alert('Please enter a City Name (e.g. Gujrat, Sahiwal, etc.)');
+          return;
+        }
+        if (!settings.cityShippingRates) settings.cityShippingRates = {};
+        settings.cityShippingRates[cName] = fee;
+        if (nameIn) nameIn.value = '';
+        if (feeIn) feeIn.value = '';
+        renderCityRatesList();
+        showToast('Added delivery charge for ' + cName + ': Rs ' + fee);
+      });
+    }
     if (settings.whatsappNumber && String(settings.whatsappNumber).indexOf('3352396680') !== -1) settings.whatsappNumber = '923260870876';
     if (settings.announcementText && String(settings.announcementText).indexOf('335') !== -1) settings.announcementText = String(settings.announcementText).replace(/\+?92\s*335\s*2396680|0335\s*2396680/g, '0326 0870876');
     document.getElementById('set-wa-num').value = settings.whatsappNumber || '923260870876';
@@ -1286,6 +1487,16 @@
       });
     });
 
+    /* Order Classification Type Filter (All vs COD vs Online) */
+    document.querySelectorAll('[data-order-type]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('[data-order-type]').forEach(function (b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        activeOrderType = btn.getAttribute('data-order-type');
+        renderOrdersTab();
+      });
+    });
+
     /* Order Status Filter Pills & Search */
     document.querySelectorAll('[data-order-filter]').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -1300,6 +1511,9 @@
 
     var addSampleOrderBtn = document.getElementById('admin-top-sample-order-btn');
     if (addSampleOrderBtn) addSampleOrderBtn.addEventListener('click', createSampleTestOrder);
+
+    var addSampleOnlineBtn = document.getElementById('admin-sample-online-order-btn');
+    if (addSampleOnlineBtn) addSampleOnlineBtn.addEventListener('click', createSampleOnlineOrder);
 
     /* Product Category Filter Pills & Search */
     document.querySelectorAll('[data-prod-filter]').forEach(function (btn) {
@@ -1545,10 +1759,17 @@
     if (setForm) {
       setForm.addEventListener('submit', async function (e) {
         e.preventDefault();
+        var updatedRates = Object.assign({}, settings.cityShippingRates || {});
+        document.querySelectorAll('.raha-city-rate-input').forEach(function (inp) {
+          var c = inp.getAttribute('data-city-input');
+          var v = Number(inp.value);
+          if (c && !isNaN(v)) updatedRates[c] = v;
+        });
         settings = {
           announcementText: document.getElementById('set-marquee').value.trim(),
           freeShippingThreshold: Number(document.getElementById('set-free-ship').value) || 3500,
-          standardShippingFee: Number(document.getElementById('set-std-ship').value) || 250,
+          standardShippingFee: Number(document.getElementById('set-std-ship').value) || 300,
+          cityShippingRates: updatedRates,
           whatsappNumber: document.getElementById('set-wa-num').value.trim(),
           heroTitleHtml: document.getElementById('set-hero-title').value.trim(),
           heroSubtitle: document.getElementById('set-hero-sub').value.trim(),

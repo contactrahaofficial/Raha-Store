@@ -1,5 +1,107 @@
 [
   {
+    "orderId": "RAHA-ONL-77449",
+    "createdAt": "11/17/2026, 4:28:03 PM",
+    "status": "Pending",
+    "paymentMethod": "Online Payment (WhatsApp)",
+    "paymentStatus": "Cleared / Paid",
+    "orderType": "online",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-8258",
+        "sku": "RAHA-ERG-238-GLD",
+        "title": "kuch bhee",
+        "variant": "Gold Plated",
+        "price": 2500.0,
+        "qty": 1,
+        "img": "Assets/jewelry/uploads/1794644497360-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg"
+      }
+    ],
+    "subtotal": 2500.0,
+    "shipping": 250,
+    "total": 2750.0,
+    "adminNote": "[PAYMENT: PENDING_VERIFICATION]"
+  },
+  {
+    "orderId": "RAHA-ONL-48641",
+    "createdAt": "11/17/2026, 4:21:11 PM",
+    "status": "Pending",
+    "paymentMethod": "Online Payment (WhatsApp)",
+    "paymentStatus": "Cleared / Paid",
+    "orderType": "online",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Pakistan",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-8258",
+        "sku": "RAHA-ERG-238-GLD",
+        "title": "kuch bhee",
+        "variant": "Gold Plated",
+        "price": 2500.0,
+        "qty": 1,
+        "img": "Assets/jewelry/uploads/1794644497360-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg"
+      }
+    ],
+    "subtotal": 2500.0,
+    "shipping": 350,
+    "total": 2850.0,
+    "adminNote": "[PAYMENT: PENDING_VERIFICATION]"
+  },
+  {
+    "orderId": "RAHA-ONL-83730",
+    "createdAt": "11/16/2026, 11:26:37 PM",
+    "status": "Confirmed",
+    "paymentMethod": "Online Payment (WhatsApp)",
+    "paymentStatus": "Pending Verification",
+    "orderType": "online",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": "aram se lana kuch toote nhi"
+    },
+    "items": [
+      {
+        "id": "ear-01",
+        "sku": "RAHA-EAR-01-GLD",
+        "title": "Aether Sculpted Gold Drop Hoops",
+        "variant": "Gold Plated",
+        "price": 2450.0,
+        "qty": 1,
+        "img": "Assets/jewelry/ear-1a.jpg"
+      },
+      {
+        "id": "ear-03",
+        "sku": "RAHA-EAR-03-GLD",
+        "title": "Nova Baroque Pearl Linear Studs",
+        "variant": "Gold Plated",
+        "price": 2650.0,
+        "qty": 1,
+        "img": "Assets/jewelry/ear-3a.jpg"
+      }
+    ],
+    "subtotal": 5100.0,
+    "shipping": 0,
+    "total": 5100.0,
+    "adminNote": "[PAYMENT: REFUNDED]"
+  },
+  {
     "orderId": "RAHA-COD-31096",
     "createdAt": "11/14/2026, 8:28:12 PM",
     "status": "Delivered",
@@ -8,7 +110,7 @@
       "name": "Hassan",
       "phone": "03120202020",
       "email": "hassa.siddiqui1682@gmail.com",
-      "city": "Pakistan",
+      "city": "Karachi",
       "address": "123456780009",
       "notes": ""
     },
@@ -76,7 +178,7 @@
         "variant": "Butterfly",
         "price": 2900,
         "qty": 2,
-        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794225697460-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png"
+        "img": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.webp"
       }
     ],
     "subtotal": 5800,

@@ -608,8 +608,8 @@
 
   <!-- Scripts -->
   <script src="Assets/js/supabase.min.js"></script>
-  <script src="Assets/js/raha-supabase.js?v=20261116_v38"></script>
-  <script src="Assets/js/replica-enhancements.js?v=20261116_v53"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261117_v42"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261117_v60"></script>
   <script>
     (function () {
       'use strict';
@@ -966,23 +966,49 @@
 
           var cust = o.customer || {};
 
+          var isOnline = (o.orderId && o.orderId.indexOf('RAHA-ONL') !== -1) ||
+                         (o.paymentMethod && o.paymentMethod.indexOf('Online') !== -1) ||
+                         (o.orderType === 'online');
+          var payStatus = o.paymentStatus || (o.adminNote && o.adminNote.indexOf('[PAYMENT: REFUNDED]') !== -1 ? 'Refunded' : (o.adminNote && o.adminNote.indexOf('[PAYMENT: CLEARED]') !== -1 ? 'Cleared / Paid' : (isOnline ? 'Pending Verification' : 'Cash on Delivery')));
+          var isPayCleared = (payStatus === 'Cleared / Paid');
+          var isPayRefunded = (payStatus === 'Refunded');
+
+          var payBadge = '';
+          if (isOnline) {
+            if (isPayRefunded) {
+              payBadge = '<span style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:100px;border:1px solid #e57373;color:#e57373;background:rgba(229,115,115,0.12);">↺ Payment Refunded</span>';
+            } else if (isPayCleared) {
+              payBadge = '<span style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:100px;border:1px solid #81c784;color:#81c784;background:rgba(129,199,132,0.12);">✓ Payment Cleared</span>';
+            } else {
+              payBadge = '<span style="font-family:var(--font-mono);font-size:10px;padding:2px 8px;border-radius:100px;border:1px solid #ffb74d;color:#ffb74d;background:rgba(255,183,77,0.12);">⏳ Payment Pending Verification</span>';
+            }
+          }
+
+          var paymentReminder = (isOnline && !isPayCleared && !isPayRefunded && stLower !== 'cancelled')
+            ? '<div style="margin-top:12px;padding:11px 16px;border-radius:12px;background:rgba(100,181,246,0.08);border:1px solid rgba(100,181,246,0.25);font-size:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">' +
+                '<span style="color:var(--text-secondary);">Transferred your online payment? Send screenshot to verify:</span>' +
+                '<a href="https://wa.me/923260870876?text=' + encodeURIComponent('Assalam-o-Alaikum Raha! Here is my payment screenshot for Online Order #' + o.orderId + ' (' + formatPKR(o.total) + ').') + '" target="_blank" rel="noopener" style="color:#64b5f6;font-family:var(--font-mono);font-size:11px;font-weight:600;text-decoration:none;">Send Screenshot on WhatsApp ↗</a>' +
+              '</div>'
+            : '';
+
           html +=
-            '<article class="raha-order-card">' +
+            '<article class="raha-order-card" style="' + (isOnline ? 'border-color:rgba(100,181,246,0.25);' : '') + '">' +
               '<div class="raha-order-card__head">' +
                 '<div>' +
-                  '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;">' +
-                    '<span style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:var(--raha-gold);letter-spacing:0.08em;">#' + o.orderId + '</span>' +
+                  '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px;">' +
+                    '<span style="font-family:var(--font-mono);font-size:14px;font-weight:700;color:' + (isOnline ? '#64b5f6' : 'var(--raha-gold)') + ';letter-spacing:0.08em;">#' + o.orderId + '</span>' +
                     '<span class="raha-status-badge ' + badgeClass + '">' +
                       '<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;"></span>' +
                       st +
                     '</span>' +
+                    payBadge +
                   '</div>' +
                   '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted);">' +
-                    'Placed on ' + (o.createdAt || 'Recent') + ' • Cash on Delivery (COD)' +
+                    'Placed on ' + (o.createdAt || 'Recent') + ' • ' + (o.paymentMethod || (isOnline ? 'Online Payment (WhatsApp)' : 'Cash on Delivery (COD)')) +
                   '</div>' +
                 '</div>' +
                 '<div style="text-align:right;">' +
-                  '<div style="font-family:var(--font-mono);font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;">Payable at Doorstep</div>' +
+                  '<div style="font-family:var(--font-mono);font-size:10.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;">' + (isOnline ? 'Online Total Bill' : 'Payable at Doorstep') + '</div>' +
                   '<div style="font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--raha-gold-light);">' + formatPKR(o.total) + '</div>' +
                 '</div>' +
               '</div>' +
@@ -1018,6 +1044,7 @@
                       '<div class="raha-step__title">Delivered</div>' +
                     '</div>' +
                   '</div>' +
+                  paymentReminder +
                 '</div>'
               :
                 '<div style="padding:12px 16px;border-radius:12px;background:rgba(229,115,115,0.1);border:1px solid rgba(229,115,115,0.3);color:#ffcdd2;font-family:var(--font-mono);font-size:12px;margin-bottom:18px;">' +

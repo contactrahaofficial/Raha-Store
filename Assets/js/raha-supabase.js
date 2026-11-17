@@ -219,10 +219,18 @@
   /* Map JS Order Object <-> Supabase Postgres Row (public.raha_orders) */
   function orderToRow(o) {
     var cust = o.customer || {};
+    var isOnline = (o.orderId && o.orderId.indexOf('RAHA-ONL') !== -1) ||
+                   (o.paymentMethod && o.paymentMethod.indexOf('Online') !== -1);
+    var payStatus = o.paymentStatus || (isOnline ? 'Pending Verification' : 'Cash on Delivery');
+    var payTag = (payStatus === 'Refunded') ? '[PAYMENT: REFUNDED]' : ((payStatus === 'Cleared / Paid') ? '[PAYMENT: CLEARED]' : (isOnline ? '[PAYMENT: PENDING_VERIFICATION]' : ''));
+    var finalNote = (o.adminNote || '').replace(/\[PAYMENT:[^\]]+\]/g, '').trim();
+    if (payTag) {
+      finalNote = (finalNote ? finalNote + ' ' : '') + payTag;
+    }
     return {
       order_id: o.orderId,
       status: o.status || 'Pending',
-      payment_method: o.paymentMethod || 'Cash on Delivery (COD)',
+      payment_method: o.paymentMethod || (isOnline ? 'Online Payment (WhatsApp)' : 'Cash on Delivery (COD)'),
       customer_name: cust.name || '',
       customer_phone: cust.phone || '',
       customer_email: cust.email || '',
@@ -233,16 +241,31 @@
       subtotal: Number(o.subtotal) || 0,
       shipping: Number(o.shipping) || 0,
       total: Number(o.total) || 0,
-      admin_note: o.adminNote || ''
+      admin_note: finalNote
     };
   }
 
   function rowToOrder(r) {
+    var adminNote = r.admin_note || '';
+    var isOnline = (r.order_id && r.order_id.indexOf('RAHA-ONL') !== -1) ||
+                   (r.payment_method && r.payment_method.indexOf('Online') !== -1);
+    var paymentStatus = 'Cash on Delivery';
+    if (isOnline) {
+      if (adminNote.indexOf('[PAYMENT: REFUNDED]') !== -1 || adminNote.indexOf('Refunded') !== -1) {
+        paymentStatus = 'Refunded';
+      } else if (adminNote.indexOf('[PAYMENT: CLEARED]') !== -1 || adminNote.indexOf('Cleared') !== -1) {
+        paymentStatus = 'Cleared / Paid';
+      } else {
+        paymentStatus = 'Pending Verification';
+      }
+    }
     return {
       orderId: r.order_id,
       createdAt: r.created_at ? new Date(r.created_at).toLocaleString() : '',
       status: r.status || 'Pending',
-      paymentMethod: r.payment_method || 'Cash on Delivery (COD)',
+      paymentMethod: r.payment_method || (isOnline ? 'Online Payment (WhatsApp)' : 'Cash on Delivery (COD)'),
+      paymentStatus: paymentStatus,
+      orderType: isOnline ? 'online' : 'cod',
       customer: {
         name: r.customer_name || '',
         phone: r.customer_phone || '',
@@ -697,13 +720,19 @@
     }
   }
 
-  async function updateOrderStatus(orderId, newStatus, adminNote) {
+  async function updateOrderStatus(orderId, newStatus, adminNote, paymentStatus) {
     try {
       var list = JSON.parse(localStorage.getItem(CMS_ORDERS_KEY) || '[]');
       list.forEach(function (o) {
         if (o.orderId === orderId) {
           if (newStatus) o.status = newStatus;
           if (typeof adminNote === 'string') o.adminNote = adminNote;
+          if (paymentStatus) {
+            o.paymentStatus = paymentStatus;
+            var baseNote = (o.adminNote || '').replace(/\[PAYMENT:[^\]]+\]/g, '').trim();
+            var payTag = (paymentStatus === 'Refunded') ? '[PAYMENT: REFUNDED]' : ((paymentStatus === 'Cleared / Paid') ? '[PAYMENT: CLEARED]' : '[PAYMENT: PENDING_VERIFICATION]');
+            o.adminNote = (baseNote ? baseNote + ' ' : '') + payTag;
+          }
         }
       });
       localStorage.setItem(CMS_ORDERS_KEY, JSON.stringify(list));
@@ -712,7 +741,7 @@
     fetch('/api/orders', {
       method: 'PATCH',
       headers: getAuthHeaders(),
-      body: JSON.stringify({ action: 'update_status', orderId: orderId, status: newStatus, adminNote: adminNote })
+      body: JSON.stringify({ action: 'update_status', orderId: orderId, status: newStatus, adminNote: adminNote, paymentStatus: paymentStatus })
     }).catch(function () {});
 
     var sb = initClient();
@@ -720,7 +749,13 @@
       var patch = {};
       if (newStatus) patch.status = newStatus;
       if (typeof adminNote === 'string') patch.admin_note = adminNote;
-      await sb.from('raha_orders').update(patch).eq('order_id', orderId);
+      if (paymentStatus) {
+        var pTag = (paymentStatus === 'Refunded') ? '[PAYMENT: REFUNDED]' : ((paymentStatus === 'Cleared / Paid') ? '[PAYMENT: CLEARED]' : '[PAYMENT: PENDING_VERIFICATION]');
+        patch.admin_note = (((typeof adminNote === 'string' ? adminNote : '') || patch.admin_note || '').replace(/\[PAYMENT:[^\]]+\]/g, '').trim() + ' ' + pTag).trim();
+      }
+      try {
+        await sb.from('raha_orders').update(patch).eq('order_id', orderId);
+      } catch (e) {}
     }
     return { ok: true };
   }

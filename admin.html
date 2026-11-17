@@ -578,6 +578,10 @@
           <div class="admin-kpi-card__v" id="kpi-total-orders">0</div>
         </div>
         <div class="admin-kpi-card">
+          <span class="admin-kpi-card__k">Online Orders (WhatsApp)</span>
+          <div class="admin-kpi-card__v" id="kpi-online-orders" style="color:#64b5f6;">0</div>
+        </div>
+        <div class="admin-kpi-card">
           <span class="admin-kpi-card__k">Pending Dispatch</span>
           <div class="admin-kpi-card__v" id="kpi-pending-orders">0</div>
         </div>
@@ -598,7 +602,7 @@
 
       <!-- Navigation Tabs -->
       <nav class="admin-tabs" aria-label="Admin Sections">
-        <button type="button" class="admin-tab-btn is-active" data-admin-tab="orders">01 • Orders &amp; COD</button>
+        <button type="button" class="admin-tab-btn is-active" data-admin-tab="orders">01 • Orders &amp; Dispatch</button>
         <button type="button" class="admin-tab-btn" data-admin-tab="products">02 • Products &amp; SKUs</button>
         <button type="button" class="admin-tab-btn" data-admin-tab="restock">03 • Restock Products (<span
             id="admin-restock-tab-badge">0</span>)</button>
@@ -610,23 +614,37 @@
            TAB 01: ORDERS & CASH ON DELIVERY MANAGER
            ================================================================ -->
       <section class="admin-tab-panel is-active" id="tab-orders">
+        <!-- Order Classification Segment: All vs COD vs Online Orders -->
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border-subtle);">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button type="button" class="raha-filter-pill is-active" data-order-type="all" id="btn-type-all">All Orders (<span id="count-all-orders">0</span>)</button>
+            <button type="button" class="raha-filter-pill" data-order-type="cod" id="btn-type-cod">📦 COD Orders (<span id="count-cod-orders">0</span>)</button>
+            <button type="button" class="raha-filter-pill" data-order-type="online" id="btn-type-online" style="border-color:rgba(100,181,246,0.4);color:#64b5f6;">💳 Online Orders (<span id="count-online-orders">0</span>)</button>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button type="button" class="raha-btn raha-btn--glass" id="admin-top-sample-order-btn" style="padding:8px 14px;font-size:10.5px;">
+              + Simulate COD Order
+            </button>
+            <button type="button" class="raha-btn raha-btn--glass" id="admin-sample-online-order-btn" style="padding:8px 14px;font-size:10.5px;border-color:rgba(100,181,246,0.4);color:#64b5f6;">
+              + Simulate Online Order
+            </button>
+          </div>
+        </div>
+
         <div
           style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:20px;">
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button type="button" class="raha-filter-pill is-active" data-order-filter="all">All Orders</button>
+            <button type="button" class="raha-filter-pill is-active" data-order-filter="all">All Statuses</button>
             <button type="button" class="raha-filter-pill" data-order-filter="Pending">Pending</button>
             <button type="button" class="raha-filter-pill" data-order-filter="Confirmed">Confirmed</button>
             <button type="button" class="raha-filter-pill" data-order-filter="Dispatched">Dispatched</button>
             <button type="button" class="raha-filter-pill" data-order-filter="Delivered">Delivered</button>
             <button type="button" class="raha-filter-pill" data-order-filter="Cancelled">Cancelled</button>
+            <button type="button" class="raha-filter-pill" data-order-filter="Refunded">Refunded</button>
           </div>
           <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
             <input type="search" id="admin-order-search" class="raha-cod-input"
               placeholder="Search Order ID, Name, Phone, City..." style="width:280px;">
-            <button type="button" class="raha-btn raha-btn--glass" id="admin-top-sample-order-btn"
-              style="padding:10px 16px;font-size:10.5px;">
-              + Simulate Customer COD Order
-            </button>
           </div>
         </div>
 
@@ -723,8 +741,26 @@
               <input type="number" id="set-free-ship" class="raha-cod-input" value="3500">
             </div>
             <div class="raha-cod-field">
-              <label class="raha-cod-label" for="set-std-ship">Standard Delivery Charge Below Threshold (PKR)</label>
-              <input type="number" id="set-std-ship" class="raha-cod-input" value="250">
+              <label class="raha-cod-label" for="set-std-ship">Default / Nationwide Delivery Charge (PKR)</label>
+              <input type="number" id="set-std-ship" class="raha-cod-input" value="300">
+            </div>
+          </div>
+
+          <!-- City-Wise Delivery Charges Manager -->
+          <div style="margin:20px 0 24px 0;padding:20px;border-radius:18px;background:rgba(214,183,138,0.04);border:1px solid rgba(214,183,138,0.2);">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+              <div>
+                <h4 style="font-family:var(--font-serif);font-size:18px;font-weight:400;margin:0 0 4px 0;color:var(--raha-gold-light);">City-Wise Delivery Charges (Pakistan)</h4>
+                <p style="font-size:11.5px;color:var(--text-secondary);margin:0;">Configure custom delivery fees per city. Orders for any city not listed here will automatically use the Default Nationwide Delivery Charge above.</p>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <input type="text" id="admin-new-city-name" class="raha-cod-input" placeholder="City name (e.g. Gujrat)" style="width:160px;padding:7px 12px;font-size:11.5px;">
+                <input type="number" id="admin-new-city-fee" class="raha-cod-input" placeholder="Fee (Rs)" style="width:100px;padding:7px 12px;font-size:11.5px;">
+                <button type="button" class="raha-btn raha-btn--glass" id="admin-add-city-rate-btn" style="padding:7px 14px;font-size:11px;">+ Add City Rate</button>
+              </div>
+            </div>
+            <div id="admin-city-rates-list" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));gap:10px;">
+              <!-- Dynamic City Rate Cards -->
             </div>
           </div>
 
@@ -1152,9 +1188,9 @@
 
   <!-- Supabase JS SDK + Raha Storefront & Admin Controllers -->
   <script src="Assets/js/supabase.min.js"></script>
-  <script src="Assets/js/raha-supabase.js?v=20261116_v38"></script>
-  <script src="Assets/js/replica-enhancements.js?v=20261116_v53"></script>
-  <script src="Assets/js/raha-admin.js?v=20261116_v23"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261117_v42"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261117_v60"></script>
+  <script src="Assets/js/raha-admin.js?v=20261117_v27"></script>
 </body>
 
 </html>

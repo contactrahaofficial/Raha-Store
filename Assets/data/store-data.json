@@ -7,7 +7,7 @@
       "subtitle": "Precision-engineered waterproof gold-plated silhouette with hypoallergenic core.",
       "price": 2500,
       "compare": 3000,
-      "stock": 19,
+      "stock": 6,
       "rating": "5.0",
       "reviews": 1,
       "badge": "New Arrival",
@@ -39,10 +39,10 @@
           "suffix": "GLD",
           "compare": 3000,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 19,
+          "_productStock": 6,
           "_customReviews": [
             {
-              "id": "rev-1-6361",
+              "id": "rev-1-0187",
               "img": "Assets/jewelry/uploads/1794644591955-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
               "sku": "RAHA-ERG-238-GLD",
               "body": "Worn daily with zero tarnish and arrived in the signature mauve Raha keepsake box.",
@@ -71,7 +71,7 @@
       ],
       "customReviews": [
         {
-          "id": "rev-1-6361",
+          "id": "rev-1-0187",
           "img": "Assets/jewelry/uploads/1794644591955-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
           "sku": "RAHA-ERG-238-GLD",
           "body": "Worn daily with zero tarnish and arrived in the signature mauve Raha keepsake box.",
@@ -379,16 +379,16 @@
       "category": "Bracelets",
       "categorySlug": "bracelets",
       "subdept": "Atelier Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794225697460-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794402884397-Gold-and-Silver-Cuff-Bracelet.PNG",
+      "img": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.webp",
+      "hoverImg": "Assets/jewelry/uploads/1794402884397-Gold-and-Silver-Cuff-Bracelet.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794225697460-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png",
+          "src": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.webp",
           "tag": "",
           "label": "925 Sterling Silver Finish"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794402884397-Gold-and-Silver-Cuff-Bracelet.PNG",
+          "src": "Assets/jewelry/uploads/1794402884397-Gold-and-Silver-Cuff-Bracelet.webp",
           "tag": "02 Silver",
           "label": "Gold and Silver Cuff Bracelet.PNG"
         }
@@ -2972,19 +2972,33 @@
   ],
   "settings": {
     "announcementText": "WhatsApp Support: 0326 0870876 | Instagram: @rahajewels.co | Official Email: contact.rahaofficial@gmail.com",
-    "freeShippingThreshold": 3500,
-    "standardShippingFee": 300,
+    "freeShippingThreshold": 10000,
+    "standardShippingFee": 350,
+    "cityShippingRates": {
+      "Lahore": 250,
+      "Multan": 280,
+      "Quetta": 320,
+      "Sukkur": 280,
+      "Karachi": 250,
+      "Sialkot": 280,
+      "Peshawar": 300,
+      "Hyderabad": 250,
+      "Islamabad": 280,
+      "Gujranwala": 280,
+      "Rawalpindi": 280,
+      "Faisalabad": 290
+    },
     "whatsappNumber": "923260870876",
     "heroTitleHtml": "Sculpted Light for the <em>Modern Minimalist.</em>",
     "heroSubtitle": "By a woman, for women who know their worth.",
     "heroMonolithHeading": "The Raha Vault",
-    "heroEditorialImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794232686515-Gold-and-Silver-Cuff-Bracelet.PNG",
-    "heroFlagshipLink": "product.html?id=item-2892",
-    "heroFlagshipLinkText": "Inspect butterfly →",
+    "heroEditorialImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794915852718-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
+    "heroFlagshipLink": "product.html?id=item-8258",
+    "heroFlagshipLinkText": "Inspect kuch bhee →",
     "catImgEarrings": "Assets/jewelry/uploads/1794728009674-WhatsApp-Image-2026-11-11-at-7.39.21-PM.jpeg",
     "catImgNecklace": "Assets/jewelry/cat-necklace.jpg",
     "catImgRings": "Assets/jewelry/cat-rings.jpg",
-    "catImgBracelets": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.png",
+    "catImgBracelets": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.webp",
     "catImgAnklets": "Assets/jewelry/cat-anklets.jpg"
   },
   "pages": {

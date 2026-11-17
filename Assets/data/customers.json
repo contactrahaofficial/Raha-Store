@@ -22,10 +22,24 @@
   },
   "hassa.siddiqui1682@gmail.com": {
     "email": "hassa.siddiqui1682@gmail.com",
-    "name": "Hassan",
-    "phone": "03120202020",
-    "city": "Pakistan",
-    "address": "123456780009",
+    "name": "Hassan siddiqui",
+    "phone": "03123232323232",
+    "city": "Karachi",
+    "address": "Nazimabad 5 D  karachi",
     "notes": ""
+  },
+  "test@example.com": {
+    "email": "test@example.com",
+    "name": "Test User",
+    "phone": "03001234567",
+    "city": "Karachi",
+    "address": "Test Address Karachi"
+  },
+  "test2@example.com": {
+    "email": "test2@example.com",
+    "name": "Test User Lahore",
+    "phone": "03001234567",
+    "city": "Lahore",
+    "address": "Test Address Lahore"
   }
 }

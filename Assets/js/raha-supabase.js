@@ -167,8 +167,8 @@
       category: p.category || 'Earrings',
       category_slug: (p.categorySlug || p.category || 'earrings').toLowerCase(),
       subdept: p.subdept || 'Signature Edition',
-      img: p.img || 'Assets/jewelry/ear-1a.jpg',
-      hover_img: p.hoverImg || p.img || 'Assets/jewelry/ear-1a.jpg',
+      img: p.img || 'Assets/Main Raha logo with slogan (The actual logo).webp',
+      hover_img: p.hoverImg || p.img || 'Assets/Main Raha logo with slogan (The actual logo).webp',
       gallery: Array.isArray(p.gallery) ? p.gallery : [],
       custom_skus: skus,
       custom_sizes: Array.isArray(p.customSizes) ? p.customSizes : [],
@@ -367,9 +367,10 @@
             mergedCatalog.push(sp);
           });
 
-          var settings = (setRes.data && setRes.data.settings && Object.keys(setRes.data.settings).length > 0)
+          var remoteSettings = (setRes.data && setRes.data.settings && !setRes.data.settings.faqs && Object.keys(setRes.data.settings).length > 0)
             ? setRes.data.settings
-            : ((localDb && localDb.settings) || {});
+            : null;
+          var settings = Object.assign({}, (localDb && localDb.settings) || {}, remoteSettings || {});
           var pages = (localDb && localDb.pages) ? Object.assign({}, localDb.pages) : {};
           if (Array.isArray(pageRes.data)) {
             pageRes.data.forEach(function (pg) {
@@ -564,16 +565,119 @@
     });
   }
 
-  /* 4. Upload Image to Supabase Storage Bucket ('raha-media'), Local Upload Folder, or Cloud-Synced Compressed WebP */
+  /* Compress any File, Blob, or Image URL into a lightweight WebP Blob (max 1200px, ~70-130 KB) */
+  function compressImageToWebpBlob(source, maxDim, quality) {
+    return new Promise(function (resolve, reject) {
+      if (!source || typeof Image === 'undefined' || typeof document === 'undefined') {
+        return reject(new Error('Canvas compression unavailable'));
+      }
+      var objUrl = null;
+      var srcStr = '';
+      if (typeof source === 'string') {
+        srcStr = source;
+      } else if (source instanceof Blob) {
+        objUrl = URL.createObjectURL(source);
+        srcStr = objUrl;
+      } else {
+        return reject(new Error('Unsupported image source'));
+      }
+
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        try {
+          var w = img.naturalWidth || img.width || 1000;
+          var h = img.naturalHeight || img.height || 1000;
+          var limit = maxDim || 1200;
+          if (w > limit || h > limit) {
+            if (w >= h) {
+              h = Math.round((h * limit) / w);
+              w = limit;
+            } else {
+              w = Math.round((w * limit) / h);
+              h = limit;
+            }
+          }
+          var canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+
+          var q = quality || 0.82;
+          canvas.toBlob(function (blob) {
+            if (objUrl) URL.revokeObjectURL(objUrl);
+            if (blob && blob.size > 0) {
+              // If still somehow over 1.8 MB (e.g. ultra-dense noise), re-compress at 0.72
+              if (blob.size > 1800000) {
+                canvas.toBlob(function (blob2) {
+                  resolve(blob2 || blob);
+                }, 'image/webp', 0.70);
+              } else {
+                resolve(blob);
+              }
+            } else {
+              // Fallback to JPEG blob if WebP toBlob unsupported
+              canvas.toBlob(function (jBlob) {
+                if (jBlob) resolve(jBlob);
+                else reject(new Error('Image compression failed'));
+              }, 'image/jpeg', q);
+            }
+          }, 'image/webp', q);
+        } catch (err) {
+          if (objUrl) URL.revokeObjectURL(objUrl);
+          reject(err);
+        }
+      };
+      img.onerror = function () {
+        if (objUrl) URL.revokeObjectURL(objUrl);
+        reject(new Error('Failed to decode image for compression'));
+      };
+      img.src = srcStr;
+    });
+  }
+
+  /* 4. Compress to WebP & Upload Image exclusively to Supabase Storage Bucket ('raha-media') */
   async function uploadImage(file, dataUrl) {
+    if (file && file.size > 15 * 1024 * 1024) {
+      throw new Error('Image exceeds maximum 15 MB raw upload limit. Please select a smaller photo.');
+    }
+
     await loadConfigFromServer();
     var sb = initClient();
-    if (sb && file) {
+    if (sb && (file || dataUrl)) {
       try {
-        var cleanName = file.name.replace(/[^a-zA-Z0-9._-]/g, '-');
-        var filePath = 'products/' + Date.now() + '-' + cleanName;
-        var upRes = await sb.storage.from('raha-media').upload(filePath, file, {
-          cacheControl: '3600',
+        var uploadPayload = file;
+        var contentType = (file && file.type) || 'image/webp';
+        var origName = (file && file.name) ? file.name : 'upload.webp';
+        var baseName = origName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9._-]/g, '-');
+        var ext = 'webp';
+
+        // Automatically compress to crisp WebP (< ~130 KB) before uploading to Supabase
+        try {
+          var compressedBlob = await compressImageToWebpBlob(file || dataUrl, 1200, 0.82);
+          if (compressedBlob && compressedBlob.size > 0) {
+            uploadPayload = compressedBlob;
+            contentType = compressedBlob.type || 'image/webp';
+            ext = contentType.indexOf('webp') !== -1 ? 'webp' : 'jpg';
+          }
+        } catch (compErr) {
+          console.warn('Client WebP compression skipped, checking raw size:', compErr);
+          if (file && file.size > 2 * 1024 * 1024) {
+            throw new Error('Could not compress image below 2 MB. Please upload a smaller JPG/WebP image.');
+          }
+          ext = (origName.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+        }
+
+        // Hard safety guard: never upload > 2 MB to Supabase Storage
+        if (uploadPayload && uploadPayload.size > 2 * 1024 * 1024) {
+          throw new Error('Compressed image still exceeds 2 MB limit. Please use a smaller photo.');
+        }
+
+        var filePath = 'products/' + Date.now() + '-' + baseName + '.' + ext;
+        var upRes = await sb.storage.from('raha-media').upload(filePath, uploadPayload, {
+          cacheControl: '31536000',
+          contentType: contentType,
           upsert: true
         });
         if (!upRes.error) {
@@ -583,39 +687,80 @@
           }
         }
       } catch (e) {
+        if (e && e.message && (e.message.indexOf('2 MB') !== -1 || e.message.indexOf('15 MB') !== -1)) {
+          throw e;
+        }
         console.warn('Supabase Storage upload fallback:', e);
       }
-    }
-
-    var isLocalhost = (typeof window !== 'undefined' && window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'));
-    if (isLocalhost) {
-      /* Local Server Upload Fallback (/api/upload-image -> Assets/jewelry/uploads/) */
-      try {
-        var r = await fetch('/api/upload-image', {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify({
-            filename: file ? file.name : 'upload.jpg',
-            dataUrl: dataUrl
-          })
-        });
-        if (r.ok) {
-          var d = await r.json();
-          if (d && d.path) return d.path;
-        }
-      } catch (e) {}
     }
 
     /* Cloud-Synced Compressed WebP Fallback (stored directly in Supabase raha_products row so it works on all devices worldwide) */
     return await compressImageDataUrl(dataUrl, 960, 0.82);
   }
 
-  /* 4b. Remove / Delete Image from Supabase Storage ('raha-media') or Local Disk */
+  /* 4a. Optimize an existing large Supabase Storage image URL in-place -> lightweight WebP */
+  async function optimizeExistingSupabaseImage(imageUrl) {
+    if (!imageUrl || typeof imageUrl !== 'string') return { url: imageUrl, changed: false };
+    var clean = imageUrl.trim();
+    // Skip if not a Supabase raha-media URL or already a lightweight .webp
+    if (clean.indexOf('raha-media/') === -1) return { url: clean, changed: false };
+    if (clean.toLowerCase().split('?')[0].endsWith('.webp')) return { url: clean, changed: false };
+
+    await loadConfigFromServer();
+    var sb = initClient();
+    if (!sb) return { url: clean, changed: false };
+
+    try {
+      var resp = await fetch(clean, { mode: 'cors' });
+      if (!resp.ok) return { url: clean, changed: false };
+      var origBlob = await resp.blob();
+      // Skip if already small (< 220 KB)
+      if (origBlob.size < 220 * 1024) return { url: clean, changed: false };
+
+      var webpBlob = await compressImageToWebpBlob(origBlob, 1200, 0.82);
+      if (!webpBlob || webpBlob.size >= origBlob.size) {
+        return { url: clean, changed: false };
+      }
+
+      var rawFileName = decodeURIComponent(clean.split('/').pop().split('?')[0] || 'photo');
+      var baseName = rawFileName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9._-]/g, '-');
+      var newPath = 'products/' + Date.now() + '-' + baseName + '.webp';
+
+      var upRes = await sb.storage.from('raha-media').upload(newPath, webpBlob, {
+        cacheControl: '31536000',
+        contentType: 'image/webp',
+        upsert: true
+      });
+      if (upRes.error) {
+        console.warn('Supabase re-upload error:', upRes.error);
+        return { url: clean, changed: false, error: upRes.error.message || 'Storage upload denied' };
+      }
+
+      var pub = sb.storage.from('raha-media').getPublicUrl(newPath);
+      var newUrl = (pub && pub.data && pub.data.publicUrl) ? pub.data.publicUrl : clean;
+
+      // Remove the old multi-megabyte original from Supabase Storage to save space
+      if (newUrl !== clean) {
+        await deleteImageFile(clean);
+      }
+      return {
+        url: newUrl,
+        changed: newUrl !== clean,
+        beforeKB: Math.round(origBlob.size / 1024),
+        afterKB: Math.round(webpBlob.size / 1024)
+      };
+    } catch (err) {
+      console.warn('Optimize existing image error:', err);
+      return { url: clean, changed: false };
+    }
+  }
+
+  /* 4b. Remove / Delete Image from Supabase Storage ('raha-media') */
   async function deleteImageFile(urlOrPath) {
     if (!urlOrPath) return { ok: true };
     var clean = String(urlOrPath).trim();
 
-    // 1. Delete from Supabase Storage if in raha-media
+    // Delete from Supabase Storage if in raha-media
     var sb = initClient();
     if (sb && sb.storage && clean.indexOf('raha-media') !== -1) {
       try {
@@ -627,17 +772,6 @@
       } catch (err) {
         console.warn('Supabase storage delete warning:', err);
       }
-    }
-
-    // 2. Delete from local server upload directory
-    if (clean.indexOf('Assets/jewelry/uploads/') !== -1) {
-      try {
-        await fetch('/api/delete-image', {
-          method: 'POST',
-          headers: getAuthHeaders(),
-          body: JSON.stringify({ path: clean })
-        });
-      } catch (e) {}
     }
 
     return { ok: true };
@@ -1227,6 +1361,7 @@
     upsertProduct: upsertProduct,
     deleteProduct: deleteProduct,
     uploadImage: uploadImage,
+    optimizeExistingSupabaseImage: optimizeExistingSupabaseImage,
     deleteImageFile: deleteImageFile,
     loadConfigFromServer: loadConfigFromServer,
     createOrder: createOrder,

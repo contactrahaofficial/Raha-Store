@@ -41,971 +41,10 @@
   window.optimizeImageUrl = optimizeImageUrl;
 
   /* ========================================================================
-     COMPLETE 36-PIECE RAHA PRODUCT & SKU CATALOG (UNIQUE IMAGERY)
+     DYNAMIC SUPABASE-DRIVEN PRODUCT & SKU CATALOG (ZERO STATIC JEWELRY ASSETS)
      ======================================================================== */
-  var RAHA_CATALOG = [
-    /* --- EARRINGS (8 UNIQUE PIECES) --- */
-    {
-      id: 'ear-01',
-      skuBase: 'RAHA-EAR-01',
-      title: 'Aether Sculpted Gold Drop Hoops',
-      subtitle: 'Weightless hollow-core gold-plated sculpted teardrop hoops with surgical 316L steel posts and seamless click-lock closures.',
-      price: 2450,
-      compare: 3200,
-      rating: '5.0',
-      reviews: 48,
-      badge: 'Bestseller',
-      material: 'gold',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Sculpted Drop Hoops',
-      img: 'Assets/jewelry/ear-1a.jpg',
-      hoverImg: 'Assets/jewelry/ear-1b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-1b.jpg', tag: '02 Profile', label: 'Editorial Side Profile' },
-        { src: 'Assets/jewelry/ear-4a.jpg', tag: '03 Macro', label: 'Gold Plated Luster Detail' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'On-Ear Scale View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.2g Featherlight Hollow Core',
-      dimensions: '26mm Drop × 14mm Width'
-    },
-    {
-      id: 'ear-02',
-      skuBase: 'RAHA-EAR-02',
-      title: 'Celeste Micro-Pavé Huggie Cuffs',
-      subtitle: 'Architectural micro-pavé cubic zirconia huggie hoops engineered for effortless ear-stacking and 24/7 waterproof wear.',
-      price: 2150,
-      compare: 2850,
-      rating: '4.9',
-      reviews: 39,
-      badge: 'Waterproof',
-      material: 'gold pearl',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Micro-Pavé Huggies',
-      img: 'Assets/jewelry/ear-2a.jpg',
-      hoverImg: 'Assets/jewelry/ear-2b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-2a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-2b.jpg', tag: '02 Profile', label: 'Micro-Pavé Setting Detail' },
-        { src: 'Assets/jewelry/ear-5a.jpg', tag: '03 Macro', label: 'Clasp & Hinge Engineering' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'Ear Stack Pairing' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.1g Pair',
-      dimensions: '12mm Inner Diameter'
-    },
-    {
-      id: 'ear-03',
-      skuBase: 'RAHA-EAR-03',
-      title: 'Nova Baroque Pearl Linear Studs',
-      subtitle: 'Organic freshwater baroque pearls suspended from minimalist gold-plated geometric bar studs.',
-      price: 2650,
-      compare: 3450,
-      rating: '5.0',
-      reviews: 31,
-      badge: 'Raha Edition',
-      material: 'pearl gold',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Pearl Drop Studs',
-      img: 'Assets/jewelry/ear-3a.jpg',
-      hoverImg: 'Assets/jewelry/ear-3b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-3a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-3b.jpg', tag: '02 Profile', label: 'Baroque Nacre Iridescence' },
-        { src: 'Assets/jewelry/ear-6a.jpg', tag: '03 Macro', label: 'Gold Plated Bar Post' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'Editorial Portrait' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.8g Pair',
-      dimensions: '32mm Linear Drop'
-    },
-    {
-      id: 'ear-04',
-      skuBase: 'RAHA-EAR-04',
-      title: 'Vesper Molten Dome Ear Architecture',
-      subtitle: 'High-polish mirror dome silhouettes that catch ambient light with futuristic liquid geometry.',
-      price: 2350,
-      compare: 3100,
-      rating: '4.9',
-      reviews: 27,
-      badge: 'Anti-Tarnish',
-      material: 'silver gold',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Statement Domes',
-      img: 'Assets/jewelry/ear-4a.jpg',
-      hoverImg: 'Assets/jewelry/ear-5a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-4a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-5a.jpg', tag: '02 Profile', label: 'Mirror Dome Contour' },
-        { src: 'Assets/jewelry/ear-1b.jpg', tag: '03 Macro', label: 'Surgical Post Detail' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'Editorial Angle' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.5g Pair',
-      dimensions: '22mm × 16mm Dome'
-    },
-    {
-      id: 'ear-05',
-      skuBase: 'RAHA-EAR-05',
-      title: 'Solstice Twin-Orbit Hoop Drops',
-      subtitle: 'Interlocking dual-orbit rings creating kinetic movement and effortless minimalist drama.',
-      price: 2850,
-      compare: 3600,
-      rating: '5.0',
-      reviews: 52,
-      badge: 'Limited Drop',
-      material: 'gold',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Kinetic Hoops',
-      img: 'Assets/jewelry/ear-5a.jpg',
-      hoverImg: 'Assets/jewelry/ear-6a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-5a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-6a.jpg', tag: '02 Profile', label: 'Twin-Orbit Interlock' },
-        { src: 'Assets/jewelry/ear-3b.jpg', tag: '03 Macro', label: 'High-Polish Bevel' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'Side Silhouette' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '5.1g Pair',
-      dimensions: '34mm Total Drop'
-    },
-    {
-      id: 'ear-06',
-      skuBase: 'RAHA-EAR-06',
-      title: 'Lyra Whisper Threader Chains',
-      subtitle: 'Ultra-fluid box-chain ear threaders that glide smoothly through single or double piercings.',
-      price: 1850,
-      compare: 2450,
-      rating: '4.8',
-      reviews: 22,
-      badge: 'Minimalist',
-      material: 'silver',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Chain Threaders',
-      img: 'Assets/jewelry/ear-6a.jpg',
-      hoverImg: 'Assets/jewelry/ear-7a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-6a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-7a.jpg', tag: '02 Profile', label: 'Threader Chain Drape' },
-        { src: 'Assets/jewelry/ear-2b.jpg', tag: '03 Macro', label: 'Stacking Inspiration' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'Editorial View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '1.9g Pair',
-      dimensions: '55mm Adjustable Threader'
-    },
-    {
-      id: 'ear-07',
-      skuBase: 'RAHA-EAR-07',
-      title: 'Kinetix Geometric Ear Climbers',
-      subtitle: 'Contoured ear crawlers that trace the natural helix curve without requiring multiple piercings.',
-      price: 2250,
-      compare: 2950,
-      rating: '4.9',
-      reviews: 34,
-      badge: 'New Arrival',
-      material: 'rose gold',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Ear Climbers',
-      img: 'Assets/jewelry/ear-7a.jpg',
-      hoverImg: 'Assets/jewelry/ear-8a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-7a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-8a.jpg', tag: '02 Profile', label: 'Contour Sweep View' },
-        { src: 'Assets/jewelry/ear-4a.jpg', tag: '03 Macro', label: 'Metal Polish Detail' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'On-Ear Styling' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '2.8g Pair',
-      dimensions: '20mm Climber Arc'
-    },
-    {
-      id: 'ear-08',
-      skuBase: 'RAHA-EAR-08',
-      title: 'Halo Floating Zirconia Solitaire Studs',
-      subtitle: 'Precision diamond-cut AAA cubic zirconia solitaires in a low-profile four-prong architectural gallery.',
-      price: 1950,
-      compare: 2600,
-      rating: '5.0',
-      reviews: 64,
-      badge: 'Essential',
-      material: 'pearl silver',
-      category: 'Earrings',
-      categorySlug: 'earrings',
-      subdept: 'Solitaire Studs',
-      img: 'Assets/jewelry/ear-8a.jpg',
-      hoverImg: 'Assets/jewelry/ear-3b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ear-8a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ear-3b.jpg', tag: '02 Profile', label: 'Facet Brilliance View' },
-        { src: 'Assets/jewelry/ear-6a.jpg', tag: '03 Macro', label: 'Side Gallery Profile' },
-        { src: 'Assets/jewelry/cat-earrings.jpg', tag: '04 On-Ear', label: 'Ear Curation View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '2.2g Pair',
-      dimensions: '6mm Solitaire Cut'
-    },
-
-    /* --- RINGS (8 UNIQUE PIECES) --- */
-    {
-      id: 'ring-01',
-      skuBase: 'RAHA-RNG-01',
-      title: 'Vanguard Signet Dome Ring',
-      subtitle: 'Architectural tapered signet ring with an ergonomic comfort-fit interior and mirror-polished gold-plated face.',
-      price: 2250,
-      compare: 2950,
-      rating: '5.0',
-      reviews: 57,
-      badge: 'Bestseller',
-      material: 'gold',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Signet & Dome Rings',
-      img: 'Assets/jewelry/ring-1a.jpg',
-      hoverImg: 'Assets/jewelry/ring-1b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-1b.jpg', tag: '02 Profile', label: 'Hand Stack View' },
-        { src: 'Assets/jewelry/ring-5a.jpg', tag: '03 Macro', label: 'Band Profile Detail' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Editorial Lighting' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '5.4g Solid Core',
-      dimensions: '9mm Crown Width'
-    },
-    {
-      id: 'ring-02',
-      skuBase: 'RAHA-RNG-02',
-      title: 'Lumiere Baguette Eternity Band',
-      subtitle: 'Channel-set emerald-baguette crystals encircling a sleek low-profile stacking band.',
-      price: 2650,
-      compare: 3400,
-      rating: '4.9',
-      reviews: 43,
-      badge: 'Raha Edition',
-      material: 'pearl gold',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Eternity Bands',
-      img: 'Assets/jewelry/ring-2a.jpg',
-      hoverImg: 'Assets/jewelry/ring-6a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-2a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-6a.jpg', tag: '02 Profile', label: 'Baguette Stone Alignment' },
-        { src: 'Assets/jewelry/ring-4a.jpg', tag: '03 Macro', label: 'Stacked Trio View' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Editorial Macro' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.6g',
-      dimensions: '3.2mm Band Width'
-    },
-    {
-      id: 'ring-03',
-      skuBase: 'RAHA-RNG-03',
-      title: 'Orbit Open Architectural Wrap Ring',
-      subtitle: 'Negative-space parallel wrap ring gently adjustable from US 5.5 to US 8.5 without losing structural tension.',
-      price: 1950,
-      compare: 2600,
-      rating: '5.0',
-      reviews: 38,
-      badge: 'Adjustable Fit',
-      material: 'silver gold',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Open Wrap Rings',
-      img: 'Assets/jewelry/ring-3a.jpg',
-      hoverImg: 'Assets/jewelry/ring-7a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-3a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-7a.jpg', tag: '02 Profile', label: 'Open-Cuff Geometry' },
-        { src: 'Assets/jewelry/ring-1b.jpg', tag: '03 Macro', label: 'Polished Edge Detail' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Editorial Hand View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.9g',
-      dimensions: 'Adjustable Open Band'
-    },
-    {
-      id: 'ring-04',
-      skuBase: 'RAHA-RNG-04',
-      title: 'Mirage Trio Stacking Ring Set',
-      subtitle: 'Curated set of three interlocking minimalist bands—one braided rope, one mirror knife-edge, and one micro-pavé band.',
-      price: 3150,
-      compare: 4200,
-      rating: '5.0',
-      reviews: 61,
-      badge: '3-Ring Set',
-      material: 'gold rose',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Stacking Ring Sets',
-      img: 'Assets/jewelry/ring-4a.jpg',
-      hoverImg: 'Assets/jewelry/ring-8a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-4a.jpg', tag: '01 Studio', label: 'Primary 3-Ring Set' },
-        { src: 'Assets/jewelry/ring-8a.jpg', tag: '02 Profile', label: 'Editorial Stack View' },
-        { src: 'Assets/jewelry/ring-1a.jpg', tag: '03 Macro', label: 'Individual Band Detail' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Pavé Band Close-Up' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '6.8g Combined Set',
-      dimensions: '3 × 2mm Modular Bands'
-    },
-    {
-      id: 'ring-05',
-      skuBase: 'RAHA-RNG-05',
-      title: 'Solis Molten Liquid Band',
-      subtitle: 'Organic undulating gold band sculpted to mimic liquid metal frozen in motion.',
-      price: 2150,
-      compare: 2800,
-      rating: '4.9',
-      reviews: 29,
-      badge: 'Waterproof',
-      material: 'gold',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Sculptural Bands',
-      img: 'Assets/jewelry/ring-5a.jpg',
-      hoverImg: 'Assets/jewelry/ring-1a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-5a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-1a.jpg', tag: '02 Profile', label: 'Molten Contour View' },
-        { src: 'Assets/jewelry/ring-3a.jpg', tag: '03 Macro', label: 'Interior Hallmark' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Layered Hand Styling' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.1g',
-      dimensions: '4.5mm Wave Width'
-    },
-    {
-      id: 'ring-06',
-      skuBase: 'RAHA-RNG-06',
-      title: 'Astra Floating Pearl Bypass Ring',
-      subtitle: 'Twin freshwater seed pearls poised at opposite ends of a slender gold-plated bypass band.',
-      price: 2450,
-      compare: 3150,
-      rating: '5.0',
-      reviews: 33,
-      badge: 'New Arrival',
-      material: 'pearl',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Pearl Rings',
-      img: 'Assets/jewelry/ring-6a.jpg',
-      hoverImg: 'Assets/jewelry/ring-2a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-6a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-2a.jpg', tag: '02 Profile', label: 'Bypass Pearl Detail' },
-        { src: 'Assets/jewelry/ring-4a.jpg', tag: '03 Macro', label: 'Profile Silhouette' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Editorial Hand View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.2g',
-      dimensions: '2.5mm Band + 5mm Pearls'
-    },
-    {
-      id: 'ring-07',
-      skuBase: 'RAHA-RNG-07',
-      title: 'Zaha Knife-Edge Minimalist Band',
-      subtitle: 'Crisp architectural triangular ridge band designed to anchor any modern ring stack.',
-      price: 1750,
-      compare: 2300,
-      rating: '4.8',
-      reviews: 24,
-      badge: 'Essential',
-      material: 'silver',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Minimalist Bands',
-      img: 'Assets/jewelry/ring-7a.jpg',
-      hoverImg: 'Assets/jewelry/ring-3a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-7a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-3a.jpg', tag: '02 Profile', label: 'Knife-Edge Ridge View' },
-        { src: 'Assets/jewelry/ring-2a.jpg', tag: '03 Macro', label: 'Stacking Combination' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '2.9g',
-      dimensions: '2.8mm Knife-Edge'
-    },
-    {
-      id: 'ring-08',
-      skuBase: 'RAHA-RNG-08',
-      title: 'Eclipse Dual-Tone Interlock Ring',
-      subtitle: 'Two interlocking gold-plated and 925 sterling silver bands that bridge mixed-metal styling.',
-      price: 2750,
-      compare: 3550,
-      rating: '5.0',
-      reviews: 47,
-      badge: 'Mixed Metal',
-      material: 'gold silver',
-      category: 'Rings',
-      categorySlug: 'rings',
-      subdept: 'Mixed-Metal Rings',
-      img: 'Assets/jewelry/ring-8a.jpg',
-      hoverImg: 'Assets/jewelry/ring-4a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ring-8a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ring-4a.jpg', tag: '02 Profile', label: 'Dual-Tone Interlock' },
-        { src: 'Assets/jewelry/ring-1b.jpg', tag: '03 Macro', label: 'High-Polish Contrast' },
-        { src: 'Assets/jewelry/cat-rings.jpg', tag: '04 On-Hand', label: 'Editorial Hand View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '5.0g',
-      dimensions: '6mm Interlocked Width'
-    },
-
-    /* --- NECKLACE (8 UNIQUE PIECES) --- */
-    {
-      id: 'neck-01',
-      skuBase: 'RAHA-NCK-01',
-      title: 'Seraphina Liquid Herringbone Collar',
-      subtitle: 'Our signature flat-link Italian-style herringbone chain that drapes like liquid silk along the collarbone.',
-      price: 3250,
-      compare: 4250,
-      rating: '5.0',
-      reviews: 72,
-      badge: 'Signature Piece',
-      material: 'gold',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Herringbone Chains',
-      img: 'Assets/jewelry/neck-1a.jpg',
-      hoverImg: 'Assets/jewelry/neck-1b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-1b.jpg', tag: '02 Profile', label: 'Collarbone Drape View' },
-        { src: 'Assets/jewelry/neck-5a.jpg', tag: '03 Macro', label: 'Lobster Clasp & Extender' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Layered Editorial View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '11.2g Fluid Link',
-      dimensions: '40cm + 5cm Extender (4mm Width)'
-    },
-    {
-      id: 'neck-02',
-      skuBase: 'RAHA-NCK-02',
-      title: 'Polaris North-Star Medallion Pendant',
-      subtitle: 'Octagonal celestial coin pendant set with a central star-cut zirconia crystal on a diamond-cut curb chain.',
-      price: 2950,
-      compare: 3850,
-      rating: '4.9',
-      reviews: 54,
-      badge: 'Bestseller',
-      material: 'gold pearl',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Medallion Pendants',
-      img: 'Assets/jewelry/neck-2a.jpg',
-      hoverImg: 'Assets/jewelry/neck-2b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-2a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-2b.jpg', tag: '02 Profile', label: 'North-Star Engraving' },
-        { src: 'Assets/jewelry/neck-6a.jpg', tag: '03 Macro', label: 'Layered Pairing' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Editorial Portrait' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '7.4g',
-      dimensions: '45cm + 5cm Extender • 18mm Medallion'
-    },
-    {
-      id: 'neck-03',
-      skuBase: 'RAHA-NCK-03',
-      title: 'Veloce Layered Lariat Y-Drop Chain',
-      subtitle: 'Elongating Y-silhouette lariat necklace with a weighted mirror-bar drop.',
-      price: 3450,
-      compare: 4500,
-      rating: '5.0',
-      reviews: 41,
-      badge: 'Raha Edition',
-      material: 'gold',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Lariat & Y-Chains',
-      img: 'Assets/jewelry/neck-3a.jpg',
-      hoverImg: 'Assets/jewelry/neck-7a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-3a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-7a.jpg', tag: '02 Profile', label: 'Vertical Drop Detail' },
-        { src: 'Assets/jewelry/neck-1b.jpg', tag: '03 Macro', label: 'Chain Link Macro' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Evening Styling' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '6.8g',
-      dimensions: '42cm Chain + 7cm Lariat Drop'
-    },
-    {
-      id: 'neck-04',
-      skuBase: 'RAHA-NCK-04',
-      title: 'Nautilus Freshwater Pearl Choker',
-      subtitle: 'Hand-knotted luminous freshwater pearls interspersed with gold-plated micro-spacers and a custom toggle clasp.',
-      price: 3150,
-      compare: 4100,
-      rating: '5.0',
-      reviews: 36,
-      badge: 'Hand-Strung',
-      material: 'pearl gold',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Pearl Chokers',
-      img: 'Assets/jewelry/neck-4a.jpg',
-      hoverImg: 'Assets/jewelry/neck-8a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-4a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-8a.jpg', tag: '02 Profile', label: 'Pearl Luster View' },
-        { src: 'Assets/jewelry/neck-2b.jpg', tag: '03 Macro', label: 'Gold Plated Clasp Detail' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Collar Layering' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '14.5g Natural Pearl Strand',
-      dimensions: '38cm + 5cm Extender'
-    },
-    {
-      id: 'neck-05',
-      skuBase: 'RAHA-NCK-05',
-      title: 'Orion Floating Solitaire Diamond-Cut Chain',
-      subtitle: 'A single bezel-set solitaire crystal that appears to float weightlessly at the hollow of the throat.',
-      price: 2650,
-      compare: 3400,
-      rating: '4.9',
-      reviews: 49,
-      badge: 'Waterproof',
-      material: 'silver pearl',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Solitaire Pendants',
-      img: 'Assets/jewelry/neck-5a.jpg',
-      hoverImg: 'Assets/jewelry/neck-1a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-5a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-1a.jpg', tag: '02 Profile', label: 'Floating Bezel View' },
-        { src: 'Assets/jewelry/neck-2a.jpg', tag: '03 Macro', label: 'Chain Shimmer Detail' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Layered Neck Stack' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.2g',
-      dimensions: '40cm + 5cm Extender'
-    },
-    {
-      id: 'neck-06',
-      skuBase: 'RAHA-NCK-06',
-      title: 'Muse Paperclip Architectural Link Chain',
-      subtitle: 'Elongated rectangular links crafted for standalone minimalism or clipping custom charms.',
-      price: 2850,
-      compare: 3650,
-      rating: '5.0',
-      reviews: 32,
-      badge: 'Layering Icon',
-      material: 'gold',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Paperclip Chains',
-      img: 'Assets/jewelry/neck-6a.jpg',
-      hoverImg: 'Assets/jewelry/neck-4a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-6a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-4a.jpg', tag: '02 Profile', label: 'Link Architecture' },
-        { src: 'Assets/jewelry/neck-1b.jpg', tag: '03 Macro', label: 'Paired with Herringbone' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '9.1g',
-      dimensions: '45cm Adjustable Link'
-    },
-    {
-      id: 'neck-07',
-      skuBase: 'RAHA-NCK-07',
-      title: 'Sovereign Emerald-Cut Bezel Pendant',
-      subtitle: 'Step-cut emerald silhouette crystal framed in a sleek gold-plated architectural bezel.',
-      price: 3350,
-      compare: 4400,
-      rating: '5.0',
-      reviews: 45,
-      badge: 'Limited Drop',
-      material: 'pearl gold',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Gemstone Pendants',
-      img: 'Assets/jewelry/neck-7a.jpg',
-      hoverImg: 'Assets/jewelry/neck-3a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-7a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-3a.jpg', tag: '02 Profile', label: 'Step-Cut Facet View' },
-        { src: 'Assets/jewelry/neck-4a.jpg', tag: '03 Macro', label: 'Reverse Gallery Detail' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'Editorial Portrait' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '6.3g',
-      dimensions: '42cm + 5cm Extender'
-    },
-    {
-      id: 'neck-08',
-      skuBase: 'RAHA-NCK-08',
-      title: 'Duet Pre-Layered Box & Snake Chain',
-      subtitle: 'Two perfectly proportioned chains joined at a single tangle-free clasp—instant two-tier styling.',
-      price: 3650,
-      compare: 4850,
-      rating: '5.0',
-      reviews: 63,
-      badge: 'Free Shipping Eligible',
-      material: 'gold silver',
-      category: 'Necklace',
-      categorySlug: 'necklace',
-      subdept: 'Pre-Layered Sets',
-      img: 'Assets/jewelry/neck-8a.jpg',
-      hoverImg: 'Assets/jewelry/neck-2b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/neck-8a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/neck-2b.jpg', tag: '02 Profile', label: 'Dual-Tier Spacing' },
-        { src: 'Assets/jewelry/neck-1b.jpg', tag: '03 Macro', label: 'Single Clasp Engineering' },
-        { src: 'Assets/jewelry/cat-necklace.jpg', tag: '04 On-Neck', label: 'On-Neck Editorial' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '12.8g Dual Chain',
-      dimensions: '38cm Inner / 43cm Outer + 5cm Extender'
-    },
-
-    /* --- BRACELETS (6 UNIQUE PIECES) --- */
-    {
-      id: 'brac-01',
-      skuBase: 'RAHA-BRC-01',
-      title: 'Axis Hinged Architectural Cuff Bangle',
-      subtitle: 'Precision oval bangle with a concealed spring hinge and flush push-button lock for effortless one-hand wear.',
-      price: 2850,
-      compare: 3700,
-      rating: '5.0',
-      reviews: 59,
-      badge: 'Bestseller',
-      material: 'gold',
-      category: 'Bracelets',
-      categorySlug: 'bracelets',
-      subdept: 'Hinged Bangles',
-      img: 'Assets/jewelry/brac-1a.jpg',
-      hoverImg: 'Assets/jewelry/brac-1b.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/brac-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/brac-1b.jpg', tag: '02 Profile', label: 'Wrist Stack View' },
-        { src: 'Assets/jewelry/brac-3a.jpg', tag: '03 Macro', label: 'Concealed Hinge Detail' },
-        { src: 'Assets/jewelry/cat-bracelets.jpg', tag: '04 On-Wrist', label: 'Editorial Styling' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '16.4g Solid Architectural Cuff',
-      dimensions: '60mm × 50mm Oval Inner Fit'
-    },
-    {
-      id: 'brac-02',
-      skuBase: 'RAHA-BRC-02',
-      title: 'Raha Riviera Micro-Tennis Bracelet',
-      subtitle: 'Continuous line of diamond-cut 2.5mm cubic zirconia stones set in fluid, non-flipping articulated links.',
-      price: 3450,
-      compare: 4550,
-      rating: '5.0',
-      reviews: 68,
-      badge: 'Raha Edition',
-      material: 'pearl gold',
-      category: 'Bracelets',
-      categorySlug: 'bracelets',
-      subdept: 'Tennis Bracelets',
-      img: 'Assets/jewelry/brac-2a.jpg',
-      hoverImg: 'Assets/jewelry/brac-4a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/brac-2a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/brac-4a.jpg', tag: '02 Profile', label: 'Double-Safety Clasp' },
-        { src: 'Assets/jewelry/brac-1b.jpg', tag: '03 Macro', label: 'Paired with Axis Cuff' },
-        { src: 'Assets/jewelry/cat-bracelets.jpg', tag: '04 On-Wrist', label: 'Editorial Brilliance' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '10.2g',
-      dimensions: '16.5cm / 18cm Double-Lock'
-    },
-    {
-      id: 'brac-03',
-      skuBase: 'RAHA-BRC-03',
-      title: 'Verve Liquid Snake Chain Wristlet',
-      subtitle: 'Supple flat snake chain bracelet that hugs the wrist with zero snagging.',
-      price: 2250,
-      compare: 2950,
-      rating: '4.9',
-      reviews: 41,
-      badge: 'Waterproof',
-      material: 'gold silver',
-      category: 'Bracelets',
-      categorySlug: 'bracelets',
-      subdept: 'Chain Bracelets',
-      img: 'Assets/jewelry/brac-3a.jpg',
-      hoverImg: 'Assets/jewelry/brac-1a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/brac-3a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/brac-1a.jpg', tag: '02 Profile', label: 'Liquid Weave Detail' },
-        { src: 'Assets/jewelry/brac-2a.jpg', tag: '03 Macro', label: 'Layered Wrist View' },
-        { src: 'Assets/jewelry/cat-bracelets.jpg', tag: '04 On-Wrist', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '5.8g',
-      dimensions: '16cm + 3.5cm Extender'
-    },
-    {
-      id: 'brac-04',
-      skuBase: 'RAHA-BRC-04',
-      title: 'Halo Baroque Pearl Link Bracelet',
-      subtitle: 'Half-chain, half-freshwater pearl asymmetrical bracelet balancing modern edge with organic luster.',
-      price: 2650,
-      compare: 3400,
-      rating: '5.0',
-      reviews: 35,
-      badge: 'Handcrafted',
-      material: 'pearl',
-      category: 'Bracelets',
-      categorySlug: 'bracelets',
-      subdept: 'Pearl Bracelets',
-      img: 'Assets/jewelry/brac-4a.jpg',
-      hoverImg: 'Assets/jewelry/brac-5a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/brac-4a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/brac-5a.jpg', tag: '02 Profile', label: 'Pearl & Link Contrast' },
-        { src: 'Assets/jewelry/brac-2a.jpg', tag: '03 Macro', label: 'Clasp Detail' },
-        { src: 'Assets/jewelry/cat-bracelets.jpg', tag: '04 On-Wrist', label: 'Editorial View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '7.9g',
-      dimensions: '16.5cm + 3cm Extender'
-    },
-    {
-      id: 'brac-05',
-      skuBase: 'RAHA-BRC-05',
-      title: 'Monolith Minimalist Open Cuff',
-      subtitle: 'Brushed-and-polished architectural slip-on cuff with weighted teardrop terminals.',
-      price: 2550,
-      compare: 3300,
-      rating: '4.9',
-      reviews: 29,
-      badge: 'Anti-Tarnish',
-      material: 'silver gold',
-      category: 'Bracelets',
-      categorySlug: 'bracelets',
-      subdept: 'Open Cuffs',
-      img: 'Assets/jewelry/brac-5a.jpg',
-      hoverImg: 'Assets/jewelry/brac-6a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/brac-5a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/brac-6a.jpg', tag: '02 Profile', label: 'Open Cuff Profile' },
-        { src: 'Assets/jewelry/brac-1b.jpg', tag: '03 Macro', label: 'Wrist Stack View' },
-        { src: 'Assets/jewelry/cat-bracelets.jpg', tag: '04 On-Wrist', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '13.5g',
-      dimensions: 'Adjustable 58mm Cuff'
-    },
-    {
-      id: 'brac-06',
-      skuBase: 'RAHA-BRC-06',
-      title: 'Solitaire Bezel Station Chain Bracelet',
-      subtitle: 'Five bezel-set cubic zirconia stations evenly spaced along a delicate cable chain.',
-      price: 2150,
-      compare: 2850,
-      rating: '5.0',
-      reviews: 44,
-      badge: 'Essential',
-      material: 'rose gold',
-      category: 'Bracelets',
-      categorySlug: 'bracelets',
-      subdept: 'Station Bracelets',
-      img: 'Assets/jewelry/brac-6a.jpg',
-      hoverImg: 'Assets/jewelry/brac-2a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/brac-6a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/brac-2a.jpg', tag: '02 Profile', label: 'Station Bezel View' },
-        { src: 'Assets/jewelry/brac-3a.jpg', tag: '03 Macro', label: 'Stacking Inspiration' },
-        { src: 'Assets/jewelry/cat-bracelets.jpg', tag: '04 On-Wrist', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.8g',
-      dimensions: '16cm + 3.5cm Extender'
-    },
-
-    /* --- ANKLETS (6 UNIQUE PIECES) --- */
-    {
-      id: 'ank-01',
-      skuBase: 'RAHA-ANK-01',
-      title: 'Mirage Dewdrop Satellite Chain Anklet',
-      subtitle: 'Dainty satellite bead chain anklet engineered to withstand ocean salt, pool chlorine, and daily showers.',
-      price: 1950,
-      compare: 2650,
-      rating: '5.0',
-      reviews: 46,
-      badge: 'Bestseller',
-      material: 'gold',
-      category: 'Anklets',
-      categorySlug: 'anklets',
-      subdept: 'Satellite Anklets',
-      img: 'Assets/jewelry/ank-1a.jpg',
-      hoverImg: 'Assets/jewelry/ank-2a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ank-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ank-2a.jpg', tag: '02 Profile', label: 'Dewdrop Bead Detail' },
-        { src: 'Assets/jewelry/ank-3a.jpg', tag: '03 Macro', label: 'Clasp & Extender' },
-        { src: 'Assets/jewelry/cat-anklets.jpg', tag: '04 On-Ankle', label: 'Ankle Drape View' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.6g',
-      dimensions: '22cm + 4cm Extender'
-    },
-    {
-      id: 'ank-02',
-      skuBase: 'RAHA-ANK-02',
-      title: 'Soleil Double-Layered Mariner Anklet',
-      subtitle: 'Twin mariner and figaro chains joined into one effortless resort-ready ankle silhouette.',
-      price: 2250,
-      compare: 2950,
-      rating: '4.9',
-      reviews: 38,
-      badge: 'Ocean-Proof',
-      material: 'gold',
-      category: 'Anklets',
-      categorySlug: 'anklets',
-      subdept: 'Layered Anklets',
-      img: 'Assets/jewelry/ank-2a.jpg',
-      hoverImg: 'Assets/jewelry/ank-4a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ank-2a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ank-4a.jpg', tag: '02 Profile', label: 'Double-Chain Drape' },
-        { src: 'Assets/jewelry/ank-1a.jpg', tag: '03 Macro', label: 'Clasp & Extender' },
-        { src: 'Assets/jewelry/cat-anklets.jpg', tag: '04 On-Ankle', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '5.2g',
-      dimensions: '22cm + 4cm Extender'
-    },
-    {
-      id: 'ank-03',
-      skuBase: 'RAHA-ANK-03',
-      title: 'Lumina Freshwater Seed-Pearl Anklet',
-      subtitle: 'Delicate seed pearls alternating with gold-plated stations for coastal minimalism.',
-      price: 2450,
-      compare: 3200,
-      rating: '5.0',
-      reviews: 31,
-      badge: 'Raha Edition',
-      material: 'pearl gold',
-      category: 'Anklets',
-      categorySlug: 'anklets',
-      subdept: 'Pearl Anklets',
-      img: 'Assets/jewelry/ank-3a.jpg',
-      hoverImg: 'Assets/jewelry/ank-5a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ank-3a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ank-5a.jpg', tag: '02 Profile', label: 'Seed-Pearl Stations' },
-        { src: 'Assets/jewelry/ank-2a.jpg', tag: '03 Macro', label: 'Layered Ankle View' },
-        { src: 'Assets/jewelry/cat-anklets.jpg', tag: '04 On-Ankle', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.8g',
-      dimensions: '22cm + 4cm Extender'
-    },
-    {
-      id: 'ank-04',
-      skuBase: 'RAHA-ANK-04',
-      title: 'Zephyr Liquid Herringbone Ankle Chain',
-      subtitle: 'Ribbon-flat herringbone ankle chain that reflects a continuous band of warm gold light.',
-      price: 2350,
-      compare: 3100,
-      rating: '5.0',
-      reviews: 27,
-      badge: 'Anti-Tarnish',
-      material: 'silver gold',
-      category: 'Anklets',
-      categorySlug: 'anklets',
-      subdept: 'Herringbone Anklets',
-      img: 'Assets/jewelry/ank-4a.jpg',
-      hoverImg: 'Assets/jewelry/ank-6a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ank-4a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ank-6a.jpg', tag: '02 Profile', label: 'Ribbon Reflection' },
-        { src: 'Assets/jewelry/ank-1a.jpg', tag: '03 Macro', label: 'Clasp Detail' },
-        { src: 'Assets/jewelry/cat-anklets.jpg', tag: '04 On-Ankle', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '5.5g',
-      dimensions: '22cm + 4cm Extender (3.2mm Width)'
-    },
-    {
-      id: 'ank-05',
-      skuBase: 'RAHA-ANK-05',
-      title: 'Starlight Cubic Charm Station Anklet',
-      subtitle: 'Micro-bezel starlight crystals suspended from a whisper-thin ankle chain.',
-      price: 2150,
-      compare: 2800,
-      rating: '4.9',
-      reviews: 34,
-      badge: 'New Arrival',
-      material: 'pearl silver',
-      category: 'Anklets',
-      categorySlug: 'anklets',
-      subdept: 'Charm Anklets',
-      img: 'Assets/jewelry/ank-5a.jpg',
-      hoverImg: 'Assets/jewelry/ank-3a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ank-5a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ank-3a.jpg', tag: '02 Profile', label: 'Crystal Station Detail' },
-        { src: 'Assets/jewelry/ank-2a.jpg', tag: '03 Macro', label: 'On-Ankle View' },
-        { src: 'Assets/jewelry/cat-anklets.jpg', tag: '04 On-Ankle', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '3.9g',
-      dimensions: '22cm + 4cm Extender'
-    },
-    {
-      id: 'ank-06',
-      skuBase: 'RAHA-ANK-06',
-      title: 'Aura Figaro Minimalist Ankle Link',
-      subtitle: 'Classic 3-to-1 Italian Figaro link pattern reimagined in waterproof gold-plated.',
-      price: 1850,
-      compare: 2450,
-      rating: '4.9',
-      reviews: 25,
-      badge: 'Essential',
-      material: 'rose gold',
-      category: 'Anklets',
-      categorySlug: 'anklets',
-      subdept: 'Figaro Anklets',
-      img: 'Assets/jewelry/ank-6a.jpg',
-      hoverImg: 'Assets/jewelry/ank-4a.jpg',
-      gallery: [
-        { src: 'Assets/jewelry/ank-6a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' },
-        { src: 'Assets/jewelry/ank-4a.jpg', tag: '02 Profile', label: 'Figaro Link Detail' },
-        { src: 'Assets/jewelry/ank-1a.jpg', tag: '03 Macro', label: 'Stacking View' },
-        { src: 'Assets/jewelry/cat-anklets.jpg', tag: '04 On-Ankle', label: 'Editorial Shot' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ],
-      weight: '4.0g',
-      dimensions: '22cm + 4cm Extender'
-    }
-  ];
-
-  /* Normalize all 36 pieces to use their authentic multi-finish & macro studio gallery */
-  RAHA_CATALOG.forEach(function (item) {
-    if (!item.hoverImg || item.hoverImg.indexOf('pdp/') === -1) {
-      item.hoverImg = 'Assets/jewelry/pdp/' + item.id + '-alt.jpg';
-    }
-    if (!item.gallery || item.gallery.length < 5 || item.gallery[1].src.indexOf('pdp/') === -1) {
-      item.gallery = [
-        { src: item.img, tag: '01 Gold Plated', label: 'Gold Plated Studio View' },
-        { src: 'Assets/jewelry/pdp/' + item.id + '-silver.jpg', tag: '02 925 Silver', label: '925 Sterling Silver Rhodium Finish' },
-        { src: 'Assets/jewelry/pdp/' + item.id + '-rose.jpg', tag: '03 Rose Gold', label: 'Rose Gold Blush Finish' },
-        { src: 'Assets/jewelry/pdp/' + item.id + '-macro.jpg', tag: '04 Macro', label: '1.6× Macro Craftsmanship Detail' },
-        { src: 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '05 Raha Box', label: 'Official Raha Mauve Keepsake Box' }
-      ];
-    }
-  });
+  var BRAND_FALLBACK_IMG = 'Assets/Main Raha logo with slogan (The actual logo).webp';
+  var RAHA_CATALOG = [];
 
   var CMS_STORE_KEY = 'raha_cms_store_v1';
   var CMS_ORDERS_KEY = 'raha_cms_orders_v1';
@@ -1377,7 +416,7 @@
         title: item.title,
         price: Number(item.price) || 2450,
         variant: item.variant || 'Gold Plated',
-        img: item.img || 'Assets/jewelry/ear-1a.jpg',
+        img: item.img || 'Assets/Main Raha logo with slogan (The actual logo).webp',
         qty: addQty
       });
     }
@@ -1542,6 +581,17 @@
       var id = card.getAttribute('data-id') || 'ear-01';
       var prodData = findProductById(id);
 
+      /* Lazy-load alternate hover image ONLY when user hovers the card (cuts initial bandwidth by 50%) */
+      var hoverImgEl = card.querySelector('.raha-card__img--hover[data-hover-src]');
+      if (hoverImgEl) {
+        card.addEventListener('mouseenter', function () {
+          var hs = hoverImgEl.getAttribute('data-hover-src');
+          if (hs && !hoverImgEl.getAttribute('src')) {
+            hoverImgEl.setAttribute('src', hs);
+          }
+        }, { once: true });
+      }
+
       /* Clicking ANYWHERE on the card navigates directly to product.html (Details & SKUs) */
       card.style.cursor = 'pointer';
       card.addEventListener('click', function (e) {
@@ -1564,14 +614,16 @@
           var txt = btn.textContent.trim();
           card.setAttribute('data-selected-variant', txt);
           if (primaryImgEl && prodData) {
-            var isCustomProd = id.indexOf('item-') === 0;
-            if (!isCustomProd && txt.toLowerCase().indexOf('silver') !== -1) {
-              primaryImgEl.src = 'Assets/jewelry/pdp/' + id + '-silver.jpg';
-            } else if (!isCustomProd && txt.toLowerCase().indexOf('rose') !== -1) {
-              primaryImgEl.src = 'Assets/jewelry/pdp/' + id + '-rose.jpg';
-            } else {
-              primaryImgEl.src = prodData.img;
+            var matchedImg = prodData.img || BRAND_FALLBACK_IMG;
+            if (Array.isArray(prodData.customSkus) && Array.isArray(prodData.gallery)) {
+              var matchedSku = prodData.customSkus.find(function (cs) {
+                return cs && cs.name && cs.name.toLowerCase() === txt.toLowerCase();
+              });
+              if (matchedSku && typeof matchedSku.imgIdx === 'number' && prodData.gallery[matchedSku.imgIdx] && prodData.gallery[matchedSku.imgIdx].src) {
+                matchedImg = prodData.gallery[matchedSku.imgIdx].src;
+              }
             }
+            primaryImgEl.src = optimizeImageUrl(matchedImg, { width: 800, quality: 80, format: 'webp' });
           }
         });
       });
@@ -1734,11 +786,70 @@
     var productId = params.get('id') || 'ear-01';
     var productIdx = findProductIndexById(productId);
     var product = RAHA_CATALOG[productIdx];
+    if (!product) return;
 
     var prevProduct = RAHA_CATALOG[(productIdx - 1 + RAHA_CATALOG.length) % RAHA_CATALOG.length];
     var nextProduct = RAHA_CATALOG[(productIdx + 1) % RAHA_CATALOG.length];
 
-    document.title = product.title + ' (' + product.skuBase + ') | Raha — Jewellery For The Modern Minimalists';
+    var seoTitle = product.title + ' — ' + (product.category || 'Jewellery') + ' | Raha Jewels Pakistan';
+    var seoDesc = (product.subtitle ? (product.subtitle + ' ') : '') + 'Shop ' + product.title + ' by Raha Jewels for Rs ' + (Number(product.price) || 0).toLocaleString('en-PK') + ' with fast nationwide delivery across Pakistan.';
+    var seoImg = optimizeImageUrl(product.img || BRAND_FALLBACK_IMG);
+    var seoUrl = 'https://rahajewels.pk/product.html?id=' + encodeURIComponent(product.id);
+    document.title = seoTitle;
+
+    try {
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', seoDesc);
+      var ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', seoTitle);
+      var ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', seoDesc);
+      var ogImg = document.querySelector('meta[property="og:image"]');
+      if (ogImg && seoImg) ogImg.setAttribute('content', seoImg);
+      var ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', seoUrl);
+      var twTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twTitle) twTitle.setAttribute('content', seoTitle);
+      var twDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twDesc) twDesc.setAttribute('content', seoDesc);
+      var twImg = document.querySelector('meta[name="twitter:image"]');
+      if (twImg && seoImg) twImg.setAttribute('content', seoImg);
+      var canonEl = document.querySelector('link[rel="canonical"]');
+      if (canonEl) canonEl.setAttribute('href', seoUrl);
+
+      var prevSchema = document.getElementById('raha-dynamic-product-schema');
+      if (prevSchema) prevSchema.remove();
+      var pStockNum = (typeof product.stock === 'number') ? product.stock : 15;
+      var productSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        name: product.title,
+        sku: product.skuBase || product.id,
+        image: [seoImg],
+        description: seoDesc,
+        brand: { '@type': 'Brand', name: 'Raha Jewels' },
+        category: product.category || 'Jewellery',
+        offers: {
+          '@type': 'Offer',
+          url: seoUrl,
+          priceCurrency: 'PKR',
+          price: Number(product.price) || 0,
+          availability: pStockNum > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          seller: { '@type': 'Organization', name: 'Raha Jewels' }
+        },
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: String(product.rating || '5.0'),
+          reviewCount: String(Math.max(1, Number(product.reviews) || 24))
+        }
+      };
+      var scTag = document.createElement('script');
+      scTag.type = 'application/ld+json';
+      scTag.id = 'raha-dynamic-product-schema';
+      scTag.textContent = JSON.stringify(productSchema);
+      document.head.appendChild(scTag);
+    } catch (seoErr) {}
 
     /* 4 Luxury Metallic Orb SKU Options (or Admin-Configured Custom SKUs) */
     var isCustomItem = String(product.id || '').indexOf('item-') === 0;
@@ -1848,7 +959,7 @@
 
     if (!Array.isArray(product.gallery) || product.gallery.length === 0) {
       product.gallery = [
-        { src: product.img || 'Assets/jewelry/ear-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' }
+        { src: product.img || 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '01 Studio', label: 'Primary Studio Angle' }
       ];
     }
 
@@ -1858,7 +969,7 @@
         ? product.gallery[idx]
         : ((product.gallery && product.gallery[0] && product.gallery[0].src)
             ? product.gallery[0]
-            : { src: product.img || product.hoverImg || 'Assets/jewelry/ear-1a.jpg', tag: '01 Studio', label: 'Primary Studio Angle' });
+            : { src: product.img || product.hoverImg || 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '01 Studio', label: 'Primary Studio Angle' });
       var cleanSrc = optimizeImageUrl(g.src);
       if (mainImg) {
         mainImg.src = cleanSrc;
@@ -2606,7 +1717,7 @@
           city: 'Karachi • Verified Collector',
           rating: 5,
           fallbackTitle: 'Seraphina Liquid Herringbone Collar',
-          fallbackImg: 'Assets/jewelry/neck-1a.jpg',
+          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
           body: 'Ordered via WhatsApp concierge (0326 0870876) and received it in Karachi the very next afternoon. The liquid drape of the herringbone chain looks like luxury gold finish.'
         },
         {
@@ -2615,7 +1726,7 @@
           city: 'Islamabad • Verified Collector',
           rating: 5,
           fallbackTitle: 'Mirage Trio Stacking Ring Set',
-          fallbackImg: 'Assets/jewelry/ring-4a.jpg',
+          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
           body: 'I wash my hands and sanitise constantly at work, and my Raha rings haven’t faded a single shade. Truly jewellery for the modern minimalist.'
         },
         {
@@ -2624,7 +1735,7 @@
           city: 'Lahore • Verified Collector',
           rating: 5,
           fallbackTitle: 'Raha Riviera Micro-Tennis Bracelet',
-          fallbackImg: 'Assets/jewelry/brac-2a.jpg',
+          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
           body: 'The clasp security and brilliance on the Riviera micro-tennis bracelet rival pieces 10x the price. Arrived in the signature Raha mauve keepsake box!'
         },
         {
@@ -2633,7 +1744,7 @@
           city: 'Lahore • Verified Collector',
           rating: 5,
           fallbackTitle: 'Nova Baroque Pearl Linear Studs',
-          fallbackImg: 'Assets/jewelry/ear-2a.jpg',
+          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
           body: 'Weightless on the ears and zero irritation on sensitive skin. The Gold Plated finish and packaging feel exceptionally luxurious.'
         }
       ];
@@ -2681,7 +1792,7 @@
       var starStr = '★★★★★'.slice(0, rVal) + '☆☆☆☆☆'.slice(0, 5 - rVal);
       var thumb = (r.img && typeof r.img === 'string' && r.img.trim())
         ? r.img.trim()
-        : (prod.img || 'Assets/jewelry/neck-1a.jpg');
+        : (prod.img || 'Assets/Main Raha logo with slogan (The actual logo).webp');
       var pTitle = prod.title || 'Raha Fine Jewellery';
       var quote = r.body || r.title || 'Exceptional craftsmanship and quality.';
       var author = r.author || 'Verified Collector';
@@ -3303,18 +2414,20 @@
         var pIdx = findProductIndexById(ci.id);
         if (pIdx !== -1 && RAHA_CATALOG[pIdx]) {
           var p = RAHA_CATALOG[pIdx];
-          var curPStock = (typeof p.stock === 'number') ? p.stock : 15;
-          p.stock = Math.max(0, curPStock - (Number(ci.qty) || 1));
+          var curPStock = (p.stock !== undefined && p.stock !== null) ? Number(p.stock) : 15;
+          var orderedQty = Math.max(1, Number(ci.qty) || 1);
+          p.stock = Math.max(0, curPStock - orderedQty);
 
-          if (Array.isArray(p.customSkus)) {
-            p.customSkus.forEach(function (cs) {
+          if (Array.isArray(p.customSkus) && p.customSkus.length > 0) {
+            p.customSkus[0]._productStock = p.stock;
+            p.customSkus.forEach(function (cs, csIdx) {
               var csSuff = String(cs.suffix || '').toUpperCase();
               var csName = String(cs.name || '').toLowerCase();
               var iSku = String(ci.sku || '').toUpperCase();
               var iVar = String(ci.variant || '').toLowerCase();
-              if ((csSuff && iSku.indexOf(csSuff) !== -1) || (csName && iVar.indexOf(csName) !== -1)) {
-                var curCsStock = (typeof cs.stock === 'number') ? cs.stock : 10;
-                cs.stock = Math.max(0, curCsStock - (Number(ci.qty) || 1));
+              if (p.customSkus.length === 1 || (csSuff && iSku.indexOf(csSuff) !== -1) || (csName && iVar.indexOf(csName) !== -1)) {
+                var curCsStock = (cs.stock !== undefined && cs.stock !== null) ? Number(cs.stock) : curPStock;
+                cs.stock = Math.max(0, curCsStock - orderedQty);
               }
             });
           }
@@ -3323,23 +2436,33 @@
       });
 
       try {
+        if (ACTIVE_CMS_STATE) ACTIVE_CMS_STATE.catalog = RAHA_CATALOG;
         var cmsRaw = localStorage.getItem('raha_cms_store_v1');
         var cmsObj = cmsRaw ? JSON.parse(cmsRaw) : {};
         cmsObj.catalog = RAHA_CATALOG;
         localStorage.setItem('raha_cms_store_v1', JSON.stringify(cmsObj));
+        if (window.RahaSupabase && window.RahaSupabase.cache && typeof window.RahaSupabase.cache.clear === 'function') {
+          window.RahaSupabase.cache.clear();
+        }
+        sessionStorage.removeItem('raha_cache_storefront_state_v3');
         sessionStorage.removeItem('raha_cache_storefront_state_v5');
       } catch (e) {}
 
-      // Persist stock deduction to Supabase cloud catalog
-      if (window.RahaSupabase && typeof window.RahaSupabase.saveProduct === 'function') {
+      // Persist stock deduction (Owner session + local fallback; Supabase DB trigger also deducts atomically for all customers/guests)
+      if (window.RahaSupabase && typeof window.RahaSupabase.upsertProduct === 'function') {
         updatedProductsForCloud.forEach(function (upProd) {
-          window.RahaSupabase.saveProduct(
+          window.RahaSupabase.upsertProduct(
             upProd,
             RAHA_CATALOG,
             (ACTIVE_CMS_STATE && ACTIVE_CMS_STATE.settings) || {},
             (ACTIVE_CMS_STATE && ACTIVE_CMS_STATE.pages) || {}
           ).catch(function () {});
         });
+      }
+
+      // Immediately refresh visible storefront grids so 0-stock items disappear right away
+      if (ACTIVE_CMS_STATE) {
+        applyDynamicCmsState(ACTIVE_CMS_STATE);
       }
 
       if (window.RahaSupabase && typeof window.RahaSupabase.createOrder === 'function') {
@@ -3493,7 +2616,7 @@
     }
 
     var isCustom = String(p.id || '').indexOf('item-') === 0;
-    var rawHover = p.hoverImg || (isCustom ? p.img : ('Assets/jewelry/pdp/' + p.id + '-alt.jpg'));
+    var rawHover = p.hoverImg || p.img || BRAND_FALLBACK_IMG;
     /* Requirement 4: Enforce Image Payload Compression (Supabase Image Transformations) */
     var primaryImg = optimizeImageUrl(p.img, { width: 800, quality: 80, format: 'webp' });
     var hoverImg = optimizeImageUrl(rawHover, { width: 800, quality: 80, format: 'webp' });
@@ -3531,8 +2654,10 @@
             (lowStockBadge || ('<span class="raha-badge">' + (p.badge || 'Raha Edition') + '</span>')) +
             (saved > 0 ? '<span class="raha-badge raha-badge--sale">Save Rs ' + saved + '</span>' : '') +
           '</div>' +
-          '<img src="' + primaryImg + '" alt="' + (p.title || '').replace(/"/g, '&quot;') + '" class="raha-card__img raha-card__img--primary" loading="lazy" decoding="async" onerror="this.onerror=null;if(this.src.indexOf(\'/render/image/\')!==-1){this.src=this.src.replace(\'/render/image/\',\'/object/\').split(\'?\')[0];}">' +
-          '<img src="' + hoverImg + '" alt="' + (p.title || '').replace(/"/g, '&quot;') + ' alternate view" class="raha-card__img raha-card__img--hover" loading="lazy" decoding="async" onerror="this.onerror=null;if(this.src.indexOf(\'/render/image/\')!==-1){this.src=this.src.replace(\'/render/image/\',\'/object/\').split(\'?\')[0];}">' +
+          '<img src="' + primaryImg + '" alt="' + (p.title || '').replace(/"/g, '&quot;') + '" class="raha-card__img raha-card__img--primary" loading="' + (idx < 4 ? 'eager' : 'lazy') + '" ' + (idx < 4 ? 'fetchpriority="high" ' : '') + 'decoding="async" onerror="this.onerror=null;this.src=\'' + BRAND_FALLBACK_IMG + '\';">' +
+          (hoverImg && hoverImg !== primaryImg
+            ? '<img data-hover-src="' + hoverImg + '" alt="' + (p.title || '').replace(/"/g, '&quot;') + ' alternate view" class="raha-card__img raha-card__img--hover" decoding="async" onerror="this.style.display=\'none\';">'
+            : '') +
         '</a>' +
         '<div class="raha-card__body">' +
           '<div>' +
@@ -3614,7 +2739,7 @@
 
     /* 3. Re-render Category Grid if on a category page (Batched via DocumentFragment) */
     var catGrid = document.getElementById('raha-category-grid');
-    if (catGrid && Array.isArray(RAHA_CATALOG) && RAHA_CATALOG.length > 0) {
+    if (catGrid && Array.isArray(RAHA_CATALOG)) {
       var pathName = (window.location.pathname || '').toLowerCase();
       var activeCatSlug = null;
       if (pathName.indexOf('earrings') !== -1) {
@@ -3647,7 +2772,11 @@
           }
         });
         catGrid.textContent = '';
-        catGrid.appendChild(catFrag);
+        if (catItems.length === 0) {
+          catGrid.innerHTML = '<li style="grid-column:1 / -1;text-align:center;padding:56px 20px;color:var(--text-muted);font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">New pieces arriving soon in this collection.</li>';
+        } else {
+          catGrid.appendChild(catFrag);
+        }
 
         var countEl = document.getElementById('raha-cat-count');
         if (countEl) countEl.textContent = 'Showing ' + catItems.length + ' Architectural Pieces';
@@ -3659,7 +2788,7 @@
     var homeSectionGrid = (!catGrid && !document.getElementById('raha-pdp-root'))
       ? document.querySelector('.raha-section .raha-product-grid')
       : null;
-    if (homeSectionGrid && Array.isArray(RAHA_CATALOG) && RAHA_CATALOG.length > 0) {
+    if (homeSectionGrid && Array.isArray(RAHA_CATALOG)) {
       var featuredItems = RAHA_CATALOG.filter(function (item) {
         var hasStock = (typeof item.stock !== 'number') || item.stock > 0;
         var isCustomUploaded = String(item.id || '').indexOf('item-') === 0;
@@ -3684,7 +2813,11 @@
         }
       });
       homeSectionGrid.textContent = '';
-      homeSectionGrid.appendChild(homeFrag);
+      if (featuredItems.length === 0) {
+        homeSectionGrid.innerHTML = '<li style="grid-column:1 / -1;text-align:center;padding:56px 20px;color:var(--text-muted);font-family:var(--font-mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;">New signature pieces arriving soon.</li>';
+      } else {
+        homeSectionGrid.appendChild(homeFrag);
+      }
       initProductCardsAndQuickView();
     }
 

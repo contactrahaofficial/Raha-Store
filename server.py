@@ -15,7 +15,6 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 PORT = 8080
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(ROOT_DIR, "Assets", "data")
-UPLOADS_DIR = os.path.join(ROOT_DIR, "Assets", "jewelry", "uploads")
 STORE_JSON_PATH = os.path.join(DATA_DIR, "store-data.json")
 ORDERS_JSON_PATH = os.path.join(DATA_DIR, "orders.json")
 CUSTOMERS_JSON_PATH = os.path.join(DATA_DIR, "customers.json")
@@ -25,7 +24,6 @@ MAX_UPLOAD_BYTES = 8 * 1024 * 1024  # 8 MB
 ALLOWED_IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp"}
 
 os.makedirs(DATA_DIR, exist_ok=True)
-os.makedirs(UPLOADS_DIR, exist_ok=True)
 
 DATA_LOCK = threading.Lock()
 
@@ -452,18 +450,7 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
             auth_user = self._get_auth_user()
             if not auth_user or not auth_user.get("isOwner"):
                 return self._send_json({"ok": False, "error": "Owner authentication required."}, status=403)
-            img_path = str(payload.get("path", ""))
-            if img_path and "Assets/jewelry/uploads/" in img_path:
-                rel = os.path.basename(img_path.split("Assets/jewelry/uploads/", 1)[1])
-                disk_file = os.path.realpath(os.path.join(UPLOADS_DIR, rel))
-                uploads_real = os.path.realpath(UPLOADS_DIR)
-                if disk_file.startswith(uploads_real + os.sep) and os.path.exists(disk_file):
-                    try:
-                        os.remove(disk_file)
-                        return self._send_json({"ok": True, "deleted": img_path})
-                    except Exception as e:
-                        return self._send_json({"ok": False, "error": str(e)}, status=500)
-            return self._send_json({"ok": True, "note": "No local file to delete"})
+            return self._send_json({"ok": True, "note": "Images are managed exclusively via Supabase Storage"})
 
         if clean_path == "/api/store-data":
             auth_user = self._get_auth_user()
@@ -578,6 +565,8 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
                             order_item["price"] = unit_price
                             cur_p_stock = int(prod.get("stock", 15))
                             prod["stock"] = max(0, cur_p_stock - i_qty)
+                            if isinstance(prod.get("customSkus"), list) and len(prod["customSkus"]) > 0 and isinstance(prod["customSkus"][0], dict):
+                                prod["customSkus"][0]["_productStock"] = prod["stock"]
                             cat_modified = True
                             verified_subtotal += unit_price * i_qty
                         else:
@@ -681,50 +670,10 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
             return self._send_json({"ok": False, "error": "Product not found"}, status=404)
 
         if clean_path == "/api/upload-image":
-            auth_user = self._get_auth_user()
-            if not auth_user or not auth_user.get("isOwner"):
-                return self._send_json({"ok": False, "error": "Owner authentication required."}, status=403)
-            raw_fn = os.path.basename(str(payload.get("filename", "upload.jpg")))
-            filename = re.sub(r"[^a-zA-Z0-9._-]", "-", raw_fn)
-            _, ext = os.path.splitext(filename.lower())
-            if ext not in ALLOWED_IMAGE_EXTS:
-                return self._send_json({"ok": False, "error": "Only JPG, PNG, and WebP images are permitted."}, status=400)
-            data_url = str(payload.get("dataUrl", ""))
-            if "," not in data_url:
-                return self._send_json({"ok": False, "error": "Invalid image data"}, status=400)
-            try:
-                b64_part = data_url.split(",", 1)[1]
-                raw_bytes = base64.b64decode(b64_part, validate=True)
-            except Exception:
-                return self._send_json({"ok": False, "error": "Malformed base64 image payload"}, status=400)
-
-            if not is_valid_image_bytes(raw_bytes, ext):
-                return self._send_json({"ok": False, "error": "File content does not match a valid JPG/PNG/WebP image or exceeds 8MB limit."}, status=400)
-
-            # Automatically optimize and convert uploaded images to high-quality, lightweight WebP
-            try:
-                import io
-                from PIL import Image, ImageOps
-                with Image.open(io.BytesIO(raw_bytes)) as pil_img:
-                    pil_img = ImageOps.exif_transpose(pil_img)
-                    if pil_img.width > 1400 or pil_img.height > 1400:
-                        pil_img.thumbnail((1400, 1400), Image.Resampling.LANCZOS)
-                    if pil_img.mode in ("RGBA", "LA") or (pil_img.mode == "P" and "transparency" in pil_img.info):
-                        conv_img = pil_img.convert("RGBA")
-                    else:
-                        conv_img = pil_img.convert("RGB")
-                    base_name, _ = os.path.splitext(filename)
-                    out_name = f"{int(time.time() * 1000)}-{base_name}.webp"
-                    out_path = os.path.join(UPLOADS_DIR, out_name)
-                    conv_img.save(out_path, format="WEBP", quality=84, method=6)
-            except Exception:
-                out_name = f"{int(time.time() * 1000)}-{filename}"
-                out_path = os.path.join(UPLOADS_DIR, out_name)
-                with open(out_path, "wb") as f:
-                    f.write(raw_bytes)
-
-            rel_path = f"Assets/jewelry/uploads/{out_name}"
-            return self._send_json({"ok": True, "path": rel_path})
+            return self._send_json({
+                "ok": False,
+                "error": "Local disk image uploads are disabled. Upload images directly to Supabase Storage."
+            }, status=410)
 
         return self._send_json({"ok": False, "error": "Unknown endpoint"}, status=404)
 

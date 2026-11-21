@@ -172,3 +172,123 @@ using (
   bucket_id = 'raha-media'
   AND (auth.jwt() ->> 'email') = 'contact.rahaofficial@gmail.com'
 );
+
+-- 8. AUTOMATIC REAL-TIME INVENTORY SYNC TRIGGER ON ORDERS (INSERT / CANCEL / RESTORE)
+-- Ensure stock column exists on older deployments of raha_products
+alter table public.raha_products add column if not exists stock integer default 15;
+
+-- Runs as SECURITY DEFINER so guest/customer orders atomically deduct stock without opening write access on raha_products.
+create or replace function public.raha_adjust_product_stock(p_id text, p_sku text, p_variant text, p_delta integer)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_row public.raha_products%rowtype;
+  v_cur_stock integer;
+  v_new_stock integer;
+  v_skus jsonb;
+  v_new_skus jsonb := '[]'::jsonb;
+  v_sku_elem jsonb;
+  v_idx integer := 0;
+  v_sku_stock integer;
+begin
+  select * into v_row from public.raha_products where id = p_id for update;
+  if not found then
+    return;
+  end if;
+
+  v_cur_stock := coalesce(v_row.stock, 15);
+  if jsonb_typeof(v_row.custom_skus) = 'array' and jsonb_array_length(v_row.custom_skus) > 0 then
+    if (v_row.custom_skus->0) ? '_productStock' then
+      v_cur_stock := coalesce((v_row.custom_skus->0->>'_productStock')::integer, v_cur_stock);
+    end if;
+  end if;
+
+  v_new_stock := greatest(0, v_cur_stock + p_delta);
+
+  v_skus := coalesce(v_row.custom_skus, '[]'::jsonb);
+  if jsonb_typeof(v_skus) = 'array' and jsonb_array_length(v_skus) > 0 then
+    for v_sku_elem in select * from jsonb_array_elements(v_skus) loop
+      if v_idx = 0 then
+        v_sku_elem := jsonb_set(v_sku_elem, '{_productStock}', to_jsonb(v_new_stock), true);
+      end if;
+      if (
+        (coalesce(v_sku_elem->>'suffix', '') <> '' and position(upper(v_sku_elem->>'suffix') in upper(coalesce(p_sku, ''))) > 0)
+        or (coalesce(v_sku_elem->>'name', '') <> '' and position(lower(v_sku_elem->>'name') in lower(coalesce(p_variant, ''))) > 0)
+        or jsonb_array_length(v_skus) = 1
+      ) then
+        v_sku_stock := coalesce((v_sku_elem->>'stock')::integer, v_cur_stock);
+        v_sku_elem := jsonb_set(v_sku_elem, '{stock}', to_jsonb(greatest(0, v_sku_stock + p_delta)), true);
+      end if;
+      v_new_skus := v_new_skus || jsonb_build_array(v_sku_elem);
+      v_idx := v_idx + 1;
+    end loop;
+  else
+    v_new_skus := v_skus;
+  end if;
+
+  update public.raha_products
+  set stock = v_new_stock,
+      custom_skus = v_new_skus,
+      updated_at = now()
+  where id = p_id;
+end;
+$$;
+
+create or replace function public.raha_sync_inventory_on_order()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_item jsonb;
+  v_qty integer;
+  v_delta integer := 0;
+begin
+  if tg_op = 'INSERT' then
+    if coalesce(new.status, 'Pending') <> 'Cancelled' then
+      v_delta := -1;
+    end if;
+  elsif tg_op = 'UPDATE' then
+    if coalesce(old.status, 'Pending') <> 'Cancelled' and coalesce(new.status, 'Pending') = 'Cancelled' then
+      v_delta := 1;
+    elsif coalesce(old.status, 'Pending') = 'Cancelled' and coalesce(new.status, 'Pending') <> 'Cancelled' then
+      v_delta := -1;
+    end if;
+  end if;
+
+  if v_delta <> 0 and jsonb_typeof(new.items) = 'array' then
+    for v_item in select * from jsonb_array_elements(new.items) loop
+      begin
+        v_qty := greatest(1, coalesce((v_item->>'qty')::integer, 1));
+        if coalesce(v_item->>'id', '') <> '' then
+          perform public.raha_adjust_product_stock(
+            v_item->>'id',
+            coalesce(v_item->>'sku', ''),
+            coalesce(v_item->>'variant', ''),
+            v_delta * v_qty
+          );
+        end if;
+      exception when others then
+        -- Never block or roll back a customer order if a product row is missing or malformed
+        raise warning 'raha_sync_inventory_on_order skipped item: %', sqlerrm;
+      end;
+    end loop;
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists trg_raha_orders_inventory on public.raha_orders;
+create trigger trg_raha_orders_inventory
+after insert or update of status on public.raha_orders
+for each row
+execute function public.raha_sync_inventory_on_order();
+
+-- Lock down RPC execution so attackers/anon users CANNOT call stock functions directly via API
+revoke all on function public.raha_adjust_product_stock(text, text, text, integer) from public, anon, authenticated;
+revoke all on function public.raha_sync_inventory_on_order() from public, anon, authenticated;

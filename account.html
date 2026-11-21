@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" style="color-scheme: dark;">
 <head>
+  <link rel="preconnect" href="https://zqlhbmyiyeyflcflicsv.supabase.co" crossorigin>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
-  <title>My Orders &amp; Raha Profile — Raha</title>
-  <meta name="description" content="View your order history, live Cash on Delivery status tracking, and manage your saved shipping details at Raha — Jewellery For The Modern Minimalists.">
+  <!-- RAHA SEO & STRUCTURED DATA START -->
+  <title>My Raha Vault & Order Tracking | Raha Jewels</title>
+  <meta name="description" content="Sign in to your Raha Jewels account to view saved delivery details and live order status.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Raha Jewels">
+  <meta name="theme-color" content="#120c10">
+  <meta name="geo.region" content="PK">
+  <meta name="geo.placename" content="Pakistan">
+  <link rel="canonical" href="https://rahajewels.pk/account.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raha Jewels">
+  <meta property="og:locale" content="en_PK">
+  <meta property="og:title" content="My Raha Vault & Order Tracking | Raha Jewels">
+  <meta property="og:description" content="Sign in to your Raha Jewels account to view saved delivery details and live order status.">
+  <meta property="og:url" content="https://rahajewels.pk/account.html">
+  <meta property="og:image" content="https://rahajewels.pk/Assets/Main%20Raha%20logo%20with%20slogan%20(The%20actual%20logo).webp">
+  <meta property="og:image:alt" content="Raha Jewels — Jewellery For The Modern Minimalists">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="My Raha Vault & Order Tracking | Raha Jewels">
+  <meta name="twitter:description" content="Sign in to your Raha Jewels account to view saved delivery details and live order status.">
+  <meta name="twitter:image" content="https://rahajewels.pk/Assets/Main%20Raha%20logo%20with%20slogan%20(The%20actual%20logo).webp">
+  <!-- RAHA SEO & STRUCTURED DATA END -->
   <link rel="icon" type="image/png" href="Assets/raha-favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -608,8 +629,8 @@
 
   <!-- Scripts -->
   <script src="Assets/js/supabase.min.js"></script>
-  <script src="Assets/js/raha-supabase.js?v=20261117_v42"></script>
-  <script src="Assets/js/replica-enhancements.js?v=20261117_v60"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261121_v67"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261121_v67"></script>
   <script>
     (function () {
       'use strict';
@@ -946,7 +967,7 @@
             var lineTot = (Number(it.price) || 0) * (Number(it.qty) || 1);
             itemsHtml +=
               '<div class="raha-order-item-row">' +
-                '<img src="' + (it.img || 'Assets/jewelry/ear-1a.jpg') + '" alt="' + (it.title || 'Piece') + '" class="raha-order-item-thumb" decoding="async">' +
+                '<img src="' + (it.img || 'Assets/Main Raha logo with slogan (The actual logo).webp') + '" alt="' + (it.title || 'Piece') + '" class="raha-order-item-thumb" decoding="async">' +
                 '<div>' +
                   '<a href="product.html?id=' + encodeURIComponent(it.id || '') + '" style="font-family:var(--font-serif);font-size:16px;color:var(--text-primary);text-decoration:none;font-weight:500;">' + (it.title || 'Raha Piece') + '</a>' +
                   '<div style="font-family:var(--font-mono);font-size:10px;color:var(--raha-gold);text-transform:uppercase;margin-top:2px;">' +

@@ -248,7 +248,7 @@
       (o.items || []).forEach(function (it) {
         itemsHtml +=
           '<div style="display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-subtle);">' +
-            '<img src="' + escapeHtml(it.img || 'Assets/jewelry/ear-1a.jpg') + '" alt="" style="width:46px;height:46px;border-radius:8px;object-fit:cover;">' +
+            '<img src="' + escapeHtml(it.img || 'Assets/Main Raha logo with slogan (The actual logo).webp') + '" alt="" style="width:46px;height:46px;border-radius:8px;object-fit:cover;">' +
             '<div style="min-width:0;overflow-wrap:anywhere;">' +
               '<div style="font-size:13.5px;font-weight:600;color:var(--text-primary);">' + escapeHtml(it.title) + '</div>' +
               '<div style="font-family:var(--font-mono);font-size:10.5px;color:var(--raha-gold);">SKU: ' + escapeHtml(it.sku || it.id) + ' • ' + escapeHtml(it.variant || 'Gold Plated') + ' × ' + (Number(it.qty) || 1) + '</div>' +
@@ -323,13 +323,77 @@
       sel.addEventListener('change', async function () {
         var oid = sel.getAttribute('data-order-status');
         var newSt = sel.value;
-        await window.RahaSupabase.updateOrderStatus(oid, newSt);
+        var targetOrder = null;
         orders.forEach(function (o) {
-          if (o.orderId === oid) o.status = newSt;
+          if (o.orderId === oid) targetOrder = o;
         });
+        var prevSt = targetOrder ? (targetOrder.status || 'Pending') : 'Pending';
+
+        await window.RahaSupabase.updateOrderStatus(oid, newSt);
+        if (targetOrder) targetOrder.status = newSt;
+
+        /* Inventory Sync: Restore stock when order is Cancelled; re-deduct if un-cancelled */
+        var stockDeltaDir = 0;
+        if (prevSt !== 'Cancelled' && newSt === 'Cancelled') {
+          stockDeltaDir = 1; // Restore stock
+        } else if (prevSt === 'Cancelled' && newSt !== 'Cancelled') {
+          stockDeltaDir = -1; // Re-deduct stock
+        }
+
+        if (stockDeltaDir !== 0 && targetOrder && Array.isArray(targetOrder.items)) {
+          var touchedProducts = [];
+          targetOrder.items.forEach(function (oi) {
+            for (var ci = 0; ci < catalog.length; ci++) {
+              if (catalog[ci].id === oi.id) {
+                var prod = catalog[ci];
+                var qty = Math.max(1, Number(oi.qty) || 1);
+                var curStock = (prod.stock !== undefined && prod.stock !== null) ? Number(prod.stock) : 15;
+                prod.stock = Math.max(0, curStock + (stockDeltaDir * qty));
+                if (Array.isArray(prod.customSkus) && prod.customSkus.length > 0) {
+                  prod.customSkus[0]._productStock = prod.stock;
+                  prod.customSkus.forEach(function (cs) {
+                    var csSuff = String(cs.suffix || '').toUpperCase();
+                    var csName = String(cs.name || '').toLowerCase();
+                    var iSku = String(oi.sku || '').toUpperCase();
+                    var iVar = String(oi.variant || '').toLowerCase();
+                    if (prod.customSkus.length === 1 || (csSuff && iSku.indexOf(csSuff) !== -1) || (csName && iVar.indexOf(csName) !== -1)) {
+                      var curCs = (cs.stock !== undefined && cs.stock !== null) ? Number(cs.stock) : curStock;
+                      cs.stock = Math.max(0, curCs + (stockDeltaDir * qty));
+                    }
+                  });
+                }
+                if (touchedProducts.indexOf(prod) === -1) touchedProducts.push(prod);
+                break;
+              }
+            }
+          });
+
+          try {
+            if (window.RahaSupabase && window.RahaSupabase.cache && typeof window.RahaSupabase.cache.clear === 'function') {
+              window.RahaSupabase.cache.clear();
+            }
+            sessionStorage.removeItem('raha_cache_storefront_state_v3');
+            localStorage.setItem(CMS_STORE_KEY, JSON.stringify({ catalog: catalog, settings: settings, pages: pages }));
+          } catch (cErr) {}
+
+          for (var tp = 0; tp < touchedProducts.length; tp++) {
+            try {
+              await window.RahaSupabase.upsertProduct(touchedProducts[tp], catalog, settings, pages);
+            } catch (upErr) {}
+          }
+          renderProductsTab();
+          renderRestockTab();
+        }
+
         renderKpis();
         renderOrdersTab();
-        showToast('Order ' + oid + ' status updated to ' + newSt);
+        if (stockDeltaDir === 1) {
+          showToast('Order ' + oid + ' cancelled — item stock restored back to inventory.');
+        } else if (stockDeltaDir === -1) {
+          showToast('Order ' + oid + ' reactivated (' + newSt + ') — item stock deducted from inventory.');
+        } else {
+          showToast('Order ' + oid + ' status updated to ' + newSt);
+        }
       });
     });
 
@@ -386,7 +450,7 @@
           variant: 'Gold Plated • STD',
           price: 2450,
           qty: 1,
-          img: 'Assets/jewelry/ear-1a.jpg'
+          img: 'Assets/Main Raha logo with slogan (The actual logo).webp'
         },
         {
           id: 'ring-01',
@@ -395,7 +459,7 @@
           variant: 'Gold Plated • US7',
           price: 2250,
           qty: 1,
-          img: 'Assets/jewelry/ring-1a.jpg'
+          img: 'Assets/Main Raha logo with slogan (The actual logo).webp'
         }
       ],
       subtotal: 4700,
@@ -434,7 +498,7 @@
           variant: 'Gold Plated • 16-inch',
           price: 3200,
           qty: 1,
-          img: 'Assets/jewelry/neck-1a.jpg'
+          img: 'Assets/Main Raha logo with slogan (The actual logo).webp'
         }
       ],
       subtotal: 3200,
@@ -1254,12 +1318,12 @@
         targetInput.value = '';
 
         var defaultFallbacks = {
-          'set-hero-img': 'Assets/jewelry/hero-editorial.jpg',
-          'set-cat-earrings': 'Assets/jewelry/cat-earrings.jpg',
-          'set-cat-necklace': 'Assets/jewelry/cat-necklace.jpg',
-          'set-cat-rings': 'Assets/jewelry/cat-rings.jpg',
-          'set-cat-bracelets': 'Assets/jewelry/cat-bracelets.jpg',
-          'set-cat-anklets': 'Assets/jewelry/cat-anklets.jpg'
+          'set-hero-img': 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          'set-cat-earrings': 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          'set-cat-necklace': 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          'set-cat-rings': 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          'set-cat-bracelets': 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          'set-cat-anklets': 'Assets/Main Raha logo with slogan (The actual logo).webp'
         };
         if (defaultFallbacks[targetInputId]) {
           targetInput.value = defaultFallbacks[targetInputId];
@@ -1376,16 +1440,16 @@
     document.getElementById('set-hero-title').value = settings.heroTitleHtml || 'Sculpted Light for the <em>Modern Minimalist.</em>';
     document.getElementById('set-hero-sub').value = settings.heroSubtitle || 'Step into Pakistan’s futuristic fine-demi jewellery brand. Waterproof Gold Plated & 925 Sterling Silver silhouettes engineered for effortless daily permanence.';
     document.getElementById('set-hero-heading').value = settings.heroMonolithHeading || 'The Mauve Vault Series';
-    document.getElementById('set-hero-img').value = settings.heroEditorialImg || 'Assets/jewelry/hero-editorial.jpg';
+    document.getElementById('set-hero-img').value = settings.heroEditorialImg || 'Assets/Main Raha logo with slogan (The actual logo).webp';
     var heroPrev = document.getElementById('set-hero-img-prev');
     if (heroPrev) heroPrev.src = document.getElementById('set-hero-img').value;
 
     var catFields = [
-      { id: 'set-cat-earrings', key: 'catImgEarrings', def: 'Assets/jewelry/cat-earrings.jpg' },
-      { id: 'set-cat-necklace', key: 'catImgNecklace', def: 'Assets/jewelry/cat-necklace.jpg' },
-      { id: 'set-cat-rings', key: 'catImgRings', def: 'Assets/jewelry/cat-rings.jpg' },
-      { id: 'set-cat-bracelets', key: 'catImgBracelets', def: 'Assets/jewelry/cat-bracelets.jpg' },
-      { id: 'set-cat-anklets', key: 'catImgAnklets', def: 'Assets/jewelry/cat-anklets.jpg' }
+      { id: 'set-cat-earrings', key: 'catImgEarrings', def: 'Assets/Main Raha logo with slogan (The actual logo).webp' },
+      { id: 'set-cat-necklace', key: 'catImgNecklace', def: 'Assets/Main Raha logo with slogan (The actual logo).webp' },
+      { id: 'set-cat-rings', key: 'catImgRings', def: 'Assets/Main Raha logo with slogan (The actual logo).webp' },
+      { id: 'set-cat-bracelets', key: 'catImgBracelets', def: 'Assets/Main Raha logo with slogan (The actual logo).webp' },
+      { id: 'set-cat-anklets', key: 'catImgAnklets', def: 'Assets/Main Raha logo with slogan (The actual logo).webp' }
     ];
     catFields.forEach(function (cf) {
       var inp = document.getElementById(cf.id);
@@ -1628,7 +1692,7 @@
         };
         var mainImg = (editingProductGallery.length > 0 && editingProductGallery[0].src)
           ? editingProductGallery[0].src
-          : 'Assets/jewelry/ear-1a.jpg';
+          : 'Assets/Main Raha logo with slogan (The actual logo).webp';
         var hoverImg = (editingProductGallery.length > 1 && editingProductGallery[1].src)
           ? editingProductGallery[1].src
           : mainImg;
@@ -1777,11 +1841,11 @@
           heroEditorialImg: document.getElementById('set-hero-img').value.trim(),
           heroFlagshipLink: (document.getElementById('set-flagship-link') ? document.getElementById('set-flagship-link').value.trim() : '') || 'product.html?id=ear-01',
           heroFlagshipLinkText: (document.getElementById('set-flagship-text') ? document.getElementById('set-flagship-text').value.trim() : '') || 'Inspect Flagship Piece →',
-          catImgEarrings: (document.getElementById('set-cat-earrings') ? document.getElementById('set-cat-earrings').value.trim() : '') || 'Assets/jewelry/cat-earrings.jpg',
-          catImgNecklace: (document.getElementById('set-cat-necklace') ? document.getElementById('set-cat-necklace').value.trim() : '') || 'Assets/jewelry/cat-necklace.jpg',
-          catImgRings: (document.getElementById('set-cat-rings') ? document.getElementById('set-cat-rings').value.trim() : '') || 'Assets/jewelry/cat-rings.jpg',
-          catImgBracelets: (document.getElementById('set-cat-bracelets') ? document.getElementById('set-cat-bracelets').value.trim() : '') || 'Assets/jewelry/cat-bracelets.jpg',
-          catImgAnklets: (document.getElementById('set-cat-anklets') ? document.getElementById('set-cat-anklets').value.trim() : '') || 'Assets/jewelry/cat-anklets.jpg'
+          catImgEarrings: (document.getElementById('set-cat-earrings') ? document.getElementById('set-cat-earrings').value.trim() : '') || 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          catImgNecklace: (document.getElementById('set-cat-necklace') ? document.getElementById('set-cat-necklace').value.trim() : '') || 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          catImgRings: (document.getElementById('set-cat-rings') ? document.getElementById('set-cat-rings').value.trim() : '') || 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          catImgBracelets: (document.getElementById('set-cat-bracelets') ? document.getElementById('set-cat-bracelets').value.trim() : '') || 'Assets/Main Raha logo with slogan (The actual logo).webp',
+          catImgAnklets: (document.getElementById('set-cat-anklets') ? document.getElementById('set-cat-anklets').value.trim() : '') || 'Assets/Main Raha logo with slogan (The actual logo).webp'
         };
         try {
           if (window.RahaSupabase && window.RahaSupabase.cache && typeof window.RahaSupabase.cache.clear === 'function') {

@@ -1,5 +1,129 @@
 [
   {
+    "orderId": "RAHA-COD-11331",
+    "createdAt": "11/22/2026, 12:19:59 AM",
+    "status": "Pending",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "paymentStatus": "Cash on Delivery",
+    "orderType": "cod",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-9363",
+        "sku": "RAHA-PRL-016-STD",
+        "title": "Pearls",
+        "variant": "Pearls",
+        "price": 350.0,
+        "qty": 1,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp"
+      }
+    ],
+    "subtotal": 350.0,
+    "shipping": 220,
+    "total": 570.0,
+    "adminNote": ""
+  },
+  {
+    "orderId": "RAHA-COD-42560",
+    "createdAt": "11/22/2026, 12:15:00 AM",
+    "status": "Pending",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "paymentStatus": "Cash on Delivery",
+    "orderType": "cod",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-9363",
+        "sku": "RAHA-PRL-016-STD",
+        "title": "Pearls",
+        "variant": "Pearls",
+        "price": 350.0,
+        "qty": 1,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp"
+      }
+    ],
+    "subtotal": 350.0,
+    "shipping": 220,
+    "total": 570.0,
+    "adminNote": ""
+  },
+  {
+    "orderId": "RAHA-COD-36818",
+    "createdAt": "11/22/2026, 12:10:16 AM",
+    "status": "Pending",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "paymentStatus": "Cash on Delivery",
+    "orderType": "cod",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-7925",
+        "sku": "RAHA-DPL-013-STD",
+        "title": "Daisy Pearl Bracelet",
+        "variant": "Daisy Pearl Bracelet",
+        "price": 550.0,
+        "qty": 3,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281297932-1795205263872-IMG_0117.webp"
+      }
+    ],
+    "subtotal": 1650.0,
+    "shipping": 220,
+    "total": 1870.0,
+    "adminNote": ""
+  },
+  {
+    "orderId": "RAHA-COD-30410",
+    "createdAt": "11/22/2026, 12:09:49 AM",
+    "status": "Pending",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "paymentStatus": "Cash on Delivery",
+    "orderType": "cod",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-7925",
+        "sku": "RAHA-DPL-013-STD",
+        "title": "Daisy Pearl Bracelet",
+        "variant": "Daisy Pearl Bracelet",
+        "price": 550.0,
+        "qty": 1,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281297932-1795205263872-IMG_0117.webp"
+      }
+    ],
+    "subtotal": 550.0,
+    "shipping": 220,
+    "total": 770.0,
+    "adminNote": ""
+  },
+  {
     "orderId": "RAHA-ONL-77449",
     "createdAt": "11/17/2026, 4:28:03 PM",
     "status": "Pending",
@@ -22,7 +146,7 @@
         "variant": "Gold Plated",
         "price": 2500.0,
         "qty": 1,
-        "img": "Assets/jewelry/uploads/1794644497360-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 2500.0,
@@ -53,7 +177,7 @@
         "variant": "Gold Plated",
         "price": 2500.0,
         "qty": 1,
-        "img": "Assets/jewelry/uploads/1794644497360-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 2500.0,
@@ -84,7 +208,7 @@
         "variant": "Gold Plated",
         "price": 2450.0,
         "qty": 1,
-        "img": "Assets/jewelry/ear-1a.jpg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       },
       {
         "id": "ear-03",
@@ -93,7 +217,7 @@
         "variant": "Gold Plated",
         "price": 2650.0,
         "qty": 1,
-        "img": "Assets/jewelry/ear-3a.jpg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 5100.0,
@@ -122,7 +246,7 @@
         "variant": "Silver Edition",
         "price": 2500.0,
         "qty": 1,
-        "img": "Assets/jewelry/uploads/1794644496998-WhatsApp-Image-2026-11-11-at-7.39.21-PM.jpeg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 2500.0,
@@ -150,7 +274,7 @@
         "variant": "Gold Plated",
         "price": 2450,
         "qty": 1,
-        "img": "Assets/jewelry/ear-1a.jpg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 2450,
@@ -178,7 +302,7 @@
         "variant": "Butterfly",
         "price": 2900,
         "qty": 2,
-        "img": "Assets/jewelry/uploads/1794728039409-Gold-and-Silver-Ginkgo-Cuff-Bracelet.webp"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 5800,
@@ -206,7 +330,7 @@
         "variant": "Gold Plated",
         "price": 2450,
         "qty": 2,
-        "img": "Assets/jewelry/ear-1a.jpg"
+        "img": "Assets/Main Raha logo with slogan (The actual logo).webp"
       }
     ],
     "subtotal": 4900,

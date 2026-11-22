@@ -1,5 +1,67 @@
 [
   {
+    "orderId": "RAHA-ONL-42702",
+    "createdAt": "11/22/2026, 11:48:10 AM",
+    "status": "Pending",
+    "paymentMethod": "Online Payment (WhatsApp)",
+    "paymentStatus": "Pending Verification",
+    "orderType": "online",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-8965",
+        "sku": "RAHA-BLM-012-STD",
+        "title": "Bloom Cuff",
+        "variant": "Bloom Cuff",
+        "price": 550.0,
+        "qty": 1,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp"
+      }
+    ],
+    "subtotal": 550.0,
+    "shipping": 220,
+    "total": 770.0,
+    "adminNote": "[PAYMENT: PENDING_VERIFICATION]"
+  },
+  {
+    "orderId": "RAHA-COD-10440",
+    "createdAt": "11/22/2026, 11:46:34 AM",
+    "status": "Pending",
+    "paymentMethod": "Cash on Delivery (COD)",
+    "paymentStatus": "Cash on Delivery",
+    "orderType": "cod",
+    "customer": {
+      "name": "Hassan siddiqui",
+      "phone": "03123232323232",
+      "email": "hassa.siddiqui1682@gmail.com",
+      "city": "Karachi",
+      "address": "Nazimabad 5 D  karachi",
+      "notes": ""
+    },
+    "items": [
+      {
+        "id": "item-4226",
+        "sku": "RAHA-TWT-014-STD",
+        "title": "Twisted",
+        "variant": "Twisted",
+        "price": 550.0,
+        "qty": 1,
+        "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp"
+      }
+    ],
+    "subtotal": 550.0,
+    "shipping": 220,
+    "total": 770.0,
+    "adminNote": ""
+  },
+  {
     "orderId": "RAHA-COD-42560",
     "createdAt": "11/22/2026, 12:15:00 AM",
     "status": "Pending",

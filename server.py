@@ -564,6 +564,11 @@ class RahaStoreRequestHandler(SimpleHTTPRequestHandler):
                                         break
                             order_item["price"] = unit_price
                             cur_p_stock = int(prod.get("stock", 15))
+                            if i_qty > cur_p_stock:
+                                return self._send_json({
+                                    "ok": False,
+                                    "error": f"Only {cur_p_stock} piece(s) of {prod.get('title', 'this piece')} available in stock."
+                                }, status=400)
                             prod["stock"] = max(0, cur_p_stock - i_qty)
                             if isinstance(prod.get("customSkus"), list) and len(prod["customSkus"]) > 0 and isinstance(prod["customSkus"][0], dict):
                                 prod["customSkus"][0]["_productStock"] = prod["stock"]

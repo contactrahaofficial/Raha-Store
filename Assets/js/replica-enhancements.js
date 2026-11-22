@@ -394,18 +394,69 @@
     } catch (e) {}
   }
 
+  function getAvailableStockForProduct(productId, sku, variant) {
+    if (!productId) return 15;
+    var prod = null;
+    for (var i = 0; i < RAHA_CATALOG.length; i++) {
+      if (RAHA_CATALOG[i].id === productId) {
+        prod = RAHA_CATALOG[i];
+        break;
+      }
+    }
+    if (!prod) return 15;
+    var pStock = (prod.stock !== undefined && prod.stock !== null) ? Number(prod.stock) : 15;
+    if (Array.isArray(prod.customSkus) && prod.customSkus.length > 0 && typeof prod.customSkus[0]._productStock === 'number') {
+      pStock = Number(prod.customSkus[0]._productStock);
+    }
+    return Math.max(0, isNaN(pStock) ? 15 : pStock);
+  }
+
+  function showStockLimitToast(msg) {
+    var existing = document.getElementById('raha-stock-limit-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'raha-stock-limit-toast';
+    toast.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10050;background:rgba(28,18,24,0.96);color:#f3dfc1;border:1px solid rgba(213,184,149,0.55);padding:12px 20px;border-radius:999px;font-family:var(--font-sans);font-size:13px;font-weight:500;box-shadow:0 12px 32px rgba(0,0,0,0.45);backdrop-filter:blur(10px);max-width:92vw;text-align:center;';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(function () {
+      if (toast && toast.parentNode) toast.remove();
+    }, 3200);
+  }
+
   function addItemToCart(item) {
     var cart = loadCart();
     var skuPart = item.sku || item.id;
     var key = skuPart + '__' + (item.variant || 'Gold Plated');
     var addQty = Math.max(1, parseInt(item.qty, 10) || 1);
+    var availStock = getAvailableStockForProduct(item.id, skuPart, item.variant);
+
+    if (availStock <= 0) {
+      showStockLimitToast('Sorry, ' + (item.title || 'this piece') + ' is currently out of stock.');
+      return false;
+    }
+
+    var totalSameProductInCart = 0;
     var existing = null;
     for (var i = 0; i < cart.length; i++) {
+      if (cart[i].id === item.id) {
+        totalSameProductInCart += (Number(cart[i].qty) || 0);
+      }
       if (cart[i].key === key) {
         existing = cart[i];
-        break;
       }
     }
+
+    var remainingCanAdd = Math.max(0, availStock - totalSameProductInCart);
+    if (remainingCanAdd <= 0) {
+      showStockLimitToast('Only ' + availStock + ' piece' + (availStock === 1 ? '' : 's') + ' of ' + (item.title || 'this piece') + ' available in stock.');
+      return false;
+    }
+    if (addQty > remainingCanAdd) {
+      addQty = remainingCanAdd;
+      showStockLimitToast('Only ' + availStock + ' piece' + (availStock === 1 ? '' : 's') + ' of ' + (item.title || 'this piece') + ' available — bag updated to max stock.');
+    }
+
     if (existing) {
       existing.qty += addQty;
     } else {
@@ -422,6 +473,7 @@
     }
     saveCart(cart);
     renderCartDrawer();
+    return true;
   }
 
   function updateItemQty(key, delta) {
@@ -429,6 +481,18 @@
     var next = [];
     for (var i = 0; i < cart.length; i++) {
       if (cart[i].key === key) {
+        if (delta > 0) {
+          var availStock = getAvailableStockForProduct(cart[i].id, cart[i].sku, cart[i].variant);
+          var totalProdQty = 0;
+          for (var j = 0; j < cart.length; j++) {
+            if (cart[j].id === cart[i].id) totalProdQty += (Number(cart[j].qty) || 0);
+          }
+          if (totalProdQty + delta > availStock) {
+            showStockLimitToast('Only ' + availStock + ' piece' + (availStock === 1 ? '' : 's') + ' of ' + (cart[i].title || 'this piece') + ' available in stock.');
+            next.push(cart[i]);
+            continue;
+          }
+        }
         cart[i].qty += delta;
         if (cart[i].qty > 0) next.push(cart[i]);
       } else {
@@ -1267,10 +1331,18 @@
       };
       qtyInc.onclick = function (e) {
         if (e) e.preventDefault();
-        if (selectedQty < 10) {
+        var maxStock = getAvailableStockForProduct(product.id, getFullSkuCode(), selectedSkuOpt.name);
+        var maxAllowed = Math.min(10, Math.max(0, maxStock));
+        if (maxAllowed <= 0) {
+          showStockLimitToast('Sorry, this piece is currently out of stock.');
+          return;
+        }
+        if (selectedQty < maxAllowed) {
           selectedQty++;
           qtyVal.textContent = selectedQty;
           syncDynamicPdpFields();
+        } else {
+          showStockLimitToast('Only ' + maxStock + ' piece' + (maxStock === 1 ? '' : 's') + ' available in stock.');
         }
       };
     }
@@ -1278,7 +1350,7 @@
     function triggerAddCurrentPdpToCart() {
       var fullSku = getFullSkuCode();
       var g = (product.gallery && product.gallery[selectedSkuOpt.imgIdx]) || (product.gallery && product.gallery[0]) || { src: product.img };
-      addItemToCart({
+      return addItemToCart({
         id: product.id,
         sku: fullSku,
         title: product.title,
@@ -1297,8 +1369,9 @@
         if (isPdpAdding) return;
         isPdpAdding = true;
         setTimeout(function () { isPdpAdding = false; }, 350);
-        triggerAddCurrentPdpToCart();
-        openCartDrawer();
+        if (triggerAddCurrentPdpToCart()) {
+          openCartDrawer();
+        }
       };
     }
 
@@ -1307,6 +1380,19 @@
       pdpBuyNowBtn.onclick = function (e) {
         if (e) e.preventDefault();
         var fullSku = getFullSkuCode();
+        var reqQty = parseInt(selectedQty, 10) || 1;
+        var availStock = getAvailableStockForProduct(product.id, fullSku, selectedSkuOpt.name);
+        if (availStock <= 0) {
+          showStockLimitToast('Sorry, ' + product.title + ' is currently out of stock.');
+          return;
+        }
+        if (reqQty > availStock) {
+          selectedQty = availStock;
+          if (qtyVal) qtyVal.textContent = selectedQty;
+          syncDynamicPdpFields();
+          showStockLimitToast('Only ' + availStock + ' piece' + (availStock === 1 ? '' : 's') + ' available in stock.');
+          return;
+        }
         var g = (product.gallery && product.gallery[selectedSkuOpt.imgIdx]) || (product.gallery && product.gallery[0]) || { src: product.img };
         var directSingleItem = [{
           id: product.id,
@@ -1315,7 +1401,7 @@
           price: selectedSkuOpt.price,
           variant: selectedSkuOpt.name,
           img: g.src,
-          qty: parseInt(selectedQty, 10) || 1
+          qty: reqQty
         }];
         openCodCheckoutModal(null, null, directSingleItem);
       };
@@ -2329,6 +2415,29 @@
       if (!address || address.length < 6) {
         showError('Please enter your Complete Street Delivery Address (House/Flat No., Street Name, Block/Area) so the rider can find you.', addrIn);
         return;
+      }
+
+      /* Stock availability validation: prevent ordering more than available stock */
+      var reqQtyByProd = {};
+      var prodTitleById = {};
+      for (var si = 0; si < checkoutItems.length; si++) {
+        var cIt = checkoutItems[si];
+        var pid = cIt.id;
+        reqQtyByProd[pid] = (reqQtyByProd[pid] || 0) + (Math.max(1, Number(cIt.qty) || 1));
+        prodTitleById[pid] = cIt.title || 'Selected piece';
+      }
+      for (var checkId in reqQtyByProd) {
+        if (Object.prototype.hasOwnProperty.call(reqQtyByProd, checkId)) {
+          var avail = getAvailableStockForProduct(checkId);
+          if (avail <= 0) {
+            showError('Sorry, ' + prodTitleById[checkId] + ' is currently out of stock. Please remove it from your bag to continue.');
+            return;
+          }
+          if (reqQtyByProd[checkId] > avail) {
+            showError('Only ' + avail + ' piece' + (avail === 1 ? '' : 's') + ' of ' + prodTitleById[checkId] + ' available in stock (you requested ' + reqQtyByProd[checkId] + '). Please reduce the quantity.');
+            return;
+          }
+        }
       }
 
       if (errBox) errBox.classList.remove('is-visible');

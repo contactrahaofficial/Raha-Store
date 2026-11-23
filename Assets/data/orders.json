@@ -2,7 +2,7 @@
   {
     "orderId": "RAHA-ONL-42702",
     "createdAt": "11/22/2026, 11:48:10 AM",
-    "status": "Pending",
+    "status": "Dispatched",
     "paymentMethod": "Online Payment (WhatsApp)",
     "paymentStatus": "Pending Verification",
     "orderType": "online",

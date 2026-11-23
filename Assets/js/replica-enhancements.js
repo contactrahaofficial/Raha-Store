@@ -2841,7 +2841,11 @@
     if (s.announcementText) {
       var mqTrack = document.querySelector('.raha-marquee__track');
       if (mqTrack) {
-        var unit = '<span class="raha-marquee__item"><span class="raha-marquee__diamond">◆</span><span>' + s.announcementText + '</span></span>';
+        var cleanAnn = String(s.announcementText)
+          .replace(/https?:\/\/(www\.)?instagram\.com\/rahajewels\.co[^\s"']*/gi, 'https://www.instagram.com/rahajewels.pk?fqnt=eDl6ZzE3NjEwMXFl')
+          .replace(/@rahajewels\.co/gi, '<a href="https://www.instagram.com/rahajewels.pk?fqnt=eDl6ZzE3NjEwMXFl" target="_blank" rel="noopener">@rahajewels.pk</a>')
+          .replace(/rahajewels\.co/gi, 'rahajewels.pk');
+        var unit = '<span class="raha-marquee__item"><span class="raha-marquee__diamond">◆</span><span>' + cleanAnn + '</span></span>';
         mqTrack.innerHTML = unit + unit + unit + unit;
       }
     }
@@ -2950,7 +2954,10 @@
             if (pSlug === 'faqs' && pgData.bodyHtml.indexOf('3.') === -1) {
               return;
             }
-            cardEl.innerHTML = pgData.bodyHtml;
+            cardEl.innerHTML = String(pgData.bodyHtml)
+              .replace(/https?:\/\/(www\.)?instagram\.com\/rahajewels\.co[^\s"']*/gi, 'https://www.instagram.com/rahajewels.pk?fqnt=eDl6ZzE3NjEwMXFl')
+              .replace(/@rahajewels\.co/gi, '@rahajewels.pk')
+              .replace(/rahajewels\.co/gi, 'rahajewels.pk');
           }
         }
       });

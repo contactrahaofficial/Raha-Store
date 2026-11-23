@@ -1,108 +1,6 @@
 {
   "catalog": [
     {
-      "id": "item-4226",
-      "skuBase": "RAHA-TWT-014",
-      "title": "Twisted",
-      "subtitle": "",
-      "price": 550,
-      "compare": 900,
-      "stock": 0,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "gold",
-      "category": "Bracelets",
-      "categorySlug": "bracelets",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281288147-1795205438152-IMG_0281.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0283.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281288147-1795205438152-IMG_0281.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0281.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281294584-1795205445113-IMG_0282.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0282.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Raha Finish",
-          "name": "Twisted",
-          "price": 550,
-          "stock": 0,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 900,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 1,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [],
-      "customReviews": [],
-      "weight": "4.0g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "item-9363",
-      "skuBase": "RAHA-PRL-016",
-      "title": "Pearls",
-      "subtitle": "",
-      "price": 350,
-      "compare": 600,
-      "stock": 3,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "gold",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281260003-1795205849693-IMG_0018.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0021.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281260003-1795205849693-IMG_0018.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0018.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "suffix": "STD",
-          "orbClass": "raha-metal-orb--gld",
-          "name": "Pearls",
-          "desc": "Signature Edition",
-          "price": 350,
-          "compare": 600,
-          "stock": 1,
-          "imgIdx": 0
-        }
-      ],
-      "customReviews": [],
-      "customSizes": [],
-      "dimensions": "Standard Raha Fit",
-      "weight": "4.0g",
-      "featuredOnHome": false
-    },
-    {
       "id": "item-8144",
       "skuBase": "RAHA-VNS-017",
       "title": "Venus Bracelet",
@@ -153,12 +51,67 @@
       "sortOrder": 0
     },
     {
-      "id": "item-7628",
-      "skuBase": "RAHA-CLV-011",
-      "title": "Clover Trio",
+      "id": "item-4226",
+      "skuBase": "RAHA-TWT-014",
+      "title": "Twisted",
       "subtitle": "",
-      "price": 600,
+      "price": 550,
       "compare": 900,
+      "stock": 0,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "gold",
+      "category": "Bracelets",
+      "categorySlug": "bracelets",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281288147-1795205438152-IMG_0281.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0283.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281288147-1795205438152-IMG_0281.webp",
+          "tag": "02 Silver",
+          "label": "IMG_0281.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281294584-1795205445113-IMG_0282.webp",
+          "tag": "03 Angle 3",
+          "label": "IMG_0282.jpeg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Raha Finish",
+          "name": "Twisted",
+          "price": 550,
+          "stock": 0,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 900,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 0,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [],
+      "customReviews": [],
+      "weight": "4.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 0
+    },
+    {
+      "id": "item-9363",
+      "skuBase": "RAHA-PRL-016",
+      "title": "Pearls",
+      "subtitle": "",
+      "price": 350,
+      "compare": 600,
       "stock": 3,
       "rating": "5.0",
       "reviews": 24,
@@ -167,29 +120,29 @@
       "category": "Earrings",
       "categorySlug": "earrings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281304417-1795202825869-IMG_0100.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281306396-1795202832988-IMG_0101.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281260003-1795205849693-IMG_0018.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281304417-1795202825869-IMG_0100.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0100.jpeg"
+          "label": "IMG_0021.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281306396-1795202832988-IMG_0101.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281260003-1795205849693-IMG_0018.webp",
           "tag": "02 Silver",
-          "label": "IMG_0101.jpeg"
+          "label": "IMG_0018.jpeg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Signature Raha Finish",
-          "name": "Clover Trio",
-          "price": 600,
-          "stock": 3,
+          "desc": "Signature Edition",
+          "name": "Pearls",
+          "price": 350,
+          "stock": 1,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 900,
+          "compare": 600,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 3,
           "_customReviews": []
@@ -256,13 +209,63 @@
       "sortOrder": 1
     },
     {
+      "id": "item-7628",
+      "skuBase": "RAHA-CLV-011",
+      "title": "Clover Trio",
+      "subtitle": "",
+      "price": 600,
+      "compare": 900,
+      "stock": 2,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "gold",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281304417-1795202825869-IMG_0100.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281306396-1795202832988-IMG_0101.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281304417-1795202825869-IMG_0100.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0100.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281306396-1795202832988-IMG_0101.webp",
+          "tag": "02 Silver",
+          "label": "IMG_0101.jpeg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Raha Finish",
+          "name": "Clover Trio",
+          "price": 600,
+          "stock": 2,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 900,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 2,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [],
+      "customReviews": [],
+      "weight": "4.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 1
+    },
+    {
       "id": "ear-03",
       "skuBase": "RAHA-BLM-003",
       "title": "Blossoms",
       "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
       "price": 2650,
       "compare": 3450,
-      "stock": 15,
+      "stock": 14,
       "rating": "5.0",
       "reviews": 36,
       "badge": "Raha Edition",
@@ -304,12 +307,12 @@
           "desc": "2.5μm PVD Vacuum Gold",
           "name": "Gold Plated",
           "price": 2650,
-          "stock": 15,
+          "stock": 14,
           "imgIdx": 0,
           "suffix": "GLD",
           "compare": 3450,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 15,
+          "_productStock": 14,
           "_customReviews": []
         },
         {
@@ -384,45 +387,50 @@
       "sortOrder": 2
     },
     {
-      "id": "item-2844",
-      "skuBase": "RAHA-SPK-01",
-      "title": "Spark Trio",
+      "id": "item-8965",
+      "skuBase": "RAHA-BLM-012",
+      "title": "Bloom Cuff",
       "subtitle": "",
-      "price": 600,
-      "compare": 0,
-      "stock": 3,
+      "price": 550,
+      "compare": 1000,
+      "stock": 2,
       "rating": "5.0",
       "reviews": 24,
       "badge": "Raha Edition",
       "material": "gold",
-      "category": "Earrings",
-      "categorySlug": "earrings",
+      "category": "Bracelets",
+      "categorySlug": "bracelets",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281337691-1795202526756-IMG_0096.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281340141-1795202532740-IMG_0095.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281337691-1795202526756-IMG_0096.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0096.jpeg"
+          "label": "IMG_0106.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281340141-1795202532740-IMG_0095.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
           "tag": "02 Silver",
-          "label": "IMG_0095.jpeg"
+          "label": "IMG_0108.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281353292-1795203494079-IMG_0111.webp",
+          "tag": "03 Angle 3",
+          "label": "IMG_0111.jpeg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Signature Raha Finish",
-          "name": "Spark Trio",
-          "price": 600,
-          "stock": 3,
+          "desc": "Signature Edition",
+          "name": "Bloom Cuff",
+          "price": 550,
+          "stock": 2,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 0,
+          "compare": 1000,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 3,
+          "_productStock": 2,
           "_customReviews": []
         }
       ],
@@ -487,48 +495,43 @@
       "sortOrder": 3
     },
     {
-      "id": "item-8965",
-      "skuBase": "RAHA-BLM-012",
-      "title": "Bloom Cuff",
+      "id": "item-2844",
+      "skuBase": "RAHA-SPK-01",
+      "title": "Spark Trio",
       "subtitle": "",
-      "price": 550,
-      "compare": 1000,
-      "stock": 2,
+      "price": 600,
+      "compare": 0,
+      "stock": 3,
       "rating": "5.0",
       "reviews": 24,
       "badge": "Raha Edition",
       "material": "gold",
-      "category": "Bracelets",
-      "categorySlug": "bracelets",
+      "category": "Earrings",
+      "categorySlug": "earrings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281337691-1795202526756-IMG_0096.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281340141-1795202532740-IMG_0095.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281337691-1795202526756-IMG_0096.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0106.jpeg"
+          "label": "IMG_0096.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281340141-1795202532740-IMG_0095.webp",
           "tag": "02 Silver",
-          "label": "IMG_0108.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281353292-1795203494079-IMG_0111.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0111.jpeg"
+          "label": "IMG_0095.jpeg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Signature Edition",
-          "name": "Bloom Cuff",
-          "price": 550,
-          "stock": 2,
+          "desc": "Signature Raha Finish",
+          "name": "Spark Trio",
+          "price": 600,
+          "stock": 3,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 1000,
+          "compare": 0,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 3,
           "_customReviews": []
@@ -815,7 +818,7 @@
     }
   ],
   "settings": {
-    "announcementText": "WhatsApp Support: 0326 0870876 | Instagram: @rahajewels.co | Official Email: contact.rahaofficial@gmail.com",
+    "announcementText": "WhatsApp Support: 0326 0870876 | Instagram: @rahajewels.pk | Official Email: contact.rahaofficial@gmail.com",
     "freeShippingThreshold": 2500,
     "standardShippingFee": 300,
     "cityShippingRates": {
@@ -843,7 +846,8 @@
     "faqs": {
       "title": "faqs",
       "subtitle": "Everything  you  need to know about shopping, materials, nationwide delivery, and jewellery care at RAHA.",
-      "bodyHtml": "<div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">1. Do you have a physical store?</h3><p class=\"raha-policy-p\">Not just yet! We're currently an online-only brand. Shop your favourite pieces right here, from the comfort of your home.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">2. What materials are used in your jewellery?</h3><p class=\"raha-policy-p\">We carefully select our jewellery for its style, quality and affordability. Material details are mentioned in individual product descriptions. Most of our pieces are stainless steel and hypoallergenic because we care for you.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">10. How can I contact RAHA?</h3><p class=\"raha-policy-p\">We're just a message away! Reach us through Instagram (@rahajewels.co), WhatsApp (0326 0870876) or our gmail (contact.rahaofficial@gmail.com). ♡</p></div>"
+      "bodyHtml": "<div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">1. Do you have a physical store?</h3><p class=\"raha-policy-p\">Not just yet! We're currently an online-only brand. Shop your favourite pieces right here, from the comfort of your home.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">2. What materials are used in your jewellery?</h3><p class=\"raha-policy-p\">We carefully select our jewellery for its style, quality and affordability. Material details are mentioned in individual product descriptions. Most of our pieces are stainless steel and hypoallergenic because we care for you.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">10. How can I contact RAHA?</h3><p class=\"raha-policy-p\">We're just a message away! Reach us through Instagram (@rahajewels.pk), WhatsApp (0326 0870876) or our gmail (contact.rahaofficial@gmail.com). ♡</p></div>"
     }
-  }
+  },
+  "catalogCustomized": true
 }

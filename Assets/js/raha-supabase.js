@@ -172,6 +172,7 @@
       gallery: Array.isArray(p.gallery) ? p.gallery : [],
       custom_skus: skus,
       custom_sizes: Array.isArray(p.customSizes) ? p.customSizes : [],
+      stock: typeof p.stock === 'number' ? Math.max(0, Math.round(p.stock)) : 15,
       weight: p.weight || '4.0g',
       dimensions: p.dimensions || 'Standard Fit',
       featured_on_home: Boolean(p.featuredOnHome),

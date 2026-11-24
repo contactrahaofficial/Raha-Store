@@ -3017,10 +3017,26 @@
           loggedInView.style.display = 'block';
           var oldBuyerLink = document.getElementById('auth-go-to-account-link');
           if (oldBuyerLink) oldBuyerLink.remove();
+          var ownerActionsWrap = loggedInView.querySelector('div[style*="flex-direction:column"]');
+          if (ownerActionsWrap && !document.getElementById('auth-go-to-admin-link')) {
+            var dynAdminLink = document.createElement('a');
+            dynAdminLink.href = 'admin.html';
+            dynAdminLink.className = 'raha-btn raha-btn--glass';
+            dynAdminLink.id = 'auth-go-to-admin-link';
+            dynAdminLink.style.cssText = 'display:inline-block;width:100%;padding:11px 20px;text-decoration:none;color:var(--raha-gold);';
+            dynAdminLink.innerHTML = '<span>Enter Owner Admin Portal</span>';
+            var logoutBtnRef = document.getElementById('auth-logout-btn');
+            if (logoutBtnRef && logoutBtnRef.parentNode === ownerActionsWrap) {
+              ownerActionsWrap.insertBefore(dynAdminLink, logoutBtnRef);
+            } else {
+              ownerActionsWrap.appendChild(dynAdminLink);
+            }
+          }
         }
         if (formsView) formsView.style.display = 'none';
         if (nameEl) nameEl.textContent = 'Raha Store Owner';
         if (emailEl) emailEl.textContent = user.email;
+        adminLink = document.getElementById('auth-go-to-admin-link');
         if (adminLink) {
           adminLink.style.display = 'inline-block';
         }
@@ -3045,7 +3061,7 @@
         if (nameEl) nameEl.textContent = user.name || 'Raha Member';
         if (emailEl) emailEl.textContent = user.email;
         if (adminLink) {
-          adminLink.style.display = 'none';
+          adminLink.remove();
         }
       }
     } else {

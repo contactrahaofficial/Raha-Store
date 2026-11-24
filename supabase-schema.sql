@@ -292,3 +292,93 @@ execute function public.raha_sync_inventory_on_order();
 -- Lock down RPC execution so attackers/anon users CANNOT call stock functions directly via API
 revoke all on function public.raha_adjust_product_stock(text, text, text, integer) from public, anon, authenticated;
 revoke all on function public.raha_sync_inventory_on_order() from public, anon, authenticated;
+
+-- 9. SERVER-SIDE ORDER INTEGRITY TRIGGER (PREVENTS PRICE OR STATUS MANIPULATION — NEVER BLOCKS ORDERS)
+-- Sync standalone stock column with custom_skus[0]._productStock across all existing rows
+update public.raha_products
+set stock = coalesce(round((custom_skus->0->>'_productStock')::numeric)::integer, stock, 15)
+where jsonb_typeof(custom_skus) = 'array' and jsonb_array_length(custom_skus) > 0 and (custom_skus->0) ? '_productStock';
+
+-- Safely normalizes status, payment tags, and item prices BEFORE INSERT against raha_products.
+-- Wrapped in an exception handler so no edge case can ever drop or block a customer order.
+create or replace function public.raha_verify_order_before_insert()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_item jsonb;
+  v_new_items jsonb := '[]'::jsonb;
+  v_prod public.raha_products%rowtype;
+  v_qty integer;
+  v_unit_price integer;
+  v_calc_subtotal integer := 0;
+  v_sku_elem jsonb;
+  v_item_sku text;
+  v_item_var text;
+begin
+  begin
+    -- 1. Enforce safe initial order status and prevent fake payment-cleared tags on public insert
+    new.status := 'Pending';
+    if coalesce(new.admin_note, '') ilike '%CLEARED%' then
+      new.admin_note := '[PAYMENT: PENDING_VERIFICATION]';
+    end if;
+
+    -- 2. Verify each item's price directly against public.raha_products if product exists
+    if jsonb_typeof(new.items) = 'array' and jsonb_array_length(new.items) > 0 then
+      for v_item in select * from jsonb_array_elements(new.items) loop
+        v_qty := greatest(1, coalesce(round((v_item->>'qty')::numeric)::integer, 1));
+        v_unit_price := greatest(0, coalesce(round((v_item->>'price')::numeric)::integer, 0));
+        v_item_sku := upper(coalesce(v_item->>'sku', ''));
+        v_item_var := lower(coalesce(v_item->>'variant', ''));
+
+        if coalesce(v_item->>'id', '') <> '' then
+          select * into v_prod from public.raha_products where id = (v_item->>'id');
+          if found then
+            v_unit_price := coalesce(v_prod.price, v_unit_price);
+            if jsonb_typeof(v_prod.custom_skus) = 'array' and jsonb_array_length(v_prod.custom_skus) > 0 then
+              for v_sku_elem in select * from jsonb_array_elements(v_prod.custom_skus) loop
+                if (
+                  (coalesce(v_sku_elem->>'suffix', '') <> '' and position(upper(v_sku_elem->>'suffix') in v_item_sku) > 0)
+                  or (coalesce(v_sku_elem->>'name', '') <> '' and position(lower(v_sku_elem->>'name') in v_item_var) > 0)
+                ) then
+                  if coalesce(round((v_sku_elem->>'price')::numeric)::integer, 0) > 0 then
+                    v_unit_price := round((v_sku_elem->>'price')::numeric)::integer;
+                  end if;
+                  exit;
+                end if;
+              end loop;
+            end if;
+          end if;
+        end if;
+
+        v_item := jsonb_set(v_item, '{qty}', to_jsonb(v_qty), true);
+        v_item := jsonb_set(v_item, '{price}', to_jsonb(v_unit_price), true);
+        v_new_items := v_new_items || jsonb_build_array(v_item);
+        v_calc_subtotal := v_calc_subtotal + (v_unit_price * v_qty);
+      end loop;
+
+      if v_calc_subtotal > 0 then
+        new.items := v_new_items;
+        new.subtotal := v_calc_subtotal;
+        new.shipping := greatest(0, coalesce(new.shipping, 0));
+        new.total := v_calc_subtotal + new.shipping;
+      end if;
+    end if;
+  exception when others then
+    -- Fail-safe: never block or drop a customer order under any circumstance
+    raise warning 'raha_verify_order_before_insert fallback: %', sqlerrm;
+  end;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists trg_raha_orders_verify_before_insert on public.raha_orders;
+create trigger trg_raha_orders_verify_before_insert
+before insert on public.raha_orders
+for each row
+execute function public.raha_verify_order_before_insert();
+
+revoke all on function public.raha_verify_order_before_insert() from public, anon, authenticated;

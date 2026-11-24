@@ -108,6 +108,82 @@
     renderRestockTab();
     populateSettingsForm();
     populatePagesEditor();
+    autoHealHeavySupabaseImages();
+  }
+
+  var _autoHealRunning = false;
+  async function autoHealHeavySupabaseImages() {
+    if (_autoHealRunning || !window.RahaSupabase || typeof window.RahaSupabase.optimizeExistingSupabaseImage !== 'function') return;
+    var items = Array.isArray(catalog) ? catalog : [];
+    if (items.length === 0) return;
+    _autoHealRunning = true;
+    try {
+      var verifiedCache = {};
+      try {
+        verifiedCache = JSON.parse(localStorage.getItem('raha_verified_fast_imgs_v1') || '{}') || {};
+      } catch (e) {}
+
+      var urlMap = {};
+      var converted = 0;
+      var savedKB = 0;
+      async function checkAndFix(u) {
+        if (!u || typeof u !== 'string' || u.indexOf('raha-media/') === -1) return u;
+        if (verifiedCache[u]) return u; // Already verified fast — 0 network requests on future visits!
+        if (urlMap[u]) return urlMap[u];
+        var res = await window.RahaSupabase.optimizeExistingSupabaseImage(u);
+        if (res && res.changed && res.url) {
+          urlMap[u] = res.url;
+          verifiedCache[res.url] = 1;
+          converted++;
+          savedKB += Math.max(0, (res.beforeKB || 0) - (res.afterKB || 0));
+          return res.url;
+        }
+        urlMap[u] = u;
+        if (!res || !res.error) {
+          verifiedCache[u] = 1;
+        }
+        return u;
+      }
+      for (var i = 0; i < items.length; i++) {
+        var p = items[i];
+        var changed = false;
+        if (p.img) {
+          var nImg = await checkAndFix(p.img);
+          if (nImg !== p.img) { p.img = nImg; changed = true; }
+        }
+        if (p.hoverImg) {
+          var nHov = await checkAndFix(p.hoverImg);
+          if (nHov !== p.hoverImg) { p.hoverImg = nHov; changed = true; }
+        }
+        if (Array.isArray(p.gallery)) {
+          for (var g = 0; g < p.gallery.length; g++) {
+            if (p.gallery[g] && p.gallery[g].src) {
+              var nG = await checkAndFix(p.gallery[g].src);
+              if (nG !== p.gallery[g].src) { p.gallery[g].src = nG; changed = true; }
+            }
+          }
+        }
+        if (changed) {
+          try { await window.RahaSupabase.upsertProduct(p, catalog, settings, pages); } catch (e) {}
+        }
+      }
+      try {
+        localStorage.setItem('raha_verified_fast_imgs_v1', JSON.stringify(verifiedCache));
+      } catch (e) {}
+      if (converted > 0) {
+        try {
+          if (window.RahaSupabase.cache) window.RahaSupabase.cache.clear();
+          sessionStorage.removeItem('raha_cache_storefront_state_v3');
+          localStorage.setItem(CMS_STORE_KEY, JSON.stringify({ catalog: catalog, settings: settings, pages: pages }));
+        } catch (e) {}
+        renderProductsTab();
+        showToast('Auto-compressed ' + converted + ' heavy photo(s) — saved ' + (savedKB / 1024).toFixed(1) + ' MB!');
+      }
+    } catch (e) {
+      console.warn('Auto image heal warning:', e);
+    } finally {
+      _autoHealRunning = false;
+    }
   }
 
   function updateSupabaseStatusBadge() {
@@ -1271,21 +1347,46 @@
       multiIn.addEventListener('change', async function () {
         var files = Array.prototype.slice.call(multiIn.files || []);
         if (files.length === 0) return;
-        showToast('Uploading ' + files.length + ' photo(s) to storage...');
-        for (var f = 0; f < files.length; f++) {
-          var file = files[f];
-          var dataUrl = await readFileAsDataUrl(file);
-          var uploadedUrl = await window.RahaSupabase.uploadImage(file, dataUrl);
-          var count = editingProductGallery.length + 1;
-          editingProductGallery.push({
-            src: uploadedUrl,
-            tag: '0' + count + ' ' + (count === 1 ? 'Gold Plated' : count === 2 ? 'Silver' : 'Angle ' + count),
-            label: file.name
-          });
+        var saveBtn = document.querySelector('#admin-product-form button[type="submit"]');
+        var origSaveHtml = saveBtn ? saveBtn.innerHTML : '';
+        if (saveBtn) {
+          saveBtn.disabled = true;
+          saveBtn.innerHTML = '<span>⚡ Compressing &amp; Uploading Photo(s)...</span>';
         }
-        renderDynamicGalleryInModal();
-        showToast('Successfully added ' + files.length + ' photo(s)!');
-        multiIn.value = '';
+        var totalBeforeKB = 0;
+        var totalAfterKB = 0;
+        try {
+          for (var f = 0; f < files.length; f++) {
+            var file = files[f];
+            showToast('⚡ Compressing & uploading photo ' + (f + 1) + ' of ' + files.length + '...');
+            var dataUrl = await readFileAsDataUrl(file);
+            var uploadedUrl = await window.RahaSupabase.uploadImage(file, dataUrl);
+            var st = window.RahaSupabase && window.RahaSupabase.lastUploadStats;
+            if (st) {
+              totalBeforeKB += (st.beforeKB || 0);
+              totalAfterKB += (st.afterKB || 0);
+            }
+            var count = editingProductGallery.length + 1;
+            editingProductGallery.push({
+              src: uploadedUrl,
+              tag: '0' + count + ' ' + (count === 1 ? 'Gold Plated' : count === 2 ? 'Silver' : 'Angle ' + count),
+              label: file.name
+            });
+          }
+          renderDynamicGalleryInModal();
+          var sizeSummary = (totalBeforeKB > 0 && totalAfterKB > 0)
+            ? ' (Compressed ' + totalBeforeKB + ' KB → ' + totalAfterKB + ' KB)'
+            : '';
+          showToast('✓ Added & compressed ' + files.length + ' photo(s)' + sizeSummary + '! Ready to save.');
+        } catch (upErr) {
+          showToast('Upload failed: ' + (upErr.message || upErr), true);
+        } finally {
+          if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = origSaveHtml;
+          }
+          multiIn.value = '';
+        }
       });
     }
 

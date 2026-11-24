@@ -605,23 +605,28 @@
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, w, h);
 
-          var q = quality || 0.82;
+          var q = quality || 0.80;
           canvas.toBlob(function (blob) {
             if (objUrl) URL.revokeObjectURL(objUrl);
-            if (blob && blob.size > 0) {
-              // If still somehow over 1.8 MB (e.g. ultra-dense noise), re-compress at 0.72
-              if (blob.size > 1800000) {
-                canvas.toBlob(function (blob2) {
-                  resolve(blob2 || blob);
-                }, 'image/webp', 0.70);
-              } else {
-                resolve(blob);
-              }
+            // Note: Apple iPhone/Safari does not support WebP canvas encoding and silently returns a 1.7 MB image/png!
+            // Only accept WebP if the browser genuinely encoded image/webp under 350 KB; otherwise use universal JPEG compression (~80-120 KB).
+            if (blob && blob.size > 0 && blob.type === 'image/webp' && blob.size <= 350000) {
+              resolve(blob);
             } else {
-              // Fallback to JPEG blob if WebP toBlob unsupported
               canvas.toBlob(function (jBlob) {
-                if (jBlob) resolve(jBlob);
-                else reject(new Error('Image compression failed'));
+                if (jBlob && jBlob.size > 0) {
+                  if (jBlob.size > 350000) {
+                    canvas.toBlob(function (jBlob2) {
+                      resolve(jBlob2 || jBlob);
+                    }, 'image/jpeg', 0.70);
+                  } else {
+                    resolve(jBlob);
+                  }
+                } else if (blob && blob.size > 0) {
+                  resolve(blob);
+                } else {
+                  reject(new Error('Image compression failed'));
+                }
               }, 'image/jpeg', q);
             }
           }, 'image/webp', q);
@@ -654,13 +659,20 @@
         var baseName = origName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9._-]/g, '-');
         var ext = 'webp';
 
-        // Automatically compress to crisp WebP (< ~130 KB) before uploading to Supabase
+        // Automatically compress to crisp WebP/JPEG (< ~130 KB) before uploading to Supabase
+        var origKB = file ? Math.max(1, Math.round(file.size / 1024)) : 0;
         try {
           var compressedBlob = await compressImageToWebpBlob(file || dataUrl, 1200, 0.82);
           if (compressedBlob && compressedBlob.size > 0) {
             uploadPayload = compressedBlob;
             contentType = compressedBlob.type || 'image/webp';
             ext = contentType.indexOf('webp') !== -1 ? 'webp' : 'jpg';
+            var finalKB = Math.max(1, Math.round(compressedBlob.size / 1024));
+            window.RahaSupabase.lastUploadStats = {
+              beforeKB: origKB || finalKB,
+              afterKB: finalKB,
+              format: ext.toUpperCase()
+            };
           }
         } catch (compErr) {
           console.warn('Client WebP compression skipped, checking raw size:', compErr);
@@ -699,37 +711,51 @@
     return await compressImageDataUrl(dataUrl, 960, 0.82);
   }
 
-  /* 4a. Optimize an existing large Supabase Storage image URL in-place -> lightweight WebP */
+  /* 4a. Optimize an existing large Supabase Storage image URL in-place -> lightweight WebP/JPEG */
   async function optimizeExistingSupabaseImage(imageUrl) {
     if (!imageUrl || typeof imageUrl !== 'string') return { url: imageUrl, changed: false };
     var clean = imageUrl.trim();
-    // Skip if not a Supabase raha-media URL or already a lightweight .webp
     if (clean.indexOf('raha-media/') === -1) return { url: clean, changed: false };
-    if (clean.toLowerCase().split('?')[0].endsWith('.webp')) return { url: clean, changed: false };
 
     await loadConfigFromServer();
     var sb = initClient();
     if (!sb) return { url: clean, changed: false };
 
     try {
+      // Quick HEAD check so already-compressed <380 KB images cost 0 download bandwidth
+      try {
+        var headResp = await fetch(clean, { method: 'HEAD', mode: 'cors' });
+        if (headResp.ok) {
+          var cl = parseInt(headResp.headers.get('content-length') || '0', 10);
+          var ct = (headResp.headers.get('content-type') || '').toLowerCase();
+          if (cl > 0 && cl < 380 * 1024 && ct.indexOf('png') === -1) {
+            return { url: clean, changed: false };
+          }
+        }
+      } catch (hErr) {}
+
       var resp = await fetch(clean, { mode: 'cors' });
       if (!resp.ok) return { url: clean, changed: false };
       var origBlob = await resp.blob();
-      // Skip if already small (< 220 KB)
-      if (origBlob.size < 220 * 1024) return { url: clean, changed: false };
-
-      var webpBlob = await compressImageToWebpBlob(origBlob, 1200, 0.82);
-      if (!webpBlob || webpBlob.size >= origBlob.size) {
+      if (origBlob.size < 380 * 1024 && (origBlob.type || '').indexOf('png') === -1) {
         return { url: clean, changed: false };
       }
 
+      var compBlob = await compressImageToWebpBlob(origBlob, 1080, 0.80);
+      if (!compBlob || compBlob.size >= origBlob.size) {
+        return { url: clean, changed: false };
+      }
+
+      var isWebp = (compBlob.type || '').indexOf('webp') !== -1;
+      var ext = isWebp ? 'webp' : 'jpg';
+      var cType = isWebp ? 'image/webp' : 'image/jpeg';
       var rawFileName = decodeURIComponent(clean.split('/').pop().split('?')[0] || 'photo');
       var baseName = rawFileName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9._-]/g, '-');
-      var newPath = 'products/' + Date.now() + '-' + baseName + '.webp';
+      var newPath = 'products/' + Date.now() + '-' + baseName + '.' + ext;
 
-      var upRes = await sb.storage.from('raha-media').upload(newPath, webpBlob, {
+      var upRes = await sb.storage.from('raha-media').upload(newPath, compBlob, {
         cacheControl: '31536000',
-        contentType: 'image/webp',
+        contentType: cType,
         upsert: true
       });
       if (upRes.error) {
@@ -748,7 +774,7 @@
         url: newUrl,
         changed: newUrl !== clean,
         beforeKB: Math.round(origBlob.size / 1024),
-        afterKB: Math.round(webpBlob.size / 1024)
+        afterKB: Math.round(compBlob.size / 1024)
       };
     } catch (err) {
       console.warn('Optimize existing image error:', err);

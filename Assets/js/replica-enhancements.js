@@ -901,13 +901,20 @@
           availability: pStockNum > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
           itemCondition: 'https://schema.org/NewCondition',
           seller: { '@type': 'Organization', name: 'Raha Jewels' }
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: String(product.rating || '5.0'),
-          reviewCount: String(Math.max(1, Number(product.reviews) || 24))
         }
       };
+      var schemaRevs = Array.isArray(product.customReviews)
+        ? product.customReviews.filter(function (r) { return r && (r.body || r.title || r.author); })
+        : [];
+      if (schemaRevs.length > 0) {
+        var sSum = 0;
+        schemaRevs.forEach(function (r) { sSum += (Number(r.rating) || 5); });
+        productSchema.aggregateRating = {
+          '@type': 'AggregateRating',
+          ratingValue: (sSum / schemaRevs.length).toFixed(1),
+          reviewCount: String(schemaRevs.length)
+        };
+      }
       var scTag = document.createElement('script');
       scTag.type = 'application/ld+json';
       scTag.id = 'raha-dynamic-product-schema';
@@ -1167,7 +1174,21 @@
     if (catEyebrowEl) catEyebrowEl.textContent = product.category + ' • ' + product.subdept;
     if (titleEl) titleEl.textContent = product.title;
     if (subEl) subEl.textContent = product.subtitle;
-    if (ratingValEl) ratingValEl.textContent = '★ ' + product.rating + ' (' + product.reviews + ' Collectors)';
+    var pdpRealRevs = Array.isArray(product.customReviews)
+      ? product.customReviews.filter(function (r) { return r && (r.body || r.title || r.author); })
+      : [];
+    if (ratingValEl) {
+      if (pdpRealRevs.length > 0) {
+        var pdpStarSum = 0;
+        pdpRealRevs.forEach(function (r) { pdpStarSum += (Number(r.rating) || 5); });
+        var pdpAvg = (pdpStarSum / pdpRealRevs.length).toFixed(1);
+        ratingValEl.textContent = '★ ' + pdpAvg + ' (' + pdpRealRevs.length + ')';
+        ratingValEl.style.display = '';
+      } else {
+        ratingValEl.textContent = '';
+        ratingValEl.style.display = 'none';
+      }
+    }
 
     /* Render 4 Metallic Orb SKU Cards */
     if (skuCardsWrap) {
@@ -1426,124 +1447,101 @@
       };
     }
 
-    /* 4. Render Product-Specific Verified Collector Reviews Section */
+    /* 4. Render Product-Specific Verified Collector Reviews Section (Only Real Admin-Added Reviews) */
     var reviewsRoot = document.getElementById('pdp-reviews-container');
     if (reviewsRoot) {
-      var sampleReviews = [
-        {
-          author: 'Ayesha K.',
-          city: 'Lahore • Verified Buyer',
-          sku: product.skuBase + '-GLD',
-          date: '3 days ago',
-          rating: 5,
-          title: 'Zero tarnish even after daily wear!',
-          body: 'I ordered the ' + product.title + ' in Gold Plated and the weight, mirror polish, and mauve Raha keepsake box feel like a Rs 25,000 fine jewellery brand. Worn it in the shower all week—still looks brand new.'
-        },
-        {
-          author: 'Zoya M.',
-          city: 'Karachi • Verified Buyer',
-          sku: product.skuBase + '-SLV',
-          date: '1 week ago',
-          rating: 5,
-          title: 'The 925 Silver finish is stunning',
-          body: 'Switched to the 925 Sterling Silver SKU on the product page before ordering. Express delivery reached DHA Karachi within 24 hours and the hypoallergenic core feels weightless on sensitive skin.'
-        },
-        {
-          author: 'Mahnoor S.',
-          city: 'Islamabad • Verified Buyer',
-          sku: product.skuBase + '-GFT',
-          date: '2 weeks ago',
-          rating: 5,
-          title: 'Ordered the Raha Gift Edition for my sister',
-          body: 'The official Raha mauve packaging and architectural detailing on the ' + product.title + ' blew us away. Easily the most premium minimalist jewellery store in Pakistan right now.'
+      var activeReviews = Array.isArray(product.customReviews)
+        ? product.customReviews.filter(function (r) { return r && (r.body || r.title || r.author); })
+        : [];
+
+      if (activeReviews.length === 0) {
+        reviewsRoot.innerHTML = '';
+        reviewsRoot.style.display = 'none';
+      } else {
+        reviewsRoot.style.display = 'block';
+        var totalCount = activeReviews.length;
+        var sumStars = 0;
+        var c5 = 0, c4 = 0, c3 = 0;
+        activeReviews.forEach(function (r) {
+          var rVal = Number(r.rating) || 5;
+          sumStars += rVal;
+          if (rVal >= 5) c5++;
+          else if (rVal >= 4) c4++;
+          else c3++;
+        });
+
+        var avgRating = (sumStars / (totalCount || 1)).toFixed(1);
+        var p5 = Math.round((c5 / (totalCount || 1)) * 100);
+        var p4 = Math.round((c4 / (totalCount || 1)) * 100);
+        var p3 = Math.round((c3 / (totalCount || 1)) * 100);
+        var totalDisplayCount = totalCount;
+
+        function renderStars(n) {
+          var count = Math.max(1, Math.min(5, Math.round(Number(n) || 5)));
+          return '★★★★★'.slice(0, count) + '☆☆☆☆☆'.slice(0, 5 - count);
         }
-      ];
 
-      var hasCustomReviews = Array.isArray(product.customReviews) && product.customReviews.length > 0;
-      var activeReviews = hasCustomReviews ? product.customReviews : sampleReviews;
+        var revCardsHtml = '';
+        activeReviews.forEach(function (rv) {
+          var starStr = renderStars(rv.rating);
+          var photoHtml = '';
+          if (rv.img && typeof rv.img === 'string' && rv.img.trim()) {
+            var cleanImg = rv.img.trim();
+            photoHtml =
+              '<div style="margin-top:14px;margin-bottom:6px;">' +
+                '<div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;display:flex;align-items:center;gap:5px;">' +
+                  '<span>📷</span> Verified Customer Photo' +
+                '</div>' +
+                '<div class="raha-review-photo-wrap" style="display:inline-block;border-radius:12px;overflow:hidden;border:1px solid var(--border-subtle);background:#0d0a0c;cursor:pointer;max-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.3);position:relative;" onclick="window.rahaOpenImageModal ? window.rahaOpenImageModal(\'' + cleanImg.replace(/'/g, "\\'") + '\', \'' + (rv.author || '').replace(/'/g, "\\'") + '\') : window.open(\'' + cleanImg.replace(/'/g, "\\'") + '\', \'_blank\');">' +
+                  '<img src="' + cleanImg + '" alt="' + (rv.author || 'Customer') + ' wear" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover;display:block;transition:transform 0.35s ease;" onmouseover="this.style.transform=\'scale(1.06)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
+                  '<span style="position:absolute;bottom:6px;right:6px;background:rgba(13,10,12,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-family:var(--font-mono);font-size:9px;color:#fff;padding:2px 6px;">Inspect ↗</span>' +
+                '</div>' +
+              '</div>';
+          }
 
-      var totalCount = activeReviews.length;
-      var sumStars = 0;
-      var c5 = 0, c4 = 0, c3 = 0;
-      activeReviews.forEach(function (r) {
-        var rVal = Number(r.rating) || 5;
-        sumStars += rVal;
-        if (rVal >= 5) c5++;
-        else if (rVal >= 4) c4++;
-        else c3++;
-      });
+          revCardsHtml +=
+            '<article class="raha-pdp-review-card">' +
+              '<div>' +
+                '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
+                  '<span style="color:var(--raha-gold);letter-spacing:2px;font-size:13px;">' + starStr + '</span>' +
+                  '<span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);text-transform:uppercase;">' + (rv.date || 'Verified Buyer') + '</span>' +
+                '</div>' +
+                '<h4 style="font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--text-primary);margin-bottom:8px;">“' + (rv.title || 'Verified Review') + '”</h4>' +
+                '<p style="font-size:13.5px;line-height:1.7;color:var(--text-secondary);">' + (rv.body || '') + '</p>' +
+                photoHtml +
+              '</div>' +
+              '<div style="padding-top:12px;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">' +
+                '<div>' +
+                  '<div style="font-size:13px;font-weight:600;color:var(--text-primary);">' + (rv.author || 'Anonymous Collector') + '</div>' +
+                  '<div style="font-family:var(--font-mono);font-size:10px;color:var(--raha-gold);text-transform:uppercase;letter-spacing:0.1em;">' + (rv.city || 'Verified Buyer') + '</div>' +
+                '</div>' +
+                '<span style="font-family:var(--font-mono);font-size:9.5px;padding:4px 9px;border-radius:100px;background:rgba(114,94,103,0.22);border:1px solid var(--border-subtle);color:var(--text-secondary);">SKU: ' + (rv.sku || product.skuBase) + '</span>' +
+              '</div>' +
+            '</article>';
+        });
 
-      var avgRating = (sumStars / (totalCount || 1)).toFixed(1);
-      var p5 = Math.round((c5 / (totalCount || 1)) * 100);
-      var p4 = Math.round((c4 / (totalCount || 1)) * 100);
-      var p3 = Math.round((c3 / (totalCount || 1)) * 100);
-      var totalDisplayCount = hasCustomReviews ? totalCount : (product.reviews || 48);
-
-      function renderStars(n) {
-        var count = Math.max(1, Math.min(5, Math.round(Number(n) || 5)));
-        return '★★★★★'.slice(0, count) + '☆☆☆☆☆'.slice(0, 5 - count);
+        reviewsRoot.innerHTML =
+          '<div class="raha-pdp-reviews-layout">' +
+            '<div class="raha-review-summary-card">' +
+              '<div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;">Verified Raha Feedback</div>' +
+              '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px;">' +
+                '<span style="font-family:var(--font-serif);font-size:52px;line-height:1;color:var(--text-primary);">' + avgRating + '</span>' +
+                '<div>' +
+                  '<div style="color:var(--raha-gold);letter-spacing:3px;font-size:15px;">★★★★★</div>' +
+                  '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);margin-top:4px;">Based on ' + totalDisplayCount + ' Verified Review' + (totalDisplayCount === 1 ? '' : 's') + '</div>' +
+                '</div>' +
+              '</div>' +
+              '<div style="margin:20px 0;">' +
+                '<div class="raha-review-bar-row"><span>5 ★</span><div class="raha-review-bar-track"><div class="raha-review-bar-fill" style="width:' + p5 + '%;"></div></div><span>' + p5 + '%</span></div>' +
+                '<div class="raha-review-bar-row"><span>4 ★</span><div class="raha-review-bar-track"><div class="raha-review-bar-fill" style="width:' + p4 + '%;"></div></div><span>' + p4 + '%</span></div>' +
+                '<div class="raha-review-bar-row"><span>3 ★</span><div class="raha-review-bar-track"><div class="raha-review-bar-fill" style="width:' + p3 + '%;"></div></div><span>' + p3 + '%</span></div>' +
+              '</div>' +
+              '<div style="font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px;">100% of reviewers recommend <strong style="color:var(--text-primary);">' + product.title + '</strong>.</div>' +
+              '<a href="https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hi Raha! I want to share feedback on ' + product.title + ' (' + product.skuBase + ')') + '" target="_blank" rel="noopener" class="raha-btn raha-btn--glass" style="width:100%;font-size:11px;padding:12px 16px;">Submit Your Review →</a>' +
+            '</div>' +
+            '<div class="raha-pdp-reviews-cards">' + revCardsHtml + '</div>' +
+          '</div>';
       }
-
-      var revCardsHtml = '';
-      activeReviews.forEach(function (rv) {
-        var starStr = renderStars(rv.rating);
-        var photoHtml = '';
-        if (rv.img && typeof rv.img === 'string' && rv.img.trim()) {
-          var cleanImg = rv.img.trim();
-          photoHtml =
-            '<div style="margin-top:14px;margin-bottom:6px;">' +
-              '<div style="font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;display:flex;align-items:center;gap:5px;">' +
-                '<span>📷</span> Verified Customer Photo' +
-              '</div>' +
-              '<div class="raha-review-photo-wrap" style="display:inline-block;border-radius:12px;overflow:hidden;border:1px solid var(--border-subtle);background:#0d0a0c;cursor:pointer;max-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.3);position:relative;" onclick="window.rahaOpenImageModal ? window.rahaOpenImageModal(\'' + cleanImg.replace(/'/g, "\\'") + '\', \'' + (rv.author || '').replace(/'/g, "\\'") + '\') : window.open(\'' + cleanImg.replace(/'/g, "\\'") + '\', \'_blank\');">' +
-                '<img src="' + cleanImg + '" alt="' + (rv.author || 'Customer') + ' wear" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover;display:block;transition:transform 0.35s ease;" onmouseover="this.style.transform=\'scale(1.06)\'" onmouseout="this.style.transform=\'scale(1)\'">' +
-                '<span style="position:absolute;bottom:6px;right:6px;background:rgba(13,10,12,0.85);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:6px;font-family:var(--font-mono);font-size:9px;color:#fff;padding:2px 6px;">Inspect ↗</span>' +
-              '</div>' +
-            '</div>';
-        }
-
-        revCardsHtml +=
-          '<article class="raha-pdp-review-card">' +
-            '<div>' +
-              '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">' +
-                '<span style="color:var(--raha-gold);letter-spacing:2px;font-size:13px;">' + starStr + '</span>' +
-                '<span style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);text-transform:uppercase;">' + (rv.date || 'Verified Buyer') + '</span>' +
-              '</div>' +
-              '<h4 style="font-family:var(--font-serif);font-size:20px;font-weight:500;color:var(--text-primary);margin-bottom:8px;">“' + (rv.title || 'Exceptional Craftsmanship') + '”</h4>' +
-              '<p style="font-size:13.5px;line-height:1.7;color:var(--text-secondary);">' + (rv.body || '') + '</p>' +
-              photoHtml +
-            '</div>' +
-            '<div style="padding-top:12px;border-top:1px solid var(--border-subtle);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;">' +
-              '<div>' +
-                '<div style="font-size:13px;font-weight:600;color:var(--text-primary);">' + (rv.author || 'Anonymous Collector') + '</div>' +
-                '<div style="font-family:var(--font-mono);font-size:10px;color:var(--raha-gold);text-transform:uppercase;letter-spacing:0.1em;">' + (rv.city || 'Verified Buyer') + '</div>' +
-              '</div>' +
-              '<span style="font-family:var(--font-mono);font-size:9.5px;padding:4px 9px;border-radius:100px;background:rgba(114,94,103,0.22);border:1px solid var(--border-subtle);color:var(--text-secondary);">SKU: ' + (rv.sku || product.skuBase) + '</span>' +
-            '</div>' +
-          '</article>';
-      });
-
-      reviewsRoot.innerHTML =
-        '<div class="raha-pdp-reviews-layout">' +
-          '<div class="raha-review-summary-card">' +
-            '<div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--raha-gold);margin-bottom:6px;">Verified Raha Feedback</div>' +
-            '<div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px;">' +
-              '<span style="font-family:var(--font-serif);font-size:52px;line-height:1;color:var(--text-primary);">' + avgRating + '</span>' +
-              '<div>' +
-                '<div style="color:var(--raha-gold);letter-spacing:3px;font-size:15px;">★★★★★</div>' +
-                '<div style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);margin-top:4px;">Based on ' + totalDisplayCount + ' Verified Collectors</div>' +
-              '</div>' +
-            '</div>' +
-            '<div style="margin:20px 0;">' +
-              '<div class="raha-review-bar-row"><span>5 ★</span><div class="raha-review-bar-track"><div class="raha-review-bar-fill" style="width:' + p5 + '%;"></div></div><span>' + p5 + '%</span></div>' +
-              '<div class="raha-review-bar-row"><span>4 ★</span><div class="raha-review-bar-track"><div class="raha-review-bar-fill" style="width:' + p4 + '%;"></div></div><span>' + p4 + '%</span></div>' +
-              '<div class="raha-review-bar-row"><span>3 ★</span><div class="raha-review-bar-track"><div class="raha-review-bar-fill" style="width:' + p3 + '%;"></div></div><span>' + p3 + '%</span></div>' +
-            '</div>' +
-            '<div style="font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px;">100% of reviewers recommend <strong style="color:var(--text-primary);">' + product.title + '</strong>.</div>' +
-            '<a href="https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hi Raha! I want to share feedback on ' + product.title + ' (' + product.skuBase + ')') + '" target="_blank" rel="noopener" class="raha-btn raha-btn--glass" style="width:100%;font-size:11px;padding:12px 16px;">Submit Your Collector Review →</a>' +
-          '</div>' +
-          '<div class="raha-pdp-reviews-cards">' + revCardsHtml + '</div>' +
-        '</div>';
     }
 
     /* 5. Render 8 More Products at the Bottom ("Complete Your Curation & Explore More Pieces") */
@@ -1558,31 +1556,7 @@
       var relatedList = sameCat.concat(others);
       var rHtml = '';
       relatedList.forEach(function (rp, idx) {
-        rHtml +=
-          '<li class="raha-card" data-id="' + rp.id + '" data-title="' + rp.title + '" data-price="' + rp.price + '" data-compare="' + rp.compare + '" data-rating="' + rp.rating + '" data-material="' + rp.material + '" data-category="' + rp.category + '" data-img="' + rp.img + '" data-hover-img="' + rp.hoverImg + '" data-selected-variant="Gold Plated" data-order="' + idx + '" data-cursor="Inspect">' +
-            '<div class="raha-card__glare"></div>' +
-            '<a href="product.html?id=' + rp.id + '" class="raha-card__media" title="View ' + rp.title + ' Details, Gallery &amp; SKUs">' +
-              '<div class="raha-card__badges">' +
-                '<span class="raha-badge">' + rp.badge + '</span>' +
-                '<span class="raha-badge raha-badge--sale">Save Rs ' + (rp.compare - rp.price) + '</span>' +
-              '</div>' +
-              '<img src="' + rp.img + '" alt="' + rp.title + '" class="raha-card__img raha-card__img--primary" loading="lazy" decoding="async">' +
-              '<img src="' + rp.hoverImg + '" alt="' + rp.title + ' alternate" class="raha-card__img raha-card__img--hover" loading="lazy" decoding="async">' +
-            '</a>' +
-            '<div class="raha-card__body">' +
-              '<div>' +
-                '<div class="raha-card__meta">' +
-                  '<span>' + rp.category + ' • Gold Plated</span>' +
-                  '<span class="raha-card__rating">★ ' + rp.rating + ' (' + rp.reviews + ')</span>' +
-                '</div>' +
-                '<h3 class="raha-card__title"><a href="product.html?id=' + rp.id + '" class="raha-card__title-link">' + rp.title + '</a></h3>' +
-                '<div class="raha-card__price-row">' +
-                  '<span class="raha-card__price">' + formatPKR(rp.price) + '</span>' +
-                  '<span class="raha-card__compare">' + formatPKR(rp.compare) + '</span>' +
-                '</div>' +
-              '</div>' +
-            '</div>' +
-          '</li>';
+        rHtml += buildCardHtmlFromCatalogItem(rp, idx);
       });
       relatedGrid.innerHTML = rHtml;
       initProductCardsAndQuickView();
@@ -1793,71 +1767,13 @@
       }
     });
 
-    // 2. Curated Raha Collector Dispatches (NO random fallback to catalog[0])
-    // If fewer than 4 reviews exist, supplement with authentic Raha luxury dispatches
-    if (collected.length < 4) {
-      var defaultReviews = [
-        {
-          prodId: 'neck-01',
-          author: 'Anum R.',
-          city: 'Karachi • Verified Collector',
-          rating: 5,
-          fallbackTitle: 'Seraphina Liquid Herringbone Collar',
-          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
-          body: 'Ordered via WhatsApp concierge (0326 0870876) and received it in Karachi the very next afternoon. The liquid drape of the herringbone chain looks like luxury gold finish.'
-        },
-        {
-          prodId: 'ring-04',
-          author: 'Mehak S.',
-          city: 'Islamabad • Verified Collector',
-          rating: 5,
-          fallbackTitle: 'Mirage Trio Stacking Ring Set',
-          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
-          body: 'I wash my hands and sanitise constantly at work, and my Raha rings haven’t faded a single shade. Truly jewellery for the modern minimalist.'
-        },
-        {
-          prodId: 'brac-02',
-          author: 'Emaan T.',
-          city: 'Lahore • Verified Collector',
-          rating: 5,
-          fallbackTitle: 'Raha Riviera Micro-Tennis Bracelet',
-          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
-          body: 'The clasp security and brilliance on the Riviera micro-tennis bracelet rival pieces 10x the price. Arrived in the signature Raha mauve keepsake box!'
-        },
-        {
-          prodId: 'ear-02',
-          author: 'Ayesha K.',
-          city: 'Lahore • Verified Collector',
-          rating: 5,
-          fallbackTitle: 'Nova Baroque Pearl Linear Studs',
-          fallbackImg: 'Assets/Main Raha logo with slogan (The actual logo).webp',
-          body: 'Weightless on the ears and zero irritation on sensitive skin. The Gold Plated finish and packaging feel exceptionally luxurious.'
-        }
-      ];
-
-      defaultReviews.forEach(function (def) {
-        var alreadyHas = collected.some(function (c) {
-          return c.review.body === def.body;
-        });
-        if (!alreadyHas) {
-          // Look for matching product only; NEVER fall back to catalog[0]!
-          var matchingProd = catalog.find(function (p) { return p.id === def.prodId; });
-          if (!matchingProd) {
-            matchingProd = {
-              id: def.prodId,
-              title: def.fallbackTitle,
-              img: def.fallbackImg
-            };
-          }
-          collected.push({
-            review: def,
-            product: matchingProd
-          });
-        }
-      });
+    var parentSection = track.closest('.raha-section');
+    if (collected.length === 0) {
+      track.innerHTML = '';
+      if (parentSection) parentSection.style.display = 'none';
+      return;
     }
-
-    if (collected.length === 0) return;
+    if (parentSection) parentSection.style.display = '';
 
     // Save the unique count
     var uniqueItems = collected.slice();
@@ -2739,6 +2655,17 @@
       swatchesHtml += '<button type="button" class="raha-swatch-btn' + (sIdx === 0 ? ' is-selected' : '') + '">' + sw + '</button>';
     });
 
+    var realRevs = Array.isArray(p.customReviews)
+      ? p.customReviews.filter(function (r) { return r && (r.body || r.title || r.author); })
+      : [];
+    var cardRatingHtml = '';
+    if (realRevs.length > 0) {
+      var rSum = 0;
+      realRevs.forEach(function (r) { rSum += (Number(r.rating) || 5); });
+      var rAvg = (rSum / realRevs.length).toFixed(1);
+      cardRatingHtml = '<span class="raha-card__rating">★ ' + rAvg + ' (' + realRevs.length + ')</span>';
+    }
+
     var lowStockBadge = (pStock > 0 && pStock <= 5)
       ? '<span class="raha-badge raha-badge--low-stock">Only ' + pStock + ' Left</span>'
       : '';
@@ -2772,7 +2699,7 @@
           '<div>' +
             '<div class="raha-card__meta">' +
               '<span>' + (p.category || 'Jewellery') + ' • Gold Plated</span>' +
-              '<span class="raha-card__rating">★ ' + (p.rating || '5.0') + ' (' + (p.reviews || 24) + ')</span>' +
+              cardRatingHtml +
             '</div>' +
             '<h3 class="raha-card__title"><a href="' + pdpUrl + '" class="raha-card__title-link">' + p.title + '</a></h3>' +
             '<div class="raha-card__price-row">' +

@@ -163,6 +163,14 @@
             }
           }
         }
+        if (Array.isArray(p.customReviews)) {
+          for (var r = 0; r < p.customReviews.length; r++) {
+            if (p.customReviews[r] && p.customReviews[r].img) {
+              var nR = await checkAndFix(p.customReviews[r].img);
+              if (nR !== p.customReviews[r].img) { p.customReviews[r].img = nR; changed = true; }
+            }
+          }
+        }
         if (changed) {
           try { await window.RahaSupabase.upsertProduct(p, catalog, settings, pages); } catch (e) {}
         }
@@ -1252,7 +1260,7 @@
         var rIdx = Number(fileInput.getAttribute('data-rev-file-idx'));
         var current = collectReviewsFromModal();
         try {
-          showToast('Uploading review photo...');
+          showToast('⚡ Compressing & uploading review photo...');
           var dataUrl = await readFileAsDataUrl(file);
           var uploadedPath = dataUrl;
           if (window.RahaSupabase && typeof window.RahaSupabase.uploadImage === 'function') {
@@ -1263,7 +1271,9 @@
           }
           editingProductReviews = current;
           renderReviewsInModal();
-          showToast('Review photo attached successfully!');
+          var revSt = window.RahaSupabase && window.RahaSupabase.lastUploadStats;
+          var revStTxt = revSt ? (' (' + revSt.beforeKB + ' KB → ' + revSt.afterKB + ' KB ' + revSt.format + ')') : '';
+          showToast('✓ Review photo compressed' + revStTxt + ' & attached! Ready to save.');
         } catch (err) {
           showToast('Failed to upload photo: ' + (err.message || err), true);
         }

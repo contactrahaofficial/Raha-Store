@@ -65,17 +65,20 @@
     var defaultCat = window.RAHA_DEFAULT_CATALOG || window.RAHA_CATALOG || [];
     catalog = JSON.parse(JSON.stringify(defaultCat));
 
-    try {
-      var srvRes = await fetch('/api/store-data');
-      if (srvRes.ok) {
-        var srvData = await srvRes.json();
-        if (srvData && Array.isArray(srvData.catalog) && srvData.catalog.length > 0) {
-          catalog = srvData.catalog;
+    var isLocalDev = window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    if (isLocalDev) {
+      try {
+        var srvRes = await fetch('/api/store-data');
+        if (srvRes.ok) {
+          var srvData = await srvRes.json();
+          if (srvData && Array.isArray(srvData.catalog) && srvData.catalog.length > 0) {
+            catalog = srvData.catalog;
+          }
+          if (srvData && srvData.settings) settings = srvData.settings;
+          if (srvData && srvData.pages) pages = srvData.pages;
         }
-        if (srvData && srvData.settings) settings = srvData.settings;
-        if (srvData && srvData.pages) pages = srvData.pages;
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
 
     try {
       var localRaw = localStorage.getItem(CMS_STORE_KEY);
@@ -120,7 +123,7 @@
     try {
       var verifiedCache = {};
       try {
-        verifiedCache = JSON.parse(localStorage.getItem('raha_verified_fast_imgs_v1') || '{}') || {};
+        verifiedCache = JSON.parse(localStorage.getItem('raha_verified_fast_imgs_v2') || '{}') || {};
       } catch (e) {}
 
       var urlMap = {};
@@ -175,8 +178,27 @@
           try { await window.RahaSupabase.upsertProduct(p, catalog, settings, pages); } catch (e) {}
         }
       }
+      // Also auto-heal hero & category bento showcase images in settings!
+      if (settings && typeof settings === 'object') {
+        var setChanged = false;
+        var setImgKeys = ['heroEditorialImg', 'catImgEarrings', 'catImgNecklace', 'catImgRings', 'catImgBracelets', 'catImgAnklets'];
+        for (var sk = 0; sk < setImgKeys.length; sk++) {
+          var key = setImgKeys[sk];
+          if (settings[key] && typeof settings[key] === 'string' && settings[key].indexOf('raha-media/') !== -1) {
+            var nSetImg = await checkAndFix(settings[key]);
+            if (nSetImg !== settings[key]) {
+              settings[key] = nSetImg;
+              setChanged = true;
+            }
+          }
+        }
+        if (setChanged) {
+          try { await window.RahaSupabase.saveStoreSettingsAndPages(catalog, settings, pages); } catch (e) {}
+          populateSettingsForm();
+        }
+      }
       try {
-        localStorage.setItem('raha_verified_fast_imgs_v1', JSON.stringify(verifiedCache));
+        localStorage.setItem('raha_verified_fast_imgs_v2', JSON.stringify(verifiedCache));
       } catch (e) {}
       if (converted > 0) {
         try {
@@ -1901,16 +1923,18 @@
           console.warn('Supabase upsert warning:', err);
         }
 
-        try {
-          var hdrs = (window.RahaSupabase && typeof window.RahaSupabase.getAuthHeaders === 'function')
-            ? window.RahaSupabase.getAuthHeaders()
-            : { 'Content-Type': 'application/json', 'X-Raha-Admin': '1' };
-          await fetch('/api/store-data', {
-            method: 'POST',
-            headers: hdrs,
-            body: JSON.stringify({ catalog: catalog, settings: settings, pages: pages })
-          });
-        } catch (e) {}
+        if (window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+          try {
+            var hdrs = (window.RahaSupabase && typeof window.RahaSupabase.getAuthHeaders === 'function')
+              ? window.RahaSupabase.getAuthHeaders()
+              : { 'Content-Type': 'application/json', 'X-Raha-Admin': '1' };
+            await fetch('/api/store-data', {
+              method: 'POST',
+              headers: hdrs,
+              body: JSON.stringify({ catalog: catalog, settings: settings, pages: pages })
+            });
+          } catch (e) {}
+        }
 
         try {
           localStorage.setItem(CMS_STORE_KEY, JSON.stringify({
@@ -1965,16 +1989,18 @@
           sessionStorage.removeItem('raha_storefront_state_v6');
         } catch (cErr) {}
         await window.RahaSupabase.saveStoreSettingsAndPages(catalog, settings, pages);
-        try {
-          var hdrs = (window.RahaSupabase && typeof window.RahaSupabase.getAuthHeaders === 'function')
-            ? window.RahaSupabase.getAuthHeaders()
-            : { 'Content-Type': 'application/json', 'X-Raha-Admin': '1' };
-          await fetch('/api/store-data', {
-            method: 'POST',
-            headers: hdrs,
-            body: JSON.stringify({ catalog: catalog, settings: settings, pages: pages })
-          });
-        } catch (fErr) {}
+        if (window.location && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+          try {
+            var hdrs = (window.RahaSupabase && typeof window.RahaSupabase.getAuthHeaders === 'function')
+              ? window.RahaSupabase.getAuthHeaders()
+              : { 'Content-Type': 'application/json', 'X-Raha-Admin': '1' };
+            await fetch('/api/store-data', {
+              method: 'POST',
+              headers: hdrs,
+              body: JSON.stringify({ catalog: catalog, settings: settings, pages: pages })
+            });
+          } catch (fErr) {}
+        }
         showToast('Website Hero, Category Cards & Shipping Settings updated live!');
       });
     }

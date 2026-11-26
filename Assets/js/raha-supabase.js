@@ -92,6 +92,12 @@
   var DEFAULT_PUBLIC_SUPABASE_URL = 'https://zqlhbmyiyeyflcflicsv.supabase.co';
   var DEFAULT_PUBLIC_SUPABASE_KEY = 'sb_publishable_bOkLBTJBPqrKf7KK6Wje2A_QLTmgDwg';
 
+  function isLocalDevServer() {
+    if (typeof window === 'undefined' || !window.location) return false;
+    var h = (window.location.hostname || '').toLowerCase();
+    return h === 'localhost' || h === '127.0.0.1' || h === '0.0.0.0';
+  }
+
   function getConfig() {
     if (cachedConfig && cachedConfig.url && cachedConfig.anonKey) {
       return cachedConfig;
@@ -103,16 +109,18 @@
     if (cachedConfig && cachedConfig.url && cachedConfig.anonKey) {
       return cachedConfig;
     }
-    try {
-      var res = await fetch('/api/config');
-      if (res.ok) {
-        var data = await res.json();
-        if (data && data.supabaseUrl && data.supabaseKey) {
-          cachedConfig = { url: data.supabaseUrl, anonKey: data.supabaseKey };
-          return cachedConfig;
+    if (isLocalDevServer()) {
+      try {
+        var res = await fetch('/api/config');
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.supabaseUrl && data.supabaseKey) {
+            cachedConfig = { url: data.supabaseUrl, anonKey: data.supabaseKey };
+            return cachedConfig;
+          }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
     cachedConfig = { url: DEFAULT_PUBLIC_SUPABASE_URL, anonKey: DEFAULT_PUBLIC_SUPABASE_KEY };
     return cachedConfig;
   }
@@ -308,10 +316,12 @@
       }
     }
 
-    // Fetch local /api/store-data concurrently so custom fields (stock, customReviews) and newly uploaded items are always preserved
-    var localDbPromise = fetch('/api/store-data').then(function (r) {
-      return r.ok ? r.json() : null;
-    }).catch(function () { return null; });
+    // Fetch local /api/store-data concurrently only when running on localhost dev server
+    var localDbPromise = isLocalDevServer()
+      ? fetch('/api/store-data').then(function (r) {
+          return r.ok ? r.json() : null;
+        }).catch(function () { return null; })
+      : Promise.resolve(null);
 
     await loadConfigFromServer();
     var sb = initClient();
@@ -482,11 +492,13 @@
       localStorage.setItem(CMS_STORE_KEY, JSON.stringify(state));
     } catch (e) {}
 
-    await fetch('/api/store-data', {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify(state)
-    }).catch(function () {});
+    if (isLocalDevServer()) {
+      await fetch('/api/store-data', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(state)
+      }).catch(function () {});
+    }
 
     var sb = initClient();
     if (sb && product) {
@@ -515,11 +527,13 @@
       localStorage.setItem(CMS_STORE_KEY, JSON.stringify(state));
     } catch (e) {}
 
-    await fetch('/api/store-data', {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify(state)
-    }).catch(function () {});
+    if (isLocalDevServer()) {
+      await fetch('/api/store-data', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(state)
+      }).catch(function () {});
+    }
 
     var sb = initClient();
     if (sb && productId) {
@@ -535,9 +549,9 @@
       var img = new Image();
       img.onload = function () {
         try {
-          var w = img.naturalWidth || img.width || 800;
-          var h = img.naturalHeight || img.height || 800;
-          var limit = maxDim || 960;
+          var w = img.naturalWidth || img.width || 720;
+          var h = img.naturalHeight || img.height || 720;
+          var limit = maxDim || 720;
           if (w > limit || h > limit) {
             if (w >= h) {
               h = Math.round((h * limit) / w);
@@ -552,9 +566,9 @@
           canvas.height = h;
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, w, h);
-          var out = canvas.toDataURL('image/webp', quality || 0.82);
+          var out = canvas.toDataURL('image/webp', quality || 0.72);
           if (!out || out.indexOf('data:image') !== 0) {
-            out = canvas.toDataURL('image/jpeg', quality || 0.82);
+            out = canvas.toDataURL('image/jpeg', quality || 0.72);
           }
           resolve(out || dataUrl);
         } catch (e) {
@@ -566,7 +580,7 @@
     });
   }
 
-  /* Compress any File, Blob, or Image URL into a lightweight WebP Blob (max 1200px, ~70-130 KB) */
+  /* Compress any File, Blob, or Image URL into a lightweight WebP/JPEG Blob (sweet spot: max 720px @ 0.72, ~45-85 KB) */
   function compressImageToWebpBlob(source, maxDim, quality) {
     return new Promise(function (resolve, reject) {
       if (!source || typeof Image === 'undefined' || typeof document === 'undefined') {
@@ -587,9 +601,9 @@
       img.crossOrigin = 'anonymous';
       img.onload = function () {
         try {
-          var w = img.naturalWidth || img.width || 1000;
-          var h = img.naturalHeight || img.height || 1000;
-          var limit = maxDim || 1200;
+          var w = img.naturalWidth || img.width || 720;
+          var h = img.naturalHeight || img.height || 720;
+          var limit = maxDim || 720;
           if (w > limit || h > limit) {
             if (w >= h) {
               h = Math.round((h * limit) / w);
@@ -605,20 +619,28 @@
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, w, h);
 
-          var q = quality || 0.80;
+          var q = quality || 0.72;
           canvas.toBlob(function (blob) {
             if (objUrl) URL.revokeObjectURL(objUrl);
             // Note: Apple iPhone/Safari does not support WebP canvas encoding and silently returns a 1.7 MB image/png!
-            // Only accept WebP if the browser genuinely encoded image/webp under 350 KB; otherwise use universal JPEG compression (~80-120 KB).
-            if (blob && blob.size > 0 && blob.type === 'image/webp' && blob.size <= 350000) {
+            // Only accept WebP if the browser genuinely encoded image/webp under 140 KB; otherwise step down quality or use universal JPEG compression (~45-85 KB).
+            if (blob && blob.size > 0 && blob.type === 'image/webp' && blob.size <= 140000) {
               resolve(blob);
+            } else if (blob && blob.size > 0 && blob.type === 'image/webp' && blob.size > 140000) {
+              canvas.toBlob(function (wBlob2) {
+                if (wBlob2 && wBlob2.size > 0 && wBlob2.size < blob.size) {
+                  resolve(wBlob2);
+                } else {
+                  resolve(blob);
+                }
+              }, 'image/webp', Math.max(0.60, q - 0.10));
             } else {
               canvas.toBlob(function (jBlob) {
                 if (jBlob && jBlob.size > 0) {
-                  if (jBlob.size > 350000) {
+                  if (jBlob.size > 140000) {
                     canvas.toBlob(function (jBlob2) {
                       resolve(jBlob2 || jBlob);
-                    }, 'image/jpeg', 0.70);
+                    }, 'image/jpeg', 0.64);
                   } else {
                     resolve(jBlob);
                   }
@@ -659,10 +681,10 @@
         var baseName = origName.replace(/\.[^/.]+$/, '').replace(/[^a-zA-Z0-9._-]/g, '-');
         var ext = 'webp';
 
-        // Automatically compress to crisp WebP/JPEG (< ~130 KB) before uploading to Supabase
+        // Automatically compress to crisp Sweet-Spot WebP/JPEG (720px @ 0.72, ~45-85 KB) before uploading to Supabase
         var origKB = file ? Math.max(1, Math.round(file.size / 1024)) : 0;
         try {
-          var compressedBlob = await compressImageToWebpBlob(file || dataUrl, 1200, 0.82);
+          var compressedBlob = await compressImageToWebpBlob(file || dataUrl, 720, 0.72);
           if (compressedBlob && compressedBlob.size > 0) {
             uploadPayload = compressedBlob;
             contentType = compressedBlob.type || 'image/webp';
@@ -708,7 +730,7 @@
     }
 
     /* Cloud-Synced Compressed WebP Fallback (stored directly in Supabase raha_products row so it works on all devices worldwide) */
-    return await compressImageDataUrl(dataUrl, 960, 0.82);
+    return await compressImageDataUrl(dataUrl, 720, 0.72);
   }
 
   /* 4a. Optimize an existing large Supabase Storage image URL in-place -> lightweight WebP/JPEG */
@@ -722,13 +744,13 @@
     if (!sb) return { url: clean, changed: false };
 
     try {
-      // Quick HEAD check so already-compressed <380 KB images cost 0 download bandwidth
+      // Quick HEAD check so already-compressed <115 KB images cost 0 download bandwidth
       try {
         var headResp = await fetch(clean, { method: 'HEAD', mode: 'cors' });
         if (headResp.ok) {
           var cl = parseInt(headResp.headers.get('content-length') || '0', 10);
           var ct = (headResp.headers.get('content-type') || '').toLowerCase();
-          if (cl > 0 && cl < 380 * 1024 && ct.indexOf('png') === -1) {
+          if (cl > 0 && cl < 115 * 1024 && ct.indexOf('png') === -1 && ct.indexOf('jpeg') === -1 && ct.indexOf('jpg') === -1) {
             return { url: clean, changed: false };
           }
         }
@@ -737,12 +759,12 @@
       var resp = await fetch(clean, { mode: 'cors' });
       if (!resp.ok) return { url: clean, changed: false };
       var origBlob = await resp.blob();
-      if (origBlob.size < 380 * 1024 && (origBlob.type || '').indexOf('png') === -1) {
+      if (origBlob.size < 115 * 1024 && (origBlob.type || '').indexOf('png') === -1 && (origBlob.type || '').indexOf('jpeg') === -1) {
         return { url: clean, changed: false };
       }
 
-      var compBlob = await compressImageToWebpBlob(origBlob, 1080, 0.80);
-      if (!compBlob || compBlob.size >= origBlob.size) {
+      var compBlob = await compressImageToWebpBlob(origBlob, 720, 0.72);
+      if (!compBlob || compBlob.size >= origBlob.size * 0.90) {
         return { url: clean, changed: false };
       }
 
@@ -828,11 +850,13 @@
       localStorage.setItem(CMS_ORDERS_KEY, JSON.stringify(existing));
     } catch (e) {}
 
-    fetch('/api/orders', {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify({ action: 'create', order: orderObj })
-    }).catch(function () {});
+    if (isLocalDevServer()) {
+      fetch('/api/orders', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ action: 'create', order: orderObj })
+      }).catch(function () {});
+    }
 
     var sb = initClient();
     if (sb) {
@@ -860,19 +884,21 @@
       } catch (e) {}
     }
 
-    try {
-      var r = await fetch('/api/orders', { headers: getAuthHeaders() });
-      if (r.ok) {
-        var d = await r.json();
-        if (d && Array.isArray(d.orders) && d.orders.length > 0) {
-          var validApiOrders = d.orders.filter(isValidOrder);
-          try {
-            localStorage.setItem(CMS_ORDERS_KEY, JSON.stringify(validApiOrders));
-          } catch (e) {}
-          return validApiOrders;
+    if (isLocalDevServer()) {
+      try {
+        var r = await fetch('/api/orders', { headers: getAuthHeaders() });
+        if (r.ok) {
+          var d = await r.json();
+          if (d && Array.isArray(d.orders) && d.orders.length > 0) {
+            var validApiOrders = d.orders.filter(isValidOrder);
+            try {
+              localStorage.setItem(CMS_ORDERS_KEY, JSON.stringify(validApiOrders));
+            } catch (e) {}
+            return validApiOrders;
+          }
         }
-      }
-    } catch (e) {}
+      } catch (e) {}
+    }
 
     try {
       return JSON.parse(localStorage.getItem(CMS_ORDERS_KEY) || '[]').filter(isValidOrder);
@@ -899,11 +925,13 @@
       localStorage.setItem(CMS_ORDERS_KEY, JSON.stringify(list));
     } catch (e) {}
 
-    fetch('/api/orders', {
-      method: 'PATCH',
-      headers: getAuthHeaders(),
-      body: JSON.stringify({ action: 'update_status', orderId: orderId, status: newStatus, adminNote: adminNote, paymentStatus: paymentStatus })
-    }).catch(function () {});
+    if (isLocalDevServer()) {
+      fetch('/api/orders', {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ action: 'update_status', orderId: orderId, status: newStatus, adminNote: adminNote, paymentStatus: paymentStatus })
+      }).catch(function () {});
+    }
 
     var sb = initClient();
     if (sb) {
@@ -929,11 +957,13 @@
       localStorage.setItem(CMS_ORDERS_KEY, JSON.stringify(list));
     } catch (e) {}
 
-    fetch('/api/orders', {
-      method: 'DELETE',
-      headers: getAuthHeaders(),
-      body: JSON.stringify({ action: 'delete', orderId: orderId })
-    }).catch(function () {});
+    if (isLocalDevServer()) {
+      fetch('/api/orders', {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ action: 'delete', orderId: orderId })
+      }).catch(function () {});
+    }
 
     var sb = initClient();
     if (sb) {
@@ -1045,11 +1075,13 @@
       localStorage.setItem(CMS_STORE_KEY, JSON.stringify(state));
     } catch (e) {}
 
-    await fetch('/api/store-data', {
-      method: 'POST',
-      headers: getAuthHeaders(),
-      body: JSON.stringify(state)
-    }).catch(function () {});
+    if (isLocalDevServer()) {
+      await fetch('/api/store-data', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify(state)
+      }).catch(function () {});
+    }
 
     var sb = initClient();
     if (sb) {
@@ -1213,6 +1245,7 @@
 
   /* Best-effort: obtain a local dev-server token AFTER Supabase verified the user (never used as an auth fallback) */
   async function syncLocalServerToken(email, password, isOwner) {
+    if (!isLocalDevServer()) return;
     try {
       var r = await fetch(isOwner ? '/api/admin-auth' : '/api/customer-auth', {
         method: 'POST',
@@ -1343,7 +1376,9 @@
       var sb = await getSecureClient();
       await sb.auth.signOut();
     } catch (e) {}
-    try { await fetch('/api/logout', { method: 'POST' }); } catch (e) {}
+    if (isLocalDevServer()) {
+      try { await fetch('/api/logout', { method: 'POST' }); } catch (e) {}
+    }
     clearSessionCache();
     return { ok: true };
   }

@@ -1,50 +1,50 @@
 {
   "catalog": [
     {
-      "id": "item-2838",
-      "skuBase": "Snakdj",
-      "title": "Shskks",
-      "subtitle": "",
-      "price": 499,
-      "compare": 2728,
-      "stock": 2,
+      "id": "item-6201",
+      "skuBase": "RAHA-ELR-04",
+      "title": "ELARA",
+      "subtitle": "Add instant glamour to your look with these gold-plated fan stud earrings. Each earring features finely textured golden pleats in a stacked fan design, edged with sparkling imitation stones that catch the light beautifully. Measuring 3.0cm x 3.0cm and weighing just 4g, they are lightweight and comfortable for all-day wear. Perfect for casual, formal, and party occasions, these women's tops pair well with both traditional and western outfits. Each order includes 1 pair of earrings, packed in a polybag. A lovely gift for her. Shop trendy fashion jewellery online in Pakistan today.",
+      "price": 699,
+      "compare": 1199,
+      "stock": 5,
       "rating": "5.0",
       "reviews": 24,
       "badge": "Raha Edition",
-      "material": "gold",
-      "category": "Rings",
-      "categorySlug": "rings",
+      "material": "Gold Plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557090057-1795531445823-IMG_0127.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557092287-1795531447807-IMG_0128.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711556873-1795605376877-1795602434593-IMG_0027.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711559046-1795602436039-IMG_0025.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557090057-1795531445823-IMG_0127.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711556873-1795605376877-1795602434593-IMG_0027.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0127.jpeg"
+          "label": "IMG_0027.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557092287-1795531447807-IMG_0128.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0128.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711559046-1795602436039-IMG_0025.webp",
+          "tag": "",
+          "label": "IMG_0025.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557094424-1795531450097-IMG_0126.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795610174640-unnamed--12-.webp",
           "tag": "03 Angle 3",
-          "label": "IMG_0126.jpeg"
+          "label": "unnamed (12).jpg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Signature Raha Finish",
-          "name": "Shskks",
-          "price": 499,
-          "stock": 2,
+          "desc": "Signature Edition",
+          "name": "ELARA",
+          "price": 699,
+          "stock": 5,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 2728,
+          "compare": 1199,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 2,
+          "_productStock": 5,
           "_customReviews": []
         }
       ],
@@ -66,7 +66,7 @@
       "rating": "5.0",
       "reviews": 24,
       "badge": "Raha Edition",
-      "material": "gold",
+      "material": "Stainless Steel",
       "category": "Necklace",
       "categorySlug": "necklace",
       "subdept": "Signature Edition",
@@ -116,57 +116,135 @@
       "sortOrder": 0
     },
     {
-      "id": "item-9061",
-      "skuBase": "Dnjsk",
-      "title": "Salal",
-      "subtitle": "",
-      "price": 2729,
-      "compare": 27292,
-      "stock": 3,
+      "id": "item-2838",
+      "skuBase": "RAHA-BLM-76",
+      "title": "Bloom Ring",
+      "subtitle": "Add a graceful touch to your style with this brand new gold-plated flower ring. Made from durable stainless steel, it features a pretty floral design that looks elegant with casual, formal, and party outfits alike. Weighing just 6g, it feels comfortable for all-day wear. Available in sizes so you can pick the perfect fit. Each order includes 1 piece of ring, neatly packed in a polybag. A lovely choice for daily wear or a thoughtful gift for her. Shop trendy women's fashion jewellery online today.",
+      "price": 449,
+      "compare": 649,
+      "stock": 2,
       "rating": "5.0",
       "reviews": 24,
       "badge": "Raha Edition",
-      "material": "gold",
-      "category": "Earrings",
-      "categorySlug": "earrings",
+      "material": "Stainless Steel",
+      "category": "Rings",
+      "categorySlug": "rings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557099490-1795531673169-IMG_0135.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557099490-1795531673169-IMG_0135.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557090057-1795531445823-IMG_0127.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557092287-1795531447807-IMG_0128.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557099490-1795531673169-IMG_0135.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0135.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557090057-1795531445823-IMG_0127.webp",
+          "tag": "",
+          "label": "IMG_0127.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557092287-1795531447807-IMG_0128.webp",
+          "tag": "",
+          "label": "IMG_0128.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557094424-1795531450097-IMG_0126.webp",
+          "tag": "",
+          "label": "IMG_0126.jpeg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Signature Raha Finish",
-          "name": "Salal",
-          "price": 2729,
-          "stock": 3,
+          "desc": "Signature Edition",
+          "name": "Bloom Ring",
+          "price": 449,
+          "stock": 2,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 27292,
+          "compare": 649,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 3,
+          "_productStock": 2,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "8",
+        "9"
+      ],
+      "customReviews": [],
+      "weight": "4.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "item-9061",
+      "skuBase": "RAHA-CFF-014",
+      "title": "Ear Cuff",
+      "subtitle": "Add a touch of elegance to your look with this brand new gold-plated flower ear cuff. Crafted from durable copper alloy, this stylish single ear cuff features a delicate floral design measuring 2.5cm x 2.5cm, making it a perfect statement accessory. Lightweight at just 4g, it sits comfortably on the ear all day, with no piercing required. Whether you're dressing up for a party, a formal event, or keeping it casual, this women's earcuff pairs beautifully with any outfit. Each order includes 1 piece of ear cuff, neatly packed in a polybag. Shop trendy fashion jewellery today and elevate your everyday style.",
+      "price": 449,
+      "compare": 649,
+      "stock": 1,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "Gold Plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557099490-1795531673169-IMG_0135.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711562161-1795601225758-1795601202458-IMG_0138.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557099490-1795531673169-IMG_0135.webp",
+          "tag": "",
+          "label": "IMG_0135.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711562161-1795601225758-1795601202458-IMG_0138.webp",
+          "tag": "",
+          "label": "IMG_0138.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795602016225-1795601203510-IMG_0137.webp",
+          "tag": "",
+          "label": "IMG_0137.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711565376-1795602018094-1795601205077-IMG_0136.webp",
+          "tag": "",
+          "label": "IMG_0136.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795601489086-unnamed--8-.webp",
+          "tag": "",
+          "label": "unnamed (8).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Edition",
+          "name": "Ear Cuff",
+          "price": 449,
+          "stock": 1,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 649,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 1,
           "_customReviews": []
         }
       ],
       "customSizes": [],
       "customReviews": [],
       "weight": "4.0g",
-      "dimensions": "Standard Raha Fit",
+      "dimensions": "2.5cm x 2.5cm",
       "featuredOnHome": false,
-      "sortOrder": 0
+      "sortOrder": 2
     },
     {
       "id": "item-8144",
       "skuBase": "RAHA-VNS-017",
       "title": "Venus Bracelet",
       "subtitle": "Everyday elegance with a hint of sparkle. This delicate stainless steel bracelet features dainty crystal embellishments and a fine gold-tone chain, adding a subtle touch of sophistication to your look. Perfect for everyday wear and effortless styling.",
-      "price": 600,
-      "compare": 0,
+      "price": 599,
+      "compare": 899,
       "stock": 1,
       "rating": "5.0",
       "reviews": 24,
@@ -175,16 +253,16 @@
       "category": "Bracelets",
       "categorySlug": "bracelets",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281265296-1795206112480-IMG_0288.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281278770-1795206119208-IMG_0287.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711622650-1795281265296-1795206112480-IMG_0288.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711624122-1795281278770-1795206119208-IMG_0287.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281265296-1795206112480-IMG_0288.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711622650-1795281265296-1795206112480-IMG_0288.webp",
           "tag": "",
           "label": "IMG_0288.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281278770-1795206119208-IMG_0287.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711624122-1795281278770-1795206119208-IMG_0287.webp",
           "tag": "",
           "label": "IMG_0287.jpeg"
         },
@@ -198,235 +276,13 @@
         {
           "desc": "Signature Edition",
           "name": "Venus Bracelet",
-          "price": 600,
+          "price": 599,
           "stock": 1,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 0,
+          "compare": 899,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 1,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [],
-      "customReviews": [],
-      "weight": "4.0g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 1
-    },
-    {
-      "id": "item-5313",
-      "skuBase": "Bask",
-      "title": "Bsksk",
-      "subtitle": "",
-      "price": 499,
-      "compare": 37,
-      "stock": 2,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "gold",
-      "category": "Rings",
-      "categorySlug": "rings",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557101149-1795531379457-IMG_0129.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557103168-1795531381446-IMG_0130.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557101149-1795531379457-IMG_0129.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0129.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557103168-1795531381446-IMG_0130.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0130.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Raha Finish",
-          "name": "Bsksk",
-          "price": 499,
-          "stock": 2,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 37,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 2,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [],
-      "customReviews": [],
-      "weight": "4.0g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 1
-    },
-    {
-      "id": "item-4226",
-      "skuBase": "RAHA-TWT-014",
-      "title": "Twisted",
-      "subtitle": "Classic simplicity, beautifully twisted. This gold-tone stainless steel bracelet features an elegant rope-chain design, offering a timeless look with a touch of sophistication. A versatile piece that effortlessly complements both everyday outfits and evening ensembles.",
-      "price": 600,
-      "compare": 900,
-      "stock": 1,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "Stainless steel",
-      "category": "Bracelets",
-      "categorySlug": "bracelets",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281288147-1795205438152-IMG_0281.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281284410-1795205431592-IMG_0283.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0283.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281288147-1795205438152-IMG_0281.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0281.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281294584-1795205445113-IMG_0282.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0282.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795530842371-unnamed--6-.webp",
-          "tag": "04 Angle 4",
-          "label": "unnamed (6).jpg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Raha Finish",
-          "name": "Twisted",
-          "price": 600,
-          "stock": 1,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 900,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 1,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [],
-      "customReviews": [],
-      "weight": "4.0g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 2
-    },
-    {
-      "id": "item-1069",
-      "skuBase": "Raha",
-      "title": "Shjs",
-      "subtitle": "",
-      "price": 499,
-      "compare": 699,
-      "stock": 1,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Stainless Steel",
-      "material": "gold",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "Stainless Steel",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557105800-1795531333711-IMG_0125.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557107862-1795531337420-IMG_0124.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557105800-1795531333711-IMG_0125.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0125.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557107862-1795531337420-IMG_0124.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0124.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557110137-1795531339789-IMG_0123.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0123.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Stainless Steel",
-          "name": "Shjs",
-          "price": 499,
-          "stock": 1,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 699,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 1,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [
-        "9"
-      ],
-      "customReviews": [],
-      "weight": "4.0g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 2
-    },
-    {
-      "id": "item-7628",
-      "skuBase": "RAHA-CLV-011",
-      "title": "Clover Trio",
-      "subtitle": "Add a touch of everyday elegance with this affordable set of 3 stylish stud earrings. Designed for effortless everyday wear, these versatile studs are perfect for casual outfits, office looks, and minimal styling. A budget-friendly addition to your jewellery collection and a lovely option for everyday accessorizing.\nPackage Included: 3 pairs of Tops",
-      "price": 600,
-      "compare": 900,
-      "stock": 2,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "Stainless steel",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281304417-1795202825869-IMG_0100.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281306396-1795202832988-IMG_0101.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281304417-1795202825869-IMG_0100.webp",
-          "tag": "",
-          "label": "IMG_0100.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281306396-1795202832988-IMG_0101.webp",
-          "tag": "",
-          "label": "IMG_0101.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795524226673-TRIO.webp",
-          "tag": "",
-          "label": "TRIO.jpg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Edition",
-          "name": "Clover Trio",
-          "price": 600,
-          "stock": 2,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 900,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 2,
           "_customReviews": []
         }
       ],
@@ -438,96 +294,48 @@
       "sortOrder": 3
     },
     {
-      "id": "ear-01",
-      "skuBase": "RAHA-DZ-002",
-      "title": "Dazzle",
-      "subtitle": "Add timeless elegance to your look with these gold-plated flower stud earrings. Crafted from durable copper alloy with a shiny gold finish and sparkling imitation stones, these lightweight floral earring tops weigh just 6g and measure 2 cm x 2 cm, perfect for all-day comfort.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Copper/Alloy | Gold-Plated | Synthetic Stone | Flower Design | 1 Pair | Polybag Packing\n\nOrder now and add a little sparkle to your jewelry collection!",
-      "price": 650,
-      "compare": 1050,
-      "stock": 5,
-      "rating": "5.0",
-      "reviews": 48,
-      "badge": "Bestseller",
-      "material": "Gold Finish",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "Bestseller",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281308991-1795200732471-IMG_0083.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281311446-1795200727716-IMG_0082.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281308991-1795200732471-IMG_0083.webp",
-          "tag": "",
-          "label": "IMG_0083.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281311446-1795200727716-IMG_0082.webp",
-          "tag": "",
-          "label": "IMG_0082.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795524048019-RAHA-A1MODELS.webp",
-          "tag": "",
-          "label": "RAHA A1MODELS.jpg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Bestseller",
-          "name": "Dazzle",
-          "price": 650,
-          "stock": 5,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 1050,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 5,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [
-        "Standard Surgical Post",
-        "Comfort Locking Back"
-      ],
-      "customReviews": [],
-      "weight": "6g",
-      "dimensions": "Standard Atelier Fit",
-      "featuredOnHome": true,
-      "sortOrder": 4
-    },
-    {
-      "id": "item-9793",
-      "skuBase": "RAHA-",
-      "title": "Petite",
-      "subtitle": "Add a touch of love to your look with this waterproof gold-plated stainless steel heart necklace. Featuring a smooth, glossy heart pendant on a fine gold chain, this tarnish-free, hypoallergenic dainty necklace is gentle on sensitive skin and safe to wear in water.\n\nLightweight and comfortable for all-day wear, it's perfect for layering or wearing alone. Ideal for casual outings, formal events, and parties, it pairs beautifully with traditional and western outfits. A thoughtful gift for her on birthdays, anniversaries, Valentine's Day, Eid, or any special occasion.\n\nDetails: Stainless Steel | Gold-Plated | Waterproof | Anti-Tarnish | Hypoallergenic | Heart Pendant | 1 Piece\n\nOrder now and add a little love to your jewelry collection!",
-      "price": 899,
-      "compare": 1200,
+      "id": "item-3983",
+      "skuBase": "RAHA-VNS-087",
+      "title": "Venus Anklet",
+      "subtitle": "Add a little sparkle to every step with this gold-plated crystal ball anklet. A fine gold chain is dotted with shimmering round beads, set with tiny clear stones that catch the light beautifully. The delicate design is lightweight and comfortable for all-day wear, and the secure lobster clasp keeps it in place. Perfect for beach days, parties, weddings, or daily wear, this women's anklet pairs well with sandals, heels, and both traditional and western outfits. It also makes a lovely gift for her. Shop trendy women's fashion jewellery online in Pakistan today.",
+      "price": 699,
+      "compare": 1199,
       "stock": 1,
       "rating": "5.0",
       "reviews": 24,
-      "badge": "Raha Edition",
+      "badge": "Stainless Steel",
       "material": "Stainless Steel",
-      "category": "Necklace",
-      "categorySlug": "necklace",
+      "category": "Anklets",
+      "categorySlug": "anklets",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557112457-1795521832383-IMG_0274.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557112457-1795521832383-IMG_0274.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711567357-1795601664722-IMG_0291.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711570125-1795602013710-1795601666238-IMG_0292.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557112457-1795521832383-IMG_0274.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711567357-1795601664722-IMG_0291.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0291.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711570125-1795602013710-1795601666238-IMG_0292.webp",
           "tag": "",
-          "label": "IMG_0274.jpeg"
+          "label": "IMG_0292.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795613249319-unnamed--25-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (25).jpg"
         }
       ],
       "customSkus": [
         {
           "desc": "Signature Edition",
-          "name": "Petite",
-          "price": 899,
+          "name": "Venus Anklet",
+          "price": 699,
           "stock": 1,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 1200,
+          "compare": 1199,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 1,
           "_customReviews": []
@@ -535,88 +343,70 @@
       ],
       "customSizes": [],
       "customReviews": [],
-      "weight": "5.0g",
+      "weight": "4.0g",
       "dimensions": "Standard Raha Fit",
       "featuredOnHome": false,
-      "sortOrder": 5
+      "sortOrder": 3
     },
     {
-      "id": "ear-03",
-      "skuBase": "RAHA-BLM-003",
-      "title": "Blossoms",
-      "subtitle": "Elevate your look with these waterproof gold-plated stainless steel stud earrings. Made from durable stainless steel with a shiny gold finish and sparkling imitation stones, these tarnish-free, hypoallergenic earring tops are gentle on sensitive skin and safe to wear in water. They weigh just 4g and measure 3.0 cm x 3.0 cm, a statement size that stays comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Stainless Steel | Gold-Plated | Waterproof | Tarnish-Free | Hypoallergenic | Synthetic Stone | 3.0 cm x 3.0 cm | 4g | 1 Pair | Polybag Packing\n\nOrder now and add a little sparkle to your jewelry collection!",
-      "price": 2650,
-      "compare": 3450,
-      "stock": 14,
+      "id": "item-4226",
+      "skuBase": "RAHA-TWT-014",
+      "title": "Twisted",
+      "subtitle": "Classic simplicity, beautifully twisted. This gold-tone stainless steel bracelet features an elegant rope-chain design, offering a timeless look with a touch of sophistication. A versatile piece that effortlessly complements both everyday outfits and evening ensembles.",
+      "price": 599,
+      "compare": 899,
+      "stock": 1,
       "rating": "5.0",
-      "reviews": 36,
+      "reviews": 24,
       "badge": "Raha Edition",
-      "material": "Alloy",
-      "category": "Earrings",
-      "categorySlug": "earrings",
+      "material": "Stainless steel",
+      "category": "Bracelets",
+      "categorySlug": "bracelets",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281318790-1795200820444-IMG_0079.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281321011-1795200826468-IMG_0078.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711626034-1795281284410-1795205431592-IMG_0283.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711627859-1795281288147-1795205438152-IMG_0281.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281318790-1795200820444-IMG_0079.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711626034-1795281284410-1795205431592-IMG_0283.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0079.jpeg"
+          "label": "IMG_0283.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281321011-1795200826468-IMG_0078.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711627859-1795281288147-1795205438152-IMG_0281.webp",
           "tag": "02 Silver",
-          "label": "IMG_0078.jpeg"
+          "label": "IMG_0281.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281325244-1795200828825-IMG_0074.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711629904-1795281294584-1795205445113-IMG_0282.webp",
           "tag": "03 Angle 3",
-          "label": "IMG_0074.jpeg"
+          "label": "IMG_0282.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281330678-1795200850908-IMG_0087.webp",
-          "tag": "",
-          "label": "IMG_0087.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281334373-1795200853908-IMG_0085.webp",
-          "tag": "05 Angle 5",
-          "label": "IMG_0085.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795530842371-unnamed--6-.webp",
+          "tag": "04 Angle 4",
+          "label": "unnamed (6).jpg"
         }
       ],
       "customSkus": [
         {
-          "desc": "2.5μm PVD Vacuum Gold",
-          "name": "Gold Plated",
-          "price": 2650,
-          "stock": 5,
+          "desc": "Signature Edition",
+          "name": "Twisted",
+          "price": 599,
+          "stock": 1,
           "imgIdx": 0,
-          "suffix": "GLD",
-          "compare": 3450,
+          "suffix": "STD",
+          "compare": 899,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 14,
+          "_productStock": 1,
           "_customReviews": []
-        },
-        {
-          "desc": "Rhodium Mirror Finish",
-          "name": "925 Sterling Silver",
-          "price": 700,
-          "stock": 3,
-          "imgIdx": 1,
-          "suffix": "SLV",
-          "compare": 1200,
-          "orbClass": "raha-metal-orb--slv"
         }
       ],
-      "customSizes": [
-        "Standard Surgical Post",
-        "Comfort Locking Back"
-      ],
+      "customSizes": [],
       "customReviews": [],
-      "weight": "4g",
-      "dimensions": "Standard Atelier Fit",
-      "featuredOnHome": true,
-      "sortOrder": 5
+      "weight": "4.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 4
     },
     {
       "id": "item-7007",
@@ -669,54 +459,62 @@
       "sortOrder": 5
     },
     {
-      "id": "item-7276",
-      "skuBase": "RAHA-BWT-010",
-      "title": "Bow Trio",
-      "subtitle": "Add a touch of everyday elegance with this affordable set of 3 stylish stud earrings. Designed for effortless everyday wear, these versatile studs are perfect for casual outfits, office looks, and minimal styling. A budget-friendly addition to your jewellery collection and a lovely option for everyday accessorizing.\nPackage Included: 3 pairs of Tops",
-      "price": 600,
-      "compare": 900,
-      "stock": 3,
+      "id": "item-5313",
+      "skuBase": "RAHA-SPK-03",
+      "title": "Sparkle Band Ring",
+      "subtitle": "Elevate your everyday look with this brand new gold-plated ring featuring a beautiful round pattern design. Made from durable stainless steel, it combines polished golden dots with a row of sparkling stones for a elegant, eye-catching finish. Weighing just 6g, it feels comfortable for all-day wear. Available in sizes  8, and 9, so you can choose the perfect fit. Ideal for casual, formal, and party occasions, it also makes a lovely gift for her. Each order includes 1 piece of ring, packed in a polybag. Shop trendy women's fashion jewellery online today.",
+      "price": 449,
+      "compare": 649,
+      "stock": 2,
       "rating": "5.0",
       "reviews": 24,
       "badge": "Raha Edition",
       "material": "Stainless steel",
-      "category": "Earrings",
-      "categorySlug": "earrings",
+      "category": "Rings",
+      "categorySlug": "rings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281313829-1795202706470-IMG_0097.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281315933-1795202714102-IMG_0098.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711631958-1795557101149-1795531379457-IMG_0129.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711633504-1795557103168-1795531381446-IMG_0130.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281313829-1795202706470-IMG_0097.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711631958-1795557101149-1795531379457-IMG_0129.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0097.jpeg"
+          "label": "IMG_0129.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281315933-1795202714102-IMG_0098.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0098.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711633504-1795557103168-1795531381446-IMG_0130.webp",
+          "tag": "Photo 3",
+          "label": "IMG_0130.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795601874495-unnamed--9-.webp",
+          "tag": "Photo 2",
+          "label": "unnamed (9).jpg"
         }
       ],
       "customSkus": [
         {
           "desc": "Signature Edition",
-          "name": "Bow Trio",
-          "price": 600,
-          "stock": 3,
+          "name": "Sparkle Band Ring",
+          "price": 449,
+          "stock": 2,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 900,
+          "compare": 649,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 3,
+          "_productStock": 2,
           "_customReviews": []
         }
       ],
-      "customSizes": [],
+      "customSizes": [
+        "8",
+        "9"
+      ],
       "customReviews": [],
-      "weight": "4.0g",
+      "weight": "6.0g",
       "dimensions": "Standard Raha Fit",
       "featuredOnHome": false,
-      "sortOrder": 6
+      "sortOrder": 5
     },
     {
       "id": "item-9363",
@@ -733,11 +531,11 @@
       "category": "Earrings",
       "categorySlug": "earrings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711638282-1795281255995-1795205843258-IMG_0021.webp",
       "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281260003-1795205849693-IMG_0018.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281255995-1795205843258-IMG_0021.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711638282-1795281255995-1795205843258-IMG_0021.webp",
           "tag": "01 Gold Plated",
           "label": "IMG_0021.jpeg"
         },
@@ -774,180 +572,12 @@
       "sortOrder": 6
     },
     {
-      "id": "item-1710",
-      "skuBase": "RAHA-HRT-03",
-      "title": "Heart Glow",
-      "subtitle": "Add a touch of sparkle to your look with this waterproof gold-plated stainless steel heart necklace. Featuring an open heart pendant lined with shimmering clear crystals on a fine gold chain, this tarnish-free, hypoallergenic dainty necklace is gentle on sensitive skin and safe to wear in water.\n\nLightweight and comfortable for all-day wear, it's perfect for layering or wearing alone. Ideal for casual outings, formal events, and parties, it pairs beautifully with traditional and western outfits. A thoughtful gift for her on birthdays, anniversaries, Valentine's Day, Eid, or any special occasion.\n\nDetails: Stainless Steel | Gold-Plated | Waterproof | Anti-Tarnish | Hypoallergenic | Crystal Heart Pendant | 1 Piece\n\nOrder now and add a little sparkle to your jewelry collection!",
-      "price": 899,
-      "compare": 1200,
-      "stock": 1,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "Stainless Steel",
-      "category": "Necklace",
-      "categorySlug": "necklace",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557117238-1795521778818-IMG_0277.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557120146-1795521781369-IMG_0279.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557117238-1795521778818-IMG_0277.webp",
-          "tag": "",
-          "label": "IMG_0277.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557120146-1795521781369-IMG_0279.webp",
-          "tag": "",
-          "label": "IMG_0279.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557122056-1795521782817-IMG_0280.webp",
-          "tag": "",
-          "label": "IMG_0280.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557124143-1795521784079-IMG_0278.webp",
-          "tag": "",
-          "label": "IMG_0278.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Edition",
-          "name": "Heart Glow",
-          "price": 899,
-          "stock": 1,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 1200,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 1,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [],
-      "customReviews": [],
-      "weight": "7.0g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 6
-    },
-    {
-      "id": "item-8965",
-      "skuBase": "RAHA-BLM-012",
-      "title": "Bloom Cuff",
-      "subtitle": "Complete your look with this golden-plated adjustable bracelet. Crafted from durable alloy with a shiny golden finish, this women's bracelet weighs 29g and features an adjustable size that fits most wrists comfortably, making it a statement piece for any outfit.\n\nIdeal for casual outings, formal events, and parties, it pairs beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Alloy | Golden-Plated | Adjustable Size | 29g | 1 Piece | Polybag Packing\n\nOrder now and add a little shine to your jewelry collection!",
-      "price": 550,
-      "compare": 1000,
-      "stock": 2,
-      "rating": "5.0",
-      "reviews": 24,
-      "badge": "Raha Edition",
-      "material": "gold",
-      "category": "Bracelets",
-      "categorySlug": "bracelets",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0106.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0108.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281353292-1795203494079-IMG_0111.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0111.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Edition",
-          "name": "Bloom Cuff",
-          "price": 550,
-          "stock": 2,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 1000,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 2,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [],
-      "customReviews": [],
-      "weight": "29g",
-      "dimensions": "Standard Raha Fit",
-      "featuredOnHome": false,
-      "sortOrder": 7
-    },
-    {
-      "id": "ear-02",
-      "skuBase": "RAHA-PTL-004",
-      "title": "Clovers",
-      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
-      "price": 650,
-      "compare": 1050,
-      "stock": 5,
-      "rating": "5.0",
-      "reviews": 36,
-      "badge": "Raha Edition",
-      "material": "Gold Plated",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281342359-1795201026866-IMG_0094.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281345192-1795201029937-IMG_0093.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281342359-1795201026866-IMG_0094.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0094.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281345192-1795201029937-IMG_0093.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0093.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "Signature Edition",
-          "name": "Clovers",
-          "price": 650,
-          "stock": 5,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 1050,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 5,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [
-        "Standard Surgical Post",
-        "Comfort Locking Back"
-      ],
-      "customReviews": [],
-      "weight": "4g",
-      "dimensions": "Standard Atelier Fit",
-      "featuredOnHome": false,
-      "sortOrder": 8
-    },
-    {
-      "id": "item-2844",
-      "skuBase": "RAHA-SPK-01",
-      "title": "Spark Trio",
-      "subtitle": "Add a touch of everyday elegance with this affordable set of 3 stylish stud earrings. Designed for effortless everyday wear, these versatile studs are perfect for casual outfits, office looks, and minimal styling. A budget-friendly addition to your jewelry collection and a lovely option for everyday accessorizing.\nPackage Included: 3 pairs of Tops",
-      "price": 600,
-      "compare": 0,
+      "id": "item-7628",
+      "skuBase": "RAHA-CLV-011",
+      "title": "Clover Trio",
+      "subtitle": "Add a touch of everyday elegance with this affordable set of 3 stylish stud earrings. Designed for effortless everyday wear, these versatile studs are perfect for casual outfits, office looks, and minimal styling. A budget-friendly addition to your jewellery collection and a lovely option for everyday accessorizing.\nPackage Included: 3 pairs of Tops",
+      "price": 599,
+      "compare": 899,
       "stock": 3,
       "rating": "5.0",
       "reviews": 24,
@@ -956,29 +586,34 @@
       "category": "Earrings",
       "categorySlug": "earrings",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281337691-1795202526756-IMG_0096.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281340141-1795202532740-IMG_0095.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711635167-1795281304417-1795202825869-IMG_0100.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711636574-1795281306396-1795202832988-IMG_0101.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281337691-1795202526756-IMG_0096.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0096.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711635167-1795281304417-1795202825869-IMG_0100.webp",
+          "tag": "",
+          "label": "IMG_0100.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281340141-1795202532740-IMG_0095.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0095.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711636574-1795281306396-1795202832988-IMG_0101.webp",
+          "tag": "",
+          "label": "IMG_0101.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795524226673-TRIO.webp",
+          "tag": "",
+          "label": "TRIO.jpg"
         }
       ],
       "customSkus": [
         {
           "desc": "Signature Edition",
-          "name": "Spark Trio",
-          "price": 600,
+          "name": "Clover Trio",
+          "price": 599,
           "stock": 3,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 0,
+          "compare": 899,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 3,
           "_customReviews": []
@@ -989,46 +624,189 @@
       "weight": "4.0g",
       "dimensions": "Standard Raha Fit",
       "featuredOnHome": false,
-      "sortOrder": 9
+      "sortOrder": 6
     },
     {
-      "id": "ear-04",
-      "skuBase": "RAHA-HRT-005",
-      "title": "Hearties",
-      "subtitle": "Add a touch of charm to your look with these golden-plated heart stud earrings. Crafted from durable alloy and brass with a shiny golden finish and sparkling imitation stones, these heart earring tops weigh 6g and measure 1 cm x 1 cm, a dainty size that is subtle, stylish, and comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Alloy/Brass | Golden-Plated | Synthetic Stone | Heart Design | 1 cm x 1 cm | 6g | 1 Pair\n\nOrder now and add a little sparkle to your jewelry collection!",
-      "price": 450,
-      "compare": 800,
+      "id": "item-9793",
+      "skuBase": "RAHA-",
+      "title": "Petite",
+      "subtitle": "Add a touch of love to your look with this waterproof gold-plated stainless steel heart necklace. Featuring a smooth, glossy heart pendant on a fine gold chain, this tarnish-free, hypoallergenic dainty necklace is gentle on sensitive skin and safe to wear in water.\n\nLightweight and comfortable for all-day wear, it's perfect for layering or wearing alone. Ideal for casual outings, formal events, and parties, it pairs beautifully with traditional and western outfits. A thoughtful gift for her on birthdays, anniversaries, Valentine's Day, Eid, or any special occasion.\n\nDetails: Stainless Steel | Gold-Plated | Waterproof | Anti-Tarnish | Hypoallergenic | Heart Pendant | 1 Piece\n\nOrder now and add a little love to your jewelry collection!",
+      "price": 899,
+      "compare": 1199,
+      "stock": 1,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "Stainless Steel",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557112457-1795521832383-IMG_0274.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795602237701-unnamed--10-.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557112457-1795521832383-IMG_0274.webp",
+          "tag": "",
+          "label": "IMG_0274.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795602237701-unnamed--10-.webp",
+          "tag": "",
+          "label": "unnamed (10).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Edition",
+          "name": "Petite",
+          "price": 899,
+          "stock": 1,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 1199,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 1,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [],
+      "customReviews": [],
+      "weight": "5.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 6
+    },
+    {
+      "id": "ear-03",
+      "skuBase": "RAHA-BLM-003",
+      "title": "Blossoms",
+      "subtitle": "Elevate your look with these waterproof gold-plated stainless steel stud earrings. Made from durable stainless steel with a shiny gold finish and sparkling imitation stones, these tarnish-free, hypoallergenic earring tops are gentle on sensitive skin and safe to wear in water. They weigh just 4g and measure 3.0 cm x 3.0 cm, a statement size that stays comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Stainless Steel | Gold-Plated | Waterproof | Tarnish-Free | Hypoallergenic | Synthetic Stone | 3.0 cm x 3.0 cm | 4g | 1 Pair | Polybag Packing\n\nOrder now and add a little sparkle to your jewelry collection!",
+      "price": 699,
+      "compare": 1199,
+      "stock": 10,
+      "rating": "5.0",
+      "reviews": 36,
+      "badge": "Raha Edition",
+      "material": "Gold Plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711642965-1795281318790-1795200820444-IMG_0079.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281321011-1795200826468-IMG_0078.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711642965-1795281318790-1795200820444-IMG_0079.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0079.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281321011-1795200826468-IMG_0078.webp",
+          "tag": "02 Silver",
+          "label": "IMG_0078.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281325244-1795200828825-IMG_0074.webp",
+          "tag": "03 Angle 3",
+          "label": "IMG_0074.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711646039-1795281330678-1795200850908-IMG_0087.webp",
+          "tag": "",
+          "label": "IMG_0087.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711647540-1795281334373-1795200853908-IMG_0085.webp",
+          "tag": "05 Angle 5",
+          "label": "IMG_0085.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795610401549-unnamed--13-.webp",
+          "tag": "06 Angle 6",
+          "label": "unnamed (13).jpg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795610428398-unnamed--14-.webp",
+          "tag": "07 Angle 7",
+          "label": "unnamed (14).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "2.5μm PVD Vacuum Gold",
+          "name": "Gold Plated",
+          "price": 699,
+          "stock": 5,
+          "imgIdx": 0,
+          "suffix": "GLD",
+          "compare": 1199,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 10,
+          "_customReviews": []
+        },
+        {
+          "desc": "Rhodium Mirror Finish",
+          "name": "925 Sterling Silver",
+          "price": 699,
+          "stock": 3,
+          "imgIdx": 1,
+          "suffix": "SLV",
+          "compare": 1199,
+          "orbClass": "raha-metal-orb--slv"
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": true,
+      "sortOrder": 7
+    },
+    {
+      "id": "ear-01",
+      "skuBase": "RAHA-DZ-002",
+      "title": "Dazzle",
+      "subtitle": "Add timeless elegance to your look with these gold-plated flower stud earrings. Crafted from durable copper alloy with a shiny gold finish and sparkling imitation stones, these lightweight floral earring tops weigh just 6g and measure 2 cm x 2 cm, perfect for all-day comfort.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Copper/Alloy | Gold-Plated | Synthetic Stone | Flower Design | 1 Pair | Polybag Packing\n\nOrder now and add a little sparkle to your jewelry collection!",
+      "price": 649,
+      "compare": 1049,
       "stock": 5,
-      "rating": "4.9",
-      "reviews": 27,
+      "rating": "5.0",
+      "reviews": 48,
       "badge": "Bestseller",
-      "material": "Gold plated",
+      "material": "Gold Plated",
       "category": "Earrings",
       "categorySlug": "earrings",
       "subdept": "Bestseller",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281355523-1795201348180-IMG_0090.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281358280-1795201353816-IMG_0089.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711640421-1795281308991-1795200732471-IMG_0083.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281311446-1795200727716-IMG_0082.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281355523-1795201348180-IMG_0090.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0090.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711640421-1795281308991-1795200732471-IMG_0083.webp",
+          "tag": "",
+          "label": "IMG_0083.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281358280-1795201353816-IMG_0089.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0089.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281311446-1795200727716-IMG_0082.webp",
+          "tag": "",
+          "label": "IMG_0082.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795524048019-RAHA-A1MODELS.webp",
+          "tag": "",
+          "label": "RAHA A1MODELS.jpg"
         }
       ],
       "customSkus": [
         {
           "desc": "Bestseller",
-          "name": "Hearties",
-          "price": 450,
+          "name": "Dazzle",
+          "price": 649,
           "stock": 5,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 800,
+          "compare": 1049,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 5,
           "_customReviews": []
@@ -1041,172 +819,126 @@
       "customReviews": [],
       "weight": "6g",
       "dimensions": "Standard Atelier Fit",
-      "featuredOnHome": false,
-      "sortOrder": 11
+      "featuredOnHome": true,
+      "sortOrder": 7
     },
     {
-      "id": "ear-05",
-      "skuBase": "RAHA-EVR-06",
-      "title": "Evergreen",
-      "subtitle": "Add a graceful touch to your look with these gold-plated leaf stud earrings. Crafted from durable copper alloy with a shiny gold finish and a delicate leaf design, these lightweight leaf earring tops weigh just 4g and measure 2 cm x 1 cm, a sleek size that is stylish and comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Copper/Alloy | Gold-Plated | Leaf Design | 2 cm x 1 cm | 4g | 1 Pair | Polybag Packing\n\nOrder now and add a little elegance to your jewelry collection!",
-      "price": 450,
-      "compare": 850,
-      "stock": 5,
+      "id": "item-1069",
+      "skuBase": "Raha",
+      "title": "Olive Leaf Ring",
+      "subtitle": "Add a graceful, nature-inspired touch to your style with this brand new gold-plated double leaf ring. Made from durable stainless steel, it features two rows of detailed golden leaves with a sparkling stone line running through the centre for an elegant finish. Weighing just 5g, it feels light and comfortable for all-day wear. Available in sizes 8, and 9, so you can choose your perfect fit. Ideal for casual, formal, and party occasions, it also makes a thoughtful gift for her. Each order includes 1 piece of ring, packed in a polybag. Shop trendy women's fashion jewellery online today.",
+      "price": 449,
+      "compare": 650,
+      "stock": 2,
       "rating": "5.0",
-      "reviews": 52,
-      "badge": "Limited Drop",
-      "material": "Gold plated",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "Limited Drop",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281360733-1795201439744-IMG_0040.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281364124-1795201443826-IMG_0037.webp",
+      "reviews": 24,
+      "badge": "Stainless Steel",
+      "material": "Stainless Steel",
+      "category": "Rings",
+      "categorySlug": "rings",
+      "subdept": "Stainless Steel",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557105800-1795531333711-IMG_0125.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557107862-1795531337420-IMG_0124.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281360733-1795201439744-IMG_0040.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557105800-1795531333711-IMG_0125.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0040.jpeg"
+          "label": "IMG_0125.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281364124-1795201443826-IMG_0037.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0037.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557107862-1795531337420-IMG_0124.webp",
+          "tag": "",
+          "label": "IMG_0124.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281368053-1795201447721-IMG_0039.webp",
-          "tag": "03 Angle 3",
-          "label": "IMG_0039.jpeg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557110137-1795531339789-IMG_0123.webp",
+          "tag": "",
+          "label": "IMG_0123.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795612992466-unnamed--24-.webp",
+          "tag": "04 Angle 4",
+          "label": "unnamed (24).jpg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Limited Drop",
-          "name": "Evergreen",
-          "price": 450,
-          "stock": 5,
+          "desc": "Stainless Steel",
+          "name": "Olive Leaf Ring",
+          "price": 449,
+          "stock": 2,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 850,
+          "compare": 650,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 5,
+          "_productStock": 2,
           "_customReviews": []
         }
       ],
       "customSizes": [
-        "Standard Surgical Post",
-        "Comfort Locking Back"
+        "8",
+        "9"
       ],
       "customReviews": [],
       "weight": "4.0g",
-      "dimensions": "Standard Atelier Fit",
+      "dimensions": "Standard Raha Fit",
       "featuredOnHome": false,
       "sortOrder": 12
     },
     {
-      "id": "ear-06",
-      "skuBase": "RAHA-RBN-07",
-      "title": "Ribbons",
-      "subtitle": "Add a graceful touch to your look with these gold-plated bow pearl stud earrings. Made from durable copper alloy with a shiny gold finish and a charming pearl detail, these lightweight bow earring tops weigh just 4g and measure 1.5 cm x 1.5 cm, perfect for all-day comfort.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Copper/Alloy | Gold-Plated | Bow Pearl Design | 1.5 cm x 1.5 cm | 4g | 1 Pair | Polybag Packing\n\nOrder now and add a little elegance to your jewelry collection!",
-      "price": 499,
-      "compare": 800,
-      "stock": 15,
-      "rating": "4.8",
-      "reviews": 22,
-      "badge": "Minimalist",
-      "material": "Gold Plated",
+      "id": "item-7276",
+      "skuBase": "RAHA-BWT-010",
+      "title": "Bow Trio",
+      "subtitle": "Add a touch of everyday elegance with this affordable set of 3 stylish stud earrings. Designed for effortless everyday wear, these versatile studs are perfect for casual outfits, office looks, and minimal styling. A budget-friendly addition to your jewellery collection and a lovely option for everyday accessorizing.\nPackage Included: 3 pairs of Tops",
+      "price": 600,
+      "compare": 900,
+      "stock": 3,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "Stainless steel",
       "category": "Earrings",
       "categorySlug": "earrings",
-      "subdept": "Minimalist",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281371573-1795201844010-IMG_0034.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281376376-1795201850177-IMG_0033.webp",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711649756-1795281313829-1795202706470-IMG_0097.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711651424-1795281315933-1795202714102-IMG_0098.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281371573-1795201844010-IMG_0034.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711649756-1795281313829-1795202706470-IMG_0097.webp",
           "tag": "01 Gold Plated",
-          "label": "IMG_0034.jpeg"
+          "label": "IMG_0097.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281376376-1795201850177-IMG_0033.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711651424-1795281315933-1795202714102-IMG_0098.webp",
           "tag": "02 Silver",
-          "label": "IMG_0033.jpeg"
+          "label": "IMG_0098.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795610707168-unnamed--15-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (15).jpg"
         }
       ],
       "customSkus": [
         {
-          "desc": "Minimalist",
-          "name": "Ribbons",
-          "price": 499,
-          "stock": 15,
+          "desc": "Signature Edition",
+          "name": "Bow Trio",
+          "price": 600,
+          "stock": 3,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 800,
+          "compare": 900,
           "orbClass": "raha-metal-orb--gld",
-          "_productStock": 15,
+          "_productStock": 3,
           "_customReviews": []
         }
       ],
-      "customSizes": [
-        "Standard Surgical Post",
-        "Comfort Locking Back"
-      ],
+      "customSizes": [],
       "customReviews": [],
       "weight": "4.0g",
-      "dimensions": "Standard Atelier Fit",
+      "dimensions": "Standard Raha Fit",
       "featuredOnHome": false,
       "sortOrder": 13
-    },
-    {
-      "id": "ear-07",
-      "skuBase": "RAHA-FLT-08",
-      "title": "Flutter",
-      "subtitle": "Add a graceful touch to your look with these gold-plated leaf stud earrings. Crafted from durable copper alloy with a shiny gold finish and sparkling imitation stones, these lightweight leaf earring tops weigh just 3g and measure 1.5 cm x 1.5 cm, a dainty size that is stylish and comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Copper/Alloy | Gold-Plated | Synthetic Stone | Leaf Design | 1.5 cm x 1.5 cm | 3g | 1 Pair | Polybag Packing\n\nOrder now and add a little sparkle to your jewelry collection!",
-      "price": 499,
-      "compare": 800,
-      "stock": 15,
-      "rating": "4.9",
-      "reviews": 34,
-      "badge": "New Arrival",
-      "material": "Gold plated",
-      "category": "Earrings",
-      "categorySlug": "earrings",
-      "subdept": "New Arrival",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281378916-1795202067987-IMG_0045.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281382333-1795202073686-IMG_0043.webp",
-      "gallery": [
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281378916-1795202067987-IMG_0045.webp",
-          "tag": "01 Gold Plated",
-          "label": "IMG_0045.jpeg"
-        },
-        {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281382333-1795202073686-IMG_0043.webp",
-          "tag": "02 Silver",
-          "label": "IMG_0043.jpeg"
-        }
-      ],
-      "customSkus": [
-        {
-          "desc": "New Arrival",
-          "name": "Flutter",
-          "price": 499,
-          "stock": 15,
-          "imgIdx": 0,
-          "suffix": "STD",
-          "compare": 800,
-          "orbClass": "raha-metal-orb--gld",
-          "_productStock": 15,
-          "_customReviews": []
-        }
-      ],
-      "customSizes": [
-        "Standard Surgical Post",
-        "Comfort Locking Back"
-      ],
-      "customReviews": [],
-      "weight": "3g",
-      "dimensions": "Standard Atelier Fit",
-      "featuredOnHome": false,
-      "sortOrder": 14
     },
     {
       "id": "item-7925",
@@ -1237,7 +969,7 @@
           "label": "IMG_0114.jpeg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281301965-1795205273596-IMG_0112.webp",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711654163-1795281301965-1795205273596-IMG_0112.webp",
           "tag": "03 Angle 3",
           "label": "IMG_0112.jpeg"
         },
@@ -1269,12 +1001,477 @@
       "sortOrder": 14
     },
     {
+      "id": "item-1710",
+      "skuBase": "RAHA-HRT-03",
+      "title": "Heart Glow",
+      "subtitle": "Add a touch of sparkle to your look with this waterproof gold-plated stainless steel heart necklace. Featuring an open heart pendant lined with shimmering clear crystals on a fine gold chain, this tarnish-free, hypoallergenic dainty necklace is gentle on sensitive skin and safe to wear in water.\n\nLightweight and comfortable for all-day wear, it's perfect for layering or wearing alone. Ideal for casual outings, formal events, and parties, it pairs beautifully with traditional and western outfits. A thoughtful gift for her on birthdays, anniversaries, Valentine's Day, Eid, or any special occasion.\n\nDetails: Stainless Steel | Gold-Plated | Waterproof | Anti-Tarnish | Hypoallergenic | Crystal Heart Pendant | 1 Piece\n\nOrder now and add a little sparkle to your jewelry collection!",
+      "price": 899,
+      "compare": 1200,
+      "stock": 1,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "Stainless Steel",
+      "category": "Necklace",
+      "categorySlug": "necklace",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557117238-1795521778818-IMG_0277.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711656673-1795557120146-1795521781369-IMG_0279.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557117238-1795521778818-IMG_0277.webp",
+          "tag": "",
+          "label": "IMG_0277.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711656673-1795557120146-1795521781369-IMG_0279.webp",
+          "tag": "",
+          "label": "IMG_0279.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795612818403-unnamed--23-.webp",
+          "tag": "04 Angle 4",
+          "label": "unnamed (23).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Edition",
+          "name": "Heart Glow",
+          "price": 899,
+          "stock": 1,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 1200,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 1,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [],
+      "customReviews": [],
+      "weight": "7.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 15
+    },
+    {
+      "id": "item-8965",
+      "skuBase": "RAHA-BLM-012",
+      "title": "Bloom Cuff",
+      "subtitle": "Complete your look with this golden-plated adjustable bracelet. Crafted from durable alloy with a shiny golden finish, this women's bracelet weighs 29g and features an adjustable size that fits most wrists comfortably, making it a statement piece for any outfit.\n\nIdeal for casual outings, formal events, and parties, it pairs beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Alloy | Golden-Plated | Adjustable Size | 29g | 1 Piece | Polybag Packing\n\nOrder now and add a little shine to your jewelry collection!",
+      "price": 599,
+      "compare": 899,
+      "stock": 2,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "gold",
+      "category": "Bracelets",
+      "categorySlug": "bracelets",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281347329-1795203485735-IMG_0106.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0106.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281349465-1795203490827-IMG_0108.webp",
+          "tag": "",
+          "label": "IMG_0108.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711660507-1795281353292-1795203494079-IMG_0111.webp",
+          "tag": "03 Angle 3",
+          "label": "IMG_0111.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795612612341-unnamed--22-.webp",
+          "tag": "04 Angle 4",
+          "label": "unnamed (22).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Edition",
+          "name": "Bloom Cuff",
+          "price": 599,
+          "stock": 2,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 899,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 2,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [],
+      "customReviews": [],
+      "weight": "29g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 17
+    },
+    {
+      "id": "ear-02",
+      "skuBase": "RAHA-PTL-004",
+      "title": "Clovers",
+      "subtitle": "Precision-crafted earrings silhouette in 100% waterproof gold-plated finish & hypoallergenic 316L surgical core.",
+      "price": 650,
+      "compare": 1050,
+      "stock": 5,
+      "rating": "5.0",
+      "reviews": 36,
+      "badge": "Raha Edition",
+      "material": "Gold Plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711662540-1795281342359-1795201026866-IMG_0094.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711663978-1795281345192-1795201029937-IMG_0093.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711662540-1795281342359-1795201026866-IMG_0094.webp",
+          "tag": "Gold Plated",
+          "label": "IMG_0094.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711663978-1795281345192-1795201029937-IMG_0093.webp",
+          "tag": "03 Angle 3",
+          "label": "IMG_0093.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795612410593-unnamed--21-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (21).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Edition",
+          "name": "Clovers",
+          "price": 650,
+          "stock": 5,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 1050,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 5,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 18
+    },
+    {
+      "id": "ear-04",
+      "skuBase": "RAHA-HRT-005",
+      "title": "Hearties",
+      "subtitle": "Add a touch of charm to your look with these golden-plated heart stud earrings. Crafted from durable alloy and brass with a shiny golden finish and sparkling imitation stones, these heart earring tops weigh 6g and measure 1 cm x 1 cm, a dainty size that is subtle, stylish, and comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Alloy/Brass | Golden-Plated | Synthetic Stone | Heart Design | 1 cm x 1 cm | 6g | 1 Pair\n\nOrder now and add a little sparkle to your jewelry collection!",
+      "price": 450,
+      "compare": 800,
+      "stock": 5,
+      "rating": "4.9",
+      "reviews": 27,
+      "badge": "Bestseller",
+      "material": "Gold plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Bestseller",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711666033-1795281355523-1795201348180-IMG_0090.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281358280-1795201353816-IMG_0089.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711666033-1795281355523-1795201348180-IMG_0090.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0090.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281358280-1795201353816-IMG_0089.webp",
+          "tag": "02 Silver",
+          "label": "IMG_0089.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795612271766-unnamed--20-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (20).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Bestseller",
+          "name": "Hearties",
+          "price": 450,
+          "stock": 5,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 800,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 5,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "6g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 19
+    },
+    {
+      "id": "ear-05",
+      "skuBase": "RAHA-EVR-06",
+      "title": "Evergreen",
+      "subtitle": "Add a graceful touch to your look with these gold-plated leaf stud earrings. Crafted from durable copper alloy with a shiny gold finish and a delicate leaf design, these lightweight leaf earring tops weigh just 4g and measure 2 cm x 1 cm, a sleek size that is stylish and comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Copper/Alloy | Gold-Plated | Leaf Design | 2 cm x 1 cm | 4g | 1 Pair | Polybag Packing\n\nOrder now and add a little elegance to your jewelry collection!",
+      "price": 450,
+      "compare": 850,
+      "stock": 5,
+      "rating": "5.0",
+      "reviews": 52,
+      "badge": "Limited Drop",
+      "material": "Gold plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Limited Drop",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711667816-1795281360733-1795201439744-IMG_0040.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711669265-1795281364124-1795201443826-IMG_0037.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711667816-1795281360733-1795201439744-IMG_0040.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0040.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711669265-1795281364124-1795201443826-IMG_0037.webp",
+          "tag": "02 Silver",
+          "label": "IMG_0037.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711670640-1795281368053-1795201447721-IMG_0039.webp",
+          "tag": "03 Angle 3",
+          "label": "IMG_0039.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795611841241-unnamed--19-.webp",
+          "tag": "04 Angle 4",
+          "label": "unnamed (19).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Limited Drop",
+          "name": "Evergreen",
+          "price": 450,
+          "stock": 5,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 850,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 5,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.0g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 20
+    },
+    {
+      "id": "ear-06",
+      "skuBase": "RAHA-RBN-07",
+      "title": "Ribbons",
+      "subtitle": "Add a graceful touch to your look with these gold-plated bow pearl stud earrings. Made from durable copper alloy with a shiny gold finish and a charming pearl detail, these lightweight bow earring tops weigh just 4g and measure 1.5 cm x 1.5 cm, perfect for all-day comfort.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Brand New | Copper/Alloy | Gold-Plated | Bow Pearl Design | 1.5 cm x 1.5 cm | 4g | 1 Pair | Polybag Packing\n\nOrder now and add a little elegance to your jewelry collection!",
+      "price": 399,
+      "compare": 599,
+      "stock": 5,
+      "rating": "4.8",
+      "reviews": 22,
+      "badge": "Minimalist",
+      "material": "Gold Plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Minimalist",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711672883-1795281371573-1795201844010-IMG_0034.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281376376-1795201850177-IMG_0033.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711672883-1795281371573-1795201844010-IMG_0034.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0034.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281376376-1795201850177-IMG_0033.webp",
+          "tag": "",
+          "label": "IMG_0033.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795611531708-unnamed--18-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (18).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Minimalist",
+          "name": "Ribbons",
+          "price": 399,
+          "stock": 5,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 599,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 5,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "4.0g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 21
+    },
+    {
+      "id": "ear-07",
+      "skuBase": "RAHA-FLT-08",
+      "title": "Flutter",
+      "subtitle": "Add a graceful touch to your look with these gold-plated leaf stud earrings. Crafted from durable copper alloy with a shiny gold finish and sparkling imitation stones, these lightweight leaf earring tops weigh just 3g and measure 1.5 cm x 1.5 cm, a dainty size that is stylish and comfortable all day.\n\nIdeal for casual outings, formal events, and parties, they pair beautifully with both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Copper/Alloy | Gold-Plated | Synthetic Stone | Leaf Design | 1.5 cm x 1.5 cm | 3g | 1 Pair | Polybag Packing\n\nOrder now and add a little sparkle to your jewelry collection!",
+      "price": 499,
+      "compare": 800,
+      "stock": 15,
+      "rating": "4.9",
+      "reviews": 34,
+      "badge": "New Arrival",
+      "material": "Gold plated",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "New Arrival",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711674809-1795281378916-1795202067987-IMG_0045.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281382333-1795202073686-IMG_0043.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711674809-1795281378916-1795202067987-IMG_0045.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0045.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281382333-1795202073686-IMG_0043.webp",
+          "tag": "",
+          "label": "IMG_0043.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795611329506-unnamed--17-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (17).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "New Arrival",
+          "name": "Flutter",
+          "price": 499,
+          "stock": 15,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 800,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 15,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [
+        "Standard Surgical Post",
+        "Comfort Locking Back"
+      ],
+      "customReviews": [],
+      "weight": "3g",
+      "dimensions": "Standard Atelier Fit",
+      "featuredOnHome": false,
+      "sortOrder": 22
+    },
+    {
+      "id": "item-2844",
+      "skuBase": "RAHA-SPK-01",
+      "title": "Spark Trio",
+      "subtitle": "Add a touch of everyday elegance with this affordable set of 3 stylish stud earrings. Designed for effortless everyday wear, these versatile studs are perfect for casual outfits, office looks, and minimal styling. A budget-friendly addition to your jewelry collection and a lovely option for everyday accessorizing.\nPackage Included: 3 pairs of Tops",
+      "price": 599,
+      "compare": 899,
+      "stock": 3,
+      "rating": "5.0",
+      "reviews": 24,
+      "badge": "Raha Edition",
+      "material": "Stainless steel",
+      "category": "Earrings",
+      "categorySlug": "earrings",
+      "subdept": "Signature Edition",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711676835-1795281337691-1795202526756-IMG_0096.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711678406-1795281340141-1795202532740-IMG_0095.webp",
+      "gallery": [
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711676835-1795281337691-1795202526756-IMG_0096.webp",
+          "tag": "01 Gold Plated",
+          "label": "IMG_0096.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711678406-1795281340141-1795202532740-IMG_0095.webp",
+          "tag": "",
+          "label": "IMG_0095.jpeg"
+        },
+        {
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795610830831-unnamed--16-.webp",
+          "tag": "03 Angle 3",
+          "label": "unnamed (16).jpg"
+        }
+      ],
+      "customSkus": [
+        {
+          "desc": "Signature Edition",
+          "name": "Spark Trio",
+          "price": 599,
+          "stock": 3,
+          "imgIdx": 0,
+          "suffix": "STD",
+          "compare": 899,
+          "orbClass": "raha-metal-orb--gld",
+          "_productStock": 3,
+          "_customReviews": []
+        }
+      ],
+      "customSizes": [],
+      "customReviews": [],
+      "weight": "4.0g",
+      "dimensions": "Standard Raha Fit",
+      "featuredOnHome": false,
+      "sortOrder": 24
+    },
+    {
       "id": "item-2566",
       "skuBase": "RAHA-ANK-019",
       "title": "Natural Stone Anklet",
       "subtitle": "Add a boho touch to your summer look with this gemstone chip anklet. Featuring multicolor stone chips in soft pink, green, and plum shades, spaced along a delicate antique gold-tone chain with tiny metal beads, this dainty beaded anklet adds a natural, earthy charm to any outfit.\n\nLightweight and comfortable for all-day wear, it secures with a lobster clasp. Ideal for beach days, casual outings, and festive occasions, it pairs beautifully with sandals and both traditional and western outfits. A thoughtful gift for her on birthdays, Eid, or any special occasion.\n\nDetails: Antique Gold-Tone Chain | Natural-Look Stone Chips | Lobster Clasp | For Women | 1 Piece\n\nOrder now and add a little boho charm to your jewelry collection!",
-      "price": 638,
-      "compare": 0,
+      "price": 699,
+      "compare": 1199,
       "stock": 2,
       "rating": "5.0",
       "reviews": 24,
@@ -1283,17 +1480,17 @@
       "category": "Anklets",
       "categorySlug": "anklets",
       "subdept": "Signature Edition",
-      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795530725972-unnamed--5-.webp",
-      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557129961-1795521707143-IMG_0300.webp",
+      "img": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795613355506-unnamed--26-.webp",
+      "hoverImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711680337-1795557129961-1795521707143-IMG_0300.webp",
       "gallery": [
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795530725972-unnamed--5-.webp",
-          "tag": "02 Silver",
-          "label": "unnamed (5).jpg"
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795613355506-unnamed--26-.webp",
+          "tag": "",
+          "label": "unnamed (26).jpg"
         },
         {
-          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795557129961-1795521707143-IMG_0300.webp",
-          "tag": "01 Gold Plated",
+          "src": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711680337-1795557129961-1795521707143-IMG_0300.webp",
+          "tag": "Stainless steel",
           "label": "IMG_0300.jpeg"
         }
       ],
@@ -1301,11 +1498,11 @@
         {
           "desc": "Signature Edition",
           "name": "Natural Stone Anklet",
-          "price": 638,
+          "price": 699,
           "stock": 2,
           "imgIdx": 0,
           "suffix": "STD",
-          "compare": 0,
+          "compare": 1199,
           "orbClass": "raha-metal-orb--gld",
           "_productStock": 2,
           "_customReviews": []
@@ -1316,11 +1513,11 @@
       "weight": "3.0g",
       "dimensions": "Standard Raha Fit",
       "featuredOnHome": false,
-      "sortOrder": 17
+      "sortOrder": 25
     }
   ],
   "settings": {
-    "announcementText": "WhatsApp Support: 0326 0870876 | Instagram: @rahajewels.co | Official Email: contact.rahaofficial@gmail.com",
+    "announcementText": "WhatsApp Support: 0326 0870876 | Instagram: @rahajewels.pk | Official Email: contact.rahaofficial@gmail.com",
     "freeShippingThreshold": 2500,
     "standardShippingFee": 300,
     "cityShippingRates": {
@@ -1335,13 +1532,13 @@
     "heroTitleHtml": "Jewellery for the <em>Modern Minimalist.</em>",
     "heroSubtitle": "By a woman, for women who know their worth",
     "heroMonolithHeading": "The Raha Vault",
-    "heroEditorialImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1794915852718-WhatsApp-Image-2026-11-11-at-7.39.20-PM.jpeg",
-    "heroFlagshipLink": "product.html?id=item-8258",
-    "heroFlagshipLinkText": "Click to see more",
-    "catImgEarrings": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281384277-1795208303986-F4E7C32B-3DA5-488D-98F2-BB9AFFD58328.webp",
-    "catImgNecklace": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281386244-1795208297905-7E3F47CF-E989-43C1-9986-E51802D1E6F7.webp",
+    "heroEditorialImg": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711681720-1794915852718-WhatsApp-Image-2026-11-11-at-7.39.20-PM.webp",
+    "heroFlagshipLink": "product.html?id=item-6201",
+    "heroFlagshipLinkText": "Inspect ELARA →",
+    "catImgEarrings": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711682602-1795281384277-1795208303986-F4E7C32B-3DA5-488D-98F2-BB9AFFD58328.webp",
+    "catImgNecklace": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711683401-1795281386244-1795208297905-7E3F47CF-E989-43C1-9986-E51802D1E6F7.webp",
     "catImgRings": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281388202-1795208577306-9337D4F2-78C6-4975-8B72-91916D419D68.webp",
-    "catImgBracelets": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281389881-1795208797444-ABE2F70B-1B14-48D1-B0D8-F456271442F5.webp",
+    "catImgBracelets": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795711684121-1795281389881-1795208797444-ABE2F70B-1B14-48D1-B0D8-F456271442F5.webp",
     "catImgAnklets": "https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795281391682-1795208283100-7E08168B-5909-4795-9A6A-8DE2E0723C2B.webp"
   },
   "pages": {
@@ -1350,6 +1547,5 @@
       "subtitle": "Everything  you  need to know about shopping, materials, nationwide delivery, and jewellery care at RAHA.",
       "bodyHtml": "<div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">1. Do you have a physical store?</h3><p class=\"raha-policy-p\">Not just yet! We're currently an online-only brand. Shop your favourite pieces right here, from the comfort of your home.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">2. What materials are used in your jewellery?</h3><p class=\"raha-policy-p\">We carefully select our jewellery for its style, quality and affordability. Material details are mentioned in individual product descriptions. Most of our pieces are stainless steel and hypoallergenic because we care for you.</p></div><div class=\"raha-policy-block\"><h3 class=\"raha-policy-h3\">10. How can I contact RAHA?</h3><p class=\"raha-policy-p\">We're just a message away! Reach us through Instagram (@rahajewels.co), WhatsApp (0326 0870876) or our gmail (contact.rahaofficial@gmail.com). ♡</p></div>"
     }
-  },
-  "catalogCustomized": true
+  }
 }

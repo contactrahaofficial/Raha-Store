@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link rel="preconnect" href="https://zqlhbmyiyeyflcflicsv.supabase.co" crossorigin>
+  <link rel="preconnect" href="https://zqlhbmyiyeyflcflicsv.supabase.co">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="Assets/css/raha-atelier.css?v=20261116_v22">
+  <link rel="stylesheet" href="Assets/css/raha-atelier.css?v=20261126_v77">
   <style>
     /* High-contrast solid dropdown & native control styling — zero white-on-white */
     :root {
@@ -170,6 +170,69 @@
       border-color: var(--raha-gold);
       color: var(--raha-gold-light);
       font-weight: 600;
+    }
+
+    /* Luxury Admin Filter Pills (Orders, Statuses & Product Departments) */
+    .raha-filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(24, 19, 22, 0.85);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .raha-filter-pill:hover {
+      color: #ffffff;
+      border-color: rgba(213, 184, 149, 0.55);
+      background: rgba(114, 94, 103, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .raha-filter-pill.is-active {
+      background: linear-gradient(135deg, rgba(213, 184, 149, 0.24) 0%, rgba(114, 94, 103, 0.42) 100%);
+      border-color: var(--raha-gold);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(213, 184, 149, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    /* Distinct Status Accent Colors for Order Status Pills */
+    .raha-filter-pill[data-order-filter="Pending"].is-active {
+      border-color: #ffb74d;
+      color: #ffe0b2;
+      background: linear-gradient(135deg, rgba(255, 183, 77, 0.24), rgba(114, 94, 103, 0.25));
+    }
+    .raha-filter-pill[data-order-filter="Confirmed"].is-active {
+      border-color: #64b5f6;
+      color: #bbdefb;
+      background: linear-gradient(135deg, rgba(100, 181, 246, 0.24), rgba(114, 94, 103, 0.25));
+    }
+    .raha-filter-pill[data-order-filter="Dispatched"].is-active {
+      border-color: #ba68c8;
+      color: #e1bee7;
+      background: linear-gradient(135deg, rgba(186, 104, 200, 0.24), rgba(114, 94, 103, 0.25));
+    }
+    .raha-filter-pill[data-order-filter="Delivered"].is-active {
+      border-color: #81c784;
+      color: #c8e6c9;
+      background: linear-gradient(135deg, rgba(129, 199, 132, 0.24), rgba(114, 94, 103, 0.25));
+    }
+    .raha-filter-pill[data-order-filter="Cancelled"].is-active,
+    .raha-filter-pill[data-order-filter="Refunded"].is-active {
+      border-color: #e57373;
+      color: #ffcdd2;
+      background: linear-gradient(135deg, rgba(229, 115, 115, 0.24), rgba(114, 94, 103, 0.25));
     }
 
     .admin-tab-panel {
@@ -398,7 +461,6 @@
       #admin-order-search,
       #admin-product-search,
       #admin-restock-search,
-      #admin-top-sample-order-btn,
       #admin-add-product-btn,
       #admin-restock-all-btn {
         width: 100% !important;
@@ -642,14 +704,6 @@
             <button type="button" class="raha-filter-pill is-active" data-order-type="all" id="btn-type-all">All Orders (<span id="count-all-orders">0</span>)</button>
             <button type="button" class="raha-filter-pill" data-order-type="cod" id="btn-type-cod">📦 COD Orders (<span id="count-cod-orders">0</span>)</button>
             <button type="button" class="raha-filter-pill" data-order-type="online" id="btn-type-online" style="border-color:rgba(100,181,246,0.4);color:#64b5f6;">💳 Online Orders (<span id="count-online-orders">0</span>)</button>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button type="button" class="raha-btn raha-btn--glass" id="admin-top-sample-order-btn" style="padding:8px 14px;font-size:10.5px;">
-              + Simulate COD Order
-            </button>
-            <button type="button" class="raha-btn raha-btn--glass" id="admin-sample-online-order-btn" style="padding:8px 14px;font-size:10.5px;border-color:rgba(100,181,246,0.4);color:#64b5f6;">
-              + Simulate Online Order
-            </button>
           </div>
         </div>
 
@@ -1210,9 +1264,9 @@
 
   <!-- Supabase JS SDK + Raha Storefront & Admin Controllers -->
   <script src="Assets/js/supabase.min.js"></script>
-  <script src="Assets/js/raha-supabase.js?v=20261125_v75"></script>
-  <script src="Assets/js/replica-enhancements.js?v=20261125_v75"></script>
-  <script src="Assets/js/raha-admin.js?v=20261125_v75"></script>
+  <script src="Assets/js/raha-supabase.js?v=20261126_v77"></script>
+  <script src="Assets/js/replica-enhancements.js?v=20261126_v77"></script>
+  <script src="Assets/js/raha-admin.js?v=20261126_v77"></script>
 </body>
 
 </html>

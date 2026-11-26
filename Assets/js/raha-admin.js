@@ -319,16 +319,8 @@
       container.innerHTML =
         '<div style="text-align:center;padding:56px 20px;border-radius:22px;background:var(--bg-card);border:1px solid var(--border-subtle);">' +
           '<h3 style="font-family:var(--font-serif);font-size:26px;font-weight:400;margin-bottom:8px;">No Orders Match This View</h3>' +
-          '<p style="color:var(--text-secondary);font-size:13.5px;margin-bottom:18px;">' + emptyMsg + '</p>' +
-          '<div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">' +
-            '<button type="button" class="raha-btn raha-btn--glass" id="admin-create-sample-order-btn">+ Simulate COD Order</button>' +
-            '<button type="button" class="raha-btn raha-btn--glass" id="admin-create-sample-online-btn" style="border-color:rgba(100,181,246,0.4);color:#64b5f6;">+ Simulate Online Order</button>' +
-          '</div>' +
+          '<p style="color:var(--text-secondary);font-size:13.5px;margin:0;">' + emptyMsg + '</p>' +
         '</div>';
-      var sampleBtn = document.getElementById('admin-create-sample-order-btn');
-      if (sampleBtn) sampleBtn.addEventListener('click', createSampleTestOrder);
-      var sampleOnlineBtn = document.getElementById('admin-create-sample-online-btn');
-      if (sampleOnlineBtn) sampleOnlineBtn.addEventListener('click', createSampleOnlineOrder);
       return;
     }
 
@@ -532,90 +524,6 @@
         showToast('Order ' + oid + ' removed');
       });
     });
-  }
-
-  async function createSampleTestOrder() {
-    var sample = {
-      orderId: 'RAHA-COD-' + Math.floor(10000 + Math.random() * 90000),
-      createdAt: new Date().toLocaleString(),
-      status: 'Pending',
-      paymentMethod: 'Cash on Delivery (COD)',
-      customer: {
-        name: 'Ayesha Khan',
-        phone: '+92 300 8234567',
-        email: 'ayesha.khan@example.com',
-        city: 'Karachi',
-        address: 'House 14-B, Street 6, Phase 6, DHA Karachi (Near Bukhari Commercial)',
-        notes: 'Please call before arriving at gate'
-      },
-      items: [
-        {
-          id: 'ear-01',
-          sku: 'RAHA-EAR-01-GLD-STD',
-          title: 'Aether Sculpted Gold Drop Hoops',
-          variant: 'Gold Plated • STD',
-          price: 2450,
-          qty: 1,
-          img: 'Assets/Main Raha logo with slogan (The actual logo).webp'
-        },
-        {
-          id: 'ring-01',
-          sku: 'RAHA-RNG-01-GLD-US7',
-          title: 'Vanguard Signet Dome Ring',
-          variant: 'Gold Plated • US7',
-          price: 2250,
-          qty: 1,
-          img: 'Assets/Main Raha logo with slogan (The actual logo).webp'
-        }
-      ],
-      subtotal: 4700,
-      shipping: 0,
-      total: 4700
-    };
-    await window.RahaSupabase.createOrder(sample);
-    orders.unshift(sample);
-    renderKpis();
-    renderOrdersTab();
-    showToast('Sample COD order created!');
-  }
-
-  async function createSampleOnlineOrder() {
-    var sample = {
-      orderId: 'RAHA-ONL-' + Math.floor(10000 + Math.random() * 90000),
-      createdAt: new Date().toLocaleString(),
-      status: 'Pending',
-      paymentMethod: 'Online Payment (WhatsApp)',
-      paymentStatus: 'Pending Verification',
-      orderType: 'online',
-      adminNote: '[PAYMENT: PENDING_VERIFICATION]',
-      customer: {
-        name: 'Zainab Fatima',
-        phone: '+92 321 4567890',
-        email: 'zainab.fatima@example.com',
-        city: 'Lahore',
-        address: 'Apartment 402, Block G, Gulberg III, Lahore (Near Main Market)',
-        notes: 'Kindly send Raast / Bank details on WhatsApp for immediate transfer'
-      },
-      items: [
-        {
-          id: 'neck-01',
-          sku: 'RAHA-NCK-01-GLD',
-          title: 'Celeste Luminary Herringbone Choker',
-          variant: 'Gold Plated • 16-inch',
-          price: 3200,
-          qty: 1,
-          img: 'Assets/Main Raha logo with slogan (The actual logo).webp'
-        }
-      ],
-      subtotal: 3200,
-      shipping: 250,
-      total: 3450
-    };
-    await window.RahaSupabase.createOrder(sample);
-    orders.unshift(sample);
-    renderKpis();
-    renderOrdersTab();
-    showToast('Sample Online Order created!');
   }
 
   /* ========================================================================
@@ -1705,12 +1613,6 @@
     });
     var ordSearch = document.getElementById('admin-order-search');
     if (ordSearch) ordSearch.addEventListener('input', renderOrdersTab);
-
-    var addSampleOrderBtn = document.getElementById('admin-top-sample-order-btn');
-    if (addSampleOrderBtn) addSampleOrderBtn.addEventListener('click', createSampleTestOrder);
-
-    var addSampleOnlineBtn = document.getElementById('admin-sample-online-order-btn');
-    if (addSampleOnlineBtn) addSampleOnlineBtn.addEventListener('click', createSampleOnlineOrder);
 
     /* Product Category Filter Pills & Search */
     document.querySelectorAll('[data-prod-filter]').forEach(function (btn) {

@@ -788,10 +788,8 @@
       var pub = sb.storage.from('raha-media').getPublicUrl(newPath);
       var newUrl = (pub && pub.data && pub.data.publicUrl) ? pub.data.publicUrl : clean;
 
-      // Remove the old multi-megabyte original from Supabase Storage to save space
-      if (newUrl !== clean) {
-        await deleteImageFile(clean);
-      }
+      // Note: Do NOT delete the previous file from Supabase Storage immediately during background auto-heal,
+      // so any product row or cached tab still referencing the old URL never gets a broken 400 image link.
       return {
         url: newUrl,
         changed: newUrl !== clean,

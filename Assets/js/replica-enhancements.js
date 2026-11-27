@@ -1032,6 +1032,18 @@
       product.gallery = [
         { src: product.img || 'Assets/Main Raha logo with slogan (The actual logo).webp', tag: '01 Studio', label: 'Primary Studio Angle' }
       ];
+    } else {
+      // Heal known stale gallery URLs immediately on the storefront before rendering thumbnails
+      product.gallery = product.gallery.map(function (g) {
+        if (g && g.src && g.src.indexOf('1795602016225-1795601203510-IMG_0137.webp') !== -1) {
+          return Object.assign({}, g, {
+            src: 'https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795601227769-1795601203510-IMG_0137.webp'
+          });
+        }
+        return g;
+      }).filter(function (g) {
+        return g && g.src && g.src.indexOf('1795281325244-1795200828825-IMG_0074.webp') === -1;
+      });
     }
 
     function setGalleryImage(idx) {
@@ -1064,15 +1076,31 @@
     if (thumbsContainer) {
       var thFrag = document.createDocumentFragment();
       product.gallery.forEach(function (g, idx) {
+        if (!g || !g.src) return;
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'raha-pdp-thumb' + (idx === 0 ? ' is-active' : '');
         btn.setAttribute('data-g-idx', idx);
         btn.title = g.label || 'Gallery View';
         var thumbSrc = optimizeImageUrl(g.src);
-        btn.innerHTML =
-          '<img src="' + thumbSrc + '" alt="' + (g.label || '').replace(/"/g, '&quot;') + '" loading="lazy" decoding="async" onerror="this.onerror=null;if(this.src.indexOf(\'/render/image/\')!==-1){this.src=this.src.replace(\'/render/image/\',\'/object/\').split(\'?\')[0];}">' +
-          '<span class="raha-pdp-thumb__tag">' + (g.tag || '') + '</span>';
+        var imgEl = document.createElement('img');
+        imgEl.src = thumbSrc;
+        imgEl.alt = g.label || '';
+        imgEl.loading = 'lazy';
+        imgEl.decoding = 'async';
+        imgEl.onerror = function () {
+          this.onerror = null;
+          if (this.src.indexOf('/render/image/') !== -1) {
+            this.src = this.src.replace('/render/image/', '/object/').split('?')[0];
+          } else {
+            btn.style.display = 'none';
+          }
+        };
+        var tagSpan = document.createElement('span');
+        tagSpan.className = 'raha-pdp-thumb__tag';
+        tagSpan.textContent = g.tag || '';
+        btn.appendChild(imgEl);
+        btn.appendChild(tagSpan);
         btn.addEventListener('click', function () { setGalleryImage(idx); });
         btn.addEventListener('mouseenter', function () { setGalleryImage(idx); });
         thFrag.appendChild(btn);

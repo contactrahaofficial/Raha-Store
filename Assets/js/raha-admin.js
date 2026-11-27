@@ -127,6 +127,7 @@
       } catch (e) {}
 
       var urlMap = {};
+      var oldUrlsToDeleteAfterSave = [];
       var converted = 0;
       var savedKB = 0;
       async function checkAndFix(u) {
@@ -137,6 +138,9 @@
         if (res && res.changed && res.url) {
           urlMap[u] = res.url;
           verifiedCache[res.url] = 1;
+          if (oldUrlsToDeleteAfterSave.indexOf(u) === -1) {
+            oldUrlsToDeleteAfterSave.push(u);
+          }
           converted++;
           savedKB += Math.max(0, (res.beforeKB || 0) - (res.afterKB || 0));
           return res.url;
@@ -159,11 +163,29 @@
           if (nHov !== p.hoverImg) { p.hoverImg = nHov; changed = true; }
         }
         if (Array.isArray(p.gallery)) {
+          var cleanedGal = [];
           for (var g = 0; g < p.gallery.length; g++) {
             if (p.gallery[g] && p.gallery[g].src) {
-              var nG = await checkAndFix(p.gallery[g].src);
+              var curSrc = p.gallery[g].src;
+              // Heal known stale IMG_0137 URL to the existing storage object
+              if (curSrc.indexOf('1795602016225-1795601203510-IMG_0137.webp') !== -1) {
+                p.gallery[g].src = 'https://zqlhbmyiyeyflcflicsv.supabase.co/storage/v1/object/public/raha-media/products/1795601227769-1795601203510-IMG_0137.webp';
+                curSrc = p.gallery[g].src;
+                changed = true;
+              }
+              // Drop known deleted IMG_0074 slot on ear-03 so it never shows a broken thumbnail
+              if (curSrc.indexOf('1795281325244-1795200828825-IMG_0074.webp') !== -1) {
+                changed = true;
+                continue;
+              }
+              var nG = await checkAndFix(curSrc);
               if (nG !== p.gallery[g].src) { p.gallery[g].src = nG; changed = true; }
+              cleanedGal.push(p.gallery[g]);
             }
+          }
+          if (cleanedGal.length !== p.gallery.length) {
+            p.gallery = cleanedGal;
+            changed = true;
           }
         }
         if (Array.isArray(p.customReviews)) {
@@ -195,6 +217,15 @@
         if (setChanged) {
           try { await window.RahaSupabase.saveStoreSettingsAndPages(catalog, settings, pages); } catch (e) {}
           populateSettingsForm();
+        }
+      }
+      // Safe Cleanup: Only AFTER all product rows and settings are confirmed saved in the database,
+      // remove the old heavy files from Supabase Storage so zero dead weight remains in the bucket!
+      if (oldUrlsToDeleteAfterSave.length > 0 && typeof window.RahaSupabase.deleteImageFile === 'function') {
+        for (var dIdx = 0; dIdx < oldUrlsToDeleteAfterSave.length; dIdx++) {
+          try {
+            await window.RahaSupabase.deleteImageFile(oldUrlsToDeleteAfterSave[dIdx]);
+          } catch (delErr) {}
         }
       }
       try {
